@@ -1,3 +1,6 @@
+drop database Company;
+CREATE DATABASE IF NOT EXISTS Company DEFAULT CHARACTER SET utf8;
+use Company;
 CREATE TABLE `custom_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_num` varchar(45) NOT NULL,
