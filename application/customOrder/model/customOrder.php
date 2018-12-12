@@ -1,10 +1,10 @@
 <?php
 
-namespace app\customOrder\model;
+namespace app\CustomOrder\model;
 
 use think\Model;
 
-class customOrder extends Model
+class CustomOrder extends Model
 {
     //
 }
