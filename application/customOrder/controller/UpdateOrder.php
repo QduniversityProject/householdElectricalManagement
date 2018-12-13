@@ -8,8 +8,8 @@ class UpdateOrder extends controller
 {
     public function update($id)
     {
-        echo"$id";
-    // return $this->fetch();
+    $this->assign('orderId', $id);
+    return $this->fetch();
    
     }
     public function delete()

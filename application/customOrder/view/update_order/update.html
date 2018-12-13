@@ -1,8 +1,8 @@
 <form class="layui-form" action="">
         <div class="layui-form-item">
-          <label class="layui-form-label">输入框</label>
+          <label class="layui-form-label">订单编号</label>
           <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            <input type="text" name="title" value={$orderId} disabled lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
           </div>
         </div>
         <div class="layui-form-item">
