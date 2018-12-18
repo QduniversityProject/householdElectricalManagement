@@ -14,4 +14,7 @@ class Index extends controller
     return $this->fetch();
    
     }
+    public function test(){
+        echo json_decode("7777");
+    }
 }
