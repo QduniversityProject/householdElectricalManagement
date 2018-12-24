@@ -44,47 +44,71 @@ margin:8px;
 <script src="../../public/static/js/jquery-3.3.1.js"></script>
 <script src="../../public/static/layer/layer.js"></script>
 <script >  
-$(document).ready(function(){
-$('.submit').on('click', function(){
-    var id =$(this).attr("id");
-    var cusTomerId=$(this).attr("customerId");
-    layer.open({
-      type: 2,
-      title: '修改订单',
-      maxmin: true,
-      shadeClose: true, //点击遮罩关闭层
-      area : ['800px' , '600px'],
-    //   content: ['../../public/customOrder/Update_order/update?id='+id,'no']
-      content: '../../public/customOrder/Update_order/form?id='+id
-    });
-  });
-  
-//   $("#test").click(function(){
-//          $("#txt").load('index/test');
-//      });
-$("#test").click(function(){
-    htmlobj=$.ajax({
-             url:"index/test",
-             async:false
-             });
-            // $("#txt").html(htmlobj.responseText);
-            alert(htmlobj.responseText);
-
-
-         
+    $(document).ready(function(){
+        $('.submit').on('click', function(){
+        var id =$(this).attr("id");
+        var cusTomerId=$(this).attr("customerId");
+        layer.open({
+          type: 2,
+          title: '修改订单',
+          maxmin: true,
+          shadeClose: true, //点击遮罩关闭层
+          area : ['800px' , '600px'],
+        //   content: ['../../public/customOrder/Update_order/update?id='+id,'no']
+          content: '../../public/customOrder/Update_order/form?id='+id
+            });
+        });
+        //校验文件是否为空
+        // $("#excel").bind("submit", function(){    
+        // var file=$("#file").val();  
+        // if(file == ""){    
+        //     alert("请选择文件！！！");  
+        //     return false;    
+        // }});   
+            $("#test").click(function(){
+    
+                //  htmlobj=$.ajax({
+                //     type:"POST",
+                //     url:"../../public/customOrder/Update_order/update.html",
+                // //  url:"index/test",
+              
+                //  });
+                // $("#txt").html(htmlobj.responseText);
+                layer.msg(htmlobj.responseText);
+                alert(htmlobj.responseText);
+                $.ajax({
+                    url:"../../public/customOrder/Update_order/update.html",
+                    type:"POST",
+                    async: false,
+                    success:function (data) {
+                                layer.msg(data);
+                             },
+                    dataType:"json",
+    
+                });
+                return layer.msg("失败");;
+    
+        //     var form = new FormData($("#excel ")[0]);
+        //     $.ajax({
+        //     url: "../../public/customOrder/import_from_excel/import",
+        //     type: "post",
+        //     data: form,
+        //     dataType: "json",
+        //     processData: false,
+        //     contentType: false,
+        //     async: false,
+        //     success: function (res) {
+        //         alert("ddd");
+        //     }
+        // })
+    
+         });
+    
+    
+                
      });
     
-    
-
-//    $("#excel").bind("submit", function(){    
-//     var file=$("#file").val();  
-//     if(file == ""){    
-//         alert("请选择文件！！！");  
-//         return false;    
-//     }    
-});  
-
-</script>
+    </script>
 </head>
 <body>
 <h2>订单列表</h2> 
@@ -92,7 +116,7 @@ $("#test").click(function(){
 <button id="test">改变内容</button>
 <div>
         <!-- action="{:url('customOrder/import_from_excel/import')}" -->
-    <form id="excel" method="post"   class="form-signin" enctype="multipart/form-data" >
+    <form id="excel" method="post" action="{:url('customOrder/import_from_excel/import')}"   class="form-signin" enctype="multipart/form-data" >
     <input id="file" name="excel" type="file" class="form-control">
     <button class="btn btn-lg btn-primary btn-block"id="btton" >导入</button>
     </form>

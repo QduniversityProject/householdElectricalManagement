@@ -22,6 +22,12 @@
         return false;
       });
     });
+    $(document).ready(function(){
+      $("#test").ajaxForm(function(data){
+	              alert("返回的值是" + data);
+	        });	
+    });
+     
   </script>
 </head>
 
@@ -31,7 +37,7 @@
 
 
     <!-- action="../../customOrder/Update_order/update.html" -->
-  <form class="layui-form" action="../../customOrder/Update_order/update.html">
+  <form class="layui-form" id="test" action="../../customOrder/Update_order/update.html">
 
     <div class="layui-form-item">
       <label class="layui-form-label">订单编号</label>
