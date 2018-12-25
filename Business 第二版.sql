@@ -1,4 +1,4 @@
-drop database Business;
+drop database business;
 
 CREATE DATABASE IF NOT EXISTS Business DEFAULT CHARACTER SET utf8;
 
@@ -421,33 +421,8 @@ INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_
 INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('13', 'OD20181200013', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
 INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('14', 'OD20181200014', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
 
-CREATE TABLE buaftersale
-(
-aftersale_id int NOT NULL AUTO_INCREMENT,
-aftersale_roll varchar(200) NOT NULL,
-order_num varchar(45) NOT NULL,
-question_type varchar(20) NOT NULL,
-question varchar(200) NOT NULL,
-employee_id varchar(200) NOT NULL,
-processing_date date NOT NULL,
-state int NOT NULL,
-primary key(aftersale_id),
-foreign key(order_num) references custom_order(order_num),
-foreign key(employee_id) references buemployee(employee_id)
-)ENGINE=InnoDB default charset=uft8;
 
-CREATE TABLE bufeedback
-(
-feedback_id int NOT NULL AUTO_INCREMENT,
-feedback_roll varchar(200) NOT NULL,
-aftersale_roll varchar(200) NOT NULL,
-feedback_date date NOT NULL,
-charge int NOT NULL,
-others varchar(200),
-confirment int NOT NULL,
-primary key(feedback_id),
-foreign key(aftersale_roll) references buaftersale(aftersale_roll)
-)ENGINE=InnoDB default charset=utf8
+
 
 CREATE TABLE burole
 (
@@ -457,9 +432,21 @@ role_desc varchar(50),
 primary key(role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+INSERT INTO `burole` VALUES (1, '管理员', '管理一切后台信息');
+INSERT INTO `burole` VALUES (2, '经理', '管理员工部门信息');
+INSERT INTO `burole` VALUES (3, '销售人员', '销售服务');
+INSERT INTO `burole` VALUES (4, '售后人员', '售后服务');
+
+
+
+
+
+
 CREATE TABLE buemployee
 (
-employee_id int auto_increment,
+id int primary key auto_increment,
+employee_id varchar(45),
 employee_name varchar(50) NOT NULL,
 employee_password varchar(50) NOT NULL,
 employee_photo varchar(200),
@@ -471,15 +458,41 @@ rec_time varchar(200),
 time_last_error varchar(200), 
 rec_address varchar(200),
 rec_useraent varchar(200),
-primary key(employee_id),
 FOREIGN KEY (department_id) REFERENCES budepartment (department_id),
 FOREIGN KEY (role_id) REFERENCES burole (role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `buemployee` VALUES ('1','EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
 
-INSERT INTO `burole` VALUES (1, '管理员', '管理一切后台信息');
-INSERT INTO `burole` VALUES (2, '经理', '管理员工部门信息');
-INSERT INTO `burole` VALUES (3, '销售人员', '销售服务');
-INSERT INTO `burole` VALUES (4, '售后人员', '售后服务');
 
-INSERT INTO `buemployee` VALUES ('EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
+
+
+CREATE TABLE buaftersale
+(
+aftersale_id int NOT NULL AUTO_INCREMENT,
+aftersale_roll varchar(200) NOT NULL,
+order_num varchar(45) NOT NULL,
+question_type varchar(20) NOT NULL,
+question varchar(200) NOT NULL,
+employee_id varchar(200) NOT NULL,
+processing_date date NOT NULL,
+state int NOT NULL,
+primary key(aftersale_id)
+)ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE bufeedback
+(
+feedback_id int NOT NULL primary key AUTO_INCREMENT,
+feedback_roll varchar(200) NOT NULL,
+aftersale_roll varchar(200) NOT NULL,
+feedback_date date NOT NULL,
+charge int NOT NULL,
+others varchar(200),
+confirment int NOT NULL
+)ENGINE=InnoDB default charset=utf8;
+
+
+
+
+
