@@ -389,3 +389,97 @@ insert into budepartment values(6,'厨房小电部门','厨房小电销售','',6
 insert into budepartment values(7,'生活电器部门','生活电器销售','',7);
 insert into budepartment values(8,'个护健康部门','个护健康销售','',8);
 insert into budepartment values(9,'家庭影音部门','家庭影音销售','',9);
+
+CREATE TABLE custom_order
+(
+id int(11) NOT NULL AUTO_INCREMENT,
+  order_num varchar(45) NOT NULL,
+  custom_num varchar(45) NOT NULL,
+  order_time varchar(45) NOT NULL,
+  order_channel varchar(45) NOT NULL,
+  amount int(11) NOT NULL,
+  unit_price varchar(45) NOT NULL,
+  saler_num varchar(45) NOT NULL,
+  activity int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY id_UNIQUE (`id`),
+  UNIQUE KEY orderNum_UNIQUE (`order_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('1', 'OD20181200001', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('2', 'OD20181200002', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('3', 'OD20181200003', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('4', 'OD20181200004', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('5', 'OD20181200005', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('6', 'OD20181200006', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('7', 'OD20181200007', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('8', 'OD20181200008', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('9', 'OD20181200009', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('10', 'OD20181200010', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('11', 'OD20181200011', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('12', 'OD20181200012', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('13', 'OD20181200013', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
+INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('14', 'OD20181200014', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
+
+CREATE TABLE buaftersale
+(
+aftersale_id int NOT NULL AUTO_INCREMENT,
+aftersale_roll varchar(200) NOT NULL,
+order_num varchar(45) NOT NULL,
+question_type varchar(20) NOT NULL,
+question varchar(200) NOT NULL,
+employee_id varchar(200) NOT NULL,
+processing_date date NOT NULL,
+state int NOT NULL,
+primary key(aftersale_id),
+foreign key(order_num) references custom_order(order_num),
+foreign key(employee_id) references buemployee(employee_id)
+)ENGINE=InnoDB default charset=uft8;
+
+CREATE TABLE bufeedback
+(
+feedback_id int NOT NULL AUTO_INCREMENT,
+feedback_roll varchar(200) NOT NULL,
+aftersale_roll varchar(200) NOT NULL,
+feedback_date date NOT NULL,
+charge int NOT NULL,
+others varchar(200),
+confirment int NOT NULL,
+primary key(feedback_id),
+foreign key(aftersale_roll) references buaftersale(aftersale_roll)
+)ENGINE=InnoDB default charset=utf8
+
+CREATE TABLE burole
+(
+role_id int auto_increment,
+role_name varchar(50) NOT NULL,
+role_desc varchar(50),
+primary key(role_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE buemployee
+(
+employee_id int auto_increment,
+employee_name varchar(50) NOT NULL,
+employee_password varchar(50) NOT NULL,
+employee_photo varchar(200),
+department_id int,
+employee_count int,
+employee_status int,
+role_id int NOT NULL,
+rec_time varchar(200),
+time_last_error varchar(200), 
+rec_address varchar(200),
+rec_useraent varchar(200),
+primary key(employee_id),
+FOREIGN KEY (department_id) REFERENCES budepartment (department_id),
+FOREIGN KEY (role_id) REFERENCES burole (role_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `burole` VALUES (1, '管理员', '管理一切后台信息');
+INSERT INTO `burole` VALUES (2, '经理', '管理员工部门信息');
+INSERT INTO `burole` VALUES (3, '销售人员', '销售服务');
+INSERT INTO `burole` VALUES (4, '售后人员', '售后服务');
+
+INSERT INTO `buemployee` VALUES ('EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
