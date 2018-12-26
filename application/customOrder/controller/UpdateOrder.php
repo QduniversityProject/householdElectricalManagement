@@ -22,6 +22,7 @@ class UpdateOrder extends controller
     }
     public function update()
     {
+        dump($_GET);
     echo "ok";
     }
     public function delete()
