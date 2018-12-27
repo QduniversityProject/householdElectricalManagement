@@ -1,4 +1,4 @@
-drop database business;
+
 
 CREATE DATABASE IF NOT EXISTS Business DEFAULT CHARACTER SET utf8;
 
@@ -442,7 +442,7 @@ INSERT INTO `burole` VALUES (4, '售后人员', '售后服务');
 
 
 
-
+/*系统用户表*/
 CREATE TABLE buemployee
 (
 id int primary key auto_increment,
@@ -492,7 +492,118 @@ others varchar(200),
 confirment int NOT NULL
 )ENGINE=InnoDB default charset=utf8;
 
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `phnone` varchar(45) DEFAULT NULL,
+  `address` varchar(45) NOT NULL,
+  `level` int(11) DEFAULT NULL COMMENT '1为vip',
+  `link_man` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `customer_id_UNIQUE` (`customer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  
+INSERT INTO `customer` VALUES ('1', 'CT0100001', '高洪续', '15653291562', '家', '1', '');
+INSERT INTO `customer` VALUES ('2', 'CT0100002', 'leo', '110', '家', '1', '');
+INSERT INTO `customer` VALUES ('3', 'CT0100003', 'coulson', '120', '宿舍', '0', '');
+INSERT INTO `customer` VALUES ('4', 'CT0200001', '青岛大学', 'CT0200001', '宁夏路188', '1', '');
+INSERT INTO `customer` VALUES ('7', 'CT0200002', '青科大', null, '松岭路', '1', null);
 
 
+CREATE TABLE `business`.`compant_con` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `compant_id` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `phone` VARCHAR(45) NULL,
+  `address` VARCHAR(45) NULL,
+  `level` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`, `level`) VALUES ('CT0100001', 'qdu1', '123', '滢园', '0');
+INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`, `level`) VALUES ('CT0100001', 'qdu2', '123', '浮山', '1');
+INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`) VALUES ('CT0200002', '科技1', '111', '北少林');
+INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`) VALUES ('CT0200002', '科技2', '111', '北少林');
+/*用户角色关联表*/
+CREATE TABLE `business`.`employee_con_role` (
+  `id` INT NOT NULL,
+  `emp_id` INT NULL,
+  `role_id` INT NULL,
+  PRIMARY KEY (`id`));
+  
+  /*角色权限表*/
+CREATE TABLE `business`.`role_permission` (
+  `id` INT NOT NULL auto_increment,
+  `role_id` INT NULL,
+  `permission_id` INT NULL,
+  PRIMARY KEY (`id`));
+/*职能权限表*/
+CREATE TABLE `business`.`permission` (
+  `id` INT NOT NULL auto_increment,
+  `name` VARCHAR(45) NULL,
+  `state` INT NULL,
+  `desc` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+  
+INSERT INTO `permission` VALUES ('1', '顾客信息', null, null);
+INSERT INTO `permission` VALUES ('2', '产品信息', null, null);
+INSERT INTO `permission` VALUES ('3', '部门信息', null, null);
+INSERT INTO `permission` VALUES ('4', '订单信息', null, null);
+INSERT INTO `permission` VALUES ('5', '服务信息', null, null);
+INSERT INTO `permission` VALUES ('6', '人员管理', null, null);
+INSERT INTO `permission` VALUES ('7', '部门管理', null, null);
+INSERT INTO `permission` VALUES ('8', '产品管理', null, null);
+INSERT INTO `permission` VALUES ('9', '顾客管理', null, null);
+/*查看所有用户和他的角色和权限*/
+select * from buemployee a
+inner join burole b 
+on a.role_id = b.role_id
+inner join role_permission c 
+on b.role_id =c.role_id
+inner join permission d 
+on c.permission_id = d.id
+where d.id=2;
+
+/*增加人员*/
+INSERT INTO `business`.`buemployee` (`employee_id`, `employee_name`, `employee_password`, `role_id`) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
+INSERT INTO `business`.`buemployee` (`employee_id`, `employee_name`, `employee_password`, `role_id`) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
+INSERT INTO `business`.`buemployee` (`employee_id`, `employee_name`, `employee_password`, `role_id`) VALUES ( 'EM00004', '我是售后', '202cb962ac59075b964b07152d234b70', '4');
+
+/*分配角色权限*/
+INSERT INTO `role_permission` VALUES ('1', '1', '1');
+INSERT INTO `role_permission` VALUES ('2', '1', '2');
+INSERT INTO `role_permission` VALUES ('3', '1', '3');
+INSERT INTO `role_permission` VALUES ('4', '1', '4');
+INSERT INTO `role_permission` VALUES ('5', '1', '5');
+INSERT INTO `role_permission` VALUES ('6', '2', '1');
+INSERT INTO `role_permission` VALUES ('7', '2', '3');
+INSERT INTO `role_permission` VALUES ('8', '2', '4');
+INSERT INTO `role_permission` VALUES ('9', '2', '2');
+INSERT INTO `role_permission` VALUES ('10', '2', '6');
+INSERT INTO `role_permission` VALUES ('11', '3', '3');
+INSERT INTO `role_permission` VALUES ('12', '3', '1');
+INSERT INTO `role_permission` VALUES ('13', '3', '2');
+INSERT INTO `role_permission` VALUES ('14', '3', '3');
+INSERT INTO `role_permission` VALUES ('15', '3', '4');
+INSERT INTO `role_permission` VALUES ('16', '4', '4');
+INSERT INTO `role_permission` VALUES ('17', '4', '5');
+INSERT INTO `role_permission` VALUES ('18', '1', '6');
+INSERT INTO `role_permission` VALUES ('19', '4', '1');
+INSERT INTO `role_permission` VALUES ('20', '2', '7');
+INSERT INTO `role_permission` VALUES ('21', '2', '8');
+INSERT INTO `role_permission` VALUES ('22', '1', '7');
+INSERT INTO `role_permission` VALUES ('23', '1', '8');
+INSERT INTO `business`.`role_permission` (`role_id`, `permission_id`) VALUES ('3', '9');
+INSERT INTO `business`.`role_permission` (`role_id`, `permission_id`) VALUES ('2', '9');
+/*角色职能关系*/
+select 
+b.role_name,d.name
+ from buemployee a
+inner join burole b 
+on a.role_id = b.role_id
+inner join role_permission c 
+on b.role_id =c.role_id
+inner join permission d 
+on c.permission_id = d.id
 
 
