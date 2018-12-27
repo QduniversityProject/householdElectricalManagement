@@ -127,7 +127,7 @@ class Index extends Controller
 		//重置账户状态
 		$now['employee_status'] = 0;
 		$now['employee_count'] = 3;
-		$now['rec_address'] = $this->request->ip();//获取ip地址
+		$now['rec_address'] = $this->request->ip();//获取ip地址,但全为0.0.0.0
 		$now['rec_time'] = date("Y-m-d H:i:s");//获取系统时间
 		$now['rec_useraent'] = GetBrowser();//获取浏览器信息
 		Db::table('buemployee')->where('employee_id', $has['employee_id'])->update($now);
@@ -138,10 +138,10 @@ class Index extends Controller
             $this->success('yeahhhhhhhhhhhhh');
         }
         else if($has['role_id'] == 2){
-            $this->redirect(url('index/teacher'));
+            $this->redirect(url('index/manager'));
         }
         else{
-			$this->redirect(url('index/student'));
+			$this->redirect(url('index/employee'));
         }
         
     }
