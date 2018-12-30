@@ -20,13 +20,29 @@ class AfterSale extends controller
         $saleperson=$_GET['saleperson'];
         $date=$_GET['date'];
 
-        $month = substr($date, 6, 2);
-        $roll = Db::query("select aftersale_roll from buaftersale order by aftersale_id desc limit 1;");
+        $year = substr($saleID, 3, 4);
+        $month = substr($saleID, 7, 2);
 
+        $result = Db::query("select aftersale_roll from buaftersale order by aftersale_id desc limit 1;");
+        $roll = $result[0]['aftersale_roll'];
+        $roll_int = (int)substr($roll,-5,5);
+        $roll_int += 1;
+        $newroll = str_pad($roll_int, 5, 0, STR_PAD_LEFT);
+        $aftersaleroll = "SV"+$year+$month+$newroll;
+
+        $this->assign('aftersaleroll', $saleroll);
+        $this->assign('saleID', $saleID);
+        $this->assign('type', $type);
+        $this->assign('content', $content);
+        $this->assign('saleperson', $saleperson);
+        $this->assign('date', $date);
+
+        $this->fetch('AfterSale/show');
     }
 
-    public function insert($aftersaleID='')
+    public function insert()
     {
+
         $type=$_GET['type'];
         $content=$_GET['content'];
         $saleID=$_GET['saleID'];
@@ -34,12 +50,10 @@ class AfterSale extends controller
         $date=$_GET['date'];
         $aftersaleID=$_GET['aftersaleID'];
         
-        
-        
-        $testInsert=Db::execute("INSERT INTO untest (test_desc, test_type, course_id, tea_id, single_qus_num, multi_qus_num, judgment_qus_num, blank_qus_num, single_score, multi_score, judgment_score, blank_score, start_time, end_time) 
-        VALUES ( '$tset_desc',$test_type, $course_id, $tea_id,$single_qus_num, $multi_qus_num,   $judgment_qus_num, $blank_qus_num, $single_score, 
-        $multi_score, $judgment_score, $blank_score, '$start_time',  '$end_time');");
-        if($testInsert){
+
+        $Insert=Db::execute("INSERT INTO ub buaftersale(aftersale_roll, question_type, question, employee_id, processing_date, state)
+        VALUES ( $aftersaleID, $type, $course_id, $content, $saleperson, $date, 1);");
+        if($Insert){
             return "添加成功";
         }else
         return "添加失败";
