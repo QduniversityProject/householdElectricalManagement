@@ -19,6 +19,10 @@ class AfterSale extends controller
         $saleID=$_GET['saleID'];
         $saleperson=$_GET['saleperson'];
         $date=$_GET['date'];
+
+        $month = substr($date, 6, 2);
+        $roll = Db::query("select aftersale_roll from buaftersale order by aftersale_id desc limit 1;");
+
     }
 
     public function insert($aftersaleID='')
