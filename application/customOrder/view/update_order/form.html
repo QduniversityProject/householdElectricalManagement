@@ -50,7 +50,14 @@
     <div class="layui-form-item">
       <label class="layui-form-label">顾客信息</label>
       <div class="layui-input-block">
-        <input type="text" name="custom_num" disabled value="{$info.custom_num}" class="layui-input">
+        <input type="text" name="custom_num" disabled value="{$info.name}" class="layui-input">
+        <input type="text" name="custom_num" disabled value="{$info.address}" class="layui-input">
+        <input type="text" name="custom_num" disabled value="{$info.level}" class="layui-input">
+        <input type="text" name="custom_num" disabled value="{$info.phnone}" class="layui-input">
+        <input type="text" name="custom_num" disabled value="{$info.link_man}" class="layui-input">
+
+
+        
       </div>
 
     </div>
@@ -69,7 +76,7 @@
           <option value="官方商城">官方商城</option>
           <option value="电商自营店">电商自营店</option>
           <option value="加盟实体店">加盟实体店</option>
-          <option value="紫英实体店">紫英实体店</option>
+          <option value="自营实体店">自营实体店</option>
 
         </select>
       </div>
@@ -90,7 +97,10 @@
         <div class="layui-form-item">
           <label class="layui-form-label">销售人员</label>
           <div class="layui-input-block">
-            <input type="text" name="saler" value="{$info.saler_num}" class="layui-input"  disabled>
+            <input type="text" name="saler" value="{$info.employee_name}" class="layui-input-inline"  disabled>
+            <input type="text" name="saler" value="{$info.phone}" class="layui-input-inline"  disabled>
+            <input type="text" name="saler" value="{$info.department_name}" class="layui-input-inline"  disabled>
+
           </div>
         </div>
         

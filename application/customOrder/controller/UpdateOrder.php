@@ -14,7 +14,12 @@ class UpdateOrder extends controller
     // ->select();
     public function form($id)
     {
-        $info=Order::where('order_num','=',$id)
+        $info=Db::table('custom_order')
+        ->alias('a')
+        ->join('buemployee b','a.saler_num = b.employee_id')
+        ->join('budepartment c','b.department_id = c.department_id')
+        ->join('customer d','d.customer_id = a.custom_num')
+        ->where('order_num','=',$id)
         ->find();
     $this->assign('info', $info);
    

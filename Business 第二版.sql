@@ -463,6 +463,17 @@ FOREIGN KEY (role_id) REFERENCES burole (role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `buemployee` VALUES ('1','EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
+ALTER TABLE `business`.`buemployee` 
+ADD COLUMN `phone` VARCHAR(45) NULL AFTER `rec_useraent`,
+ADD COLUMN `address` VARCHAR(45) NULL AFTER `phone`;
+UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '1');
+UPDATE `business`.`buemployee` SET `phone` = '13188888888', `address` = '青岛大学' WHERE (`id` = '2');
+UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '3');
+UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '4');
+UPDATE `business`.`buemployee` SET `department_id` = '1' WHERE (`id` = '1');
+UPDATE `business`.`buemployee` SET `department_id` = '2' WHERE (`id` = '2');
+UPDATE `business`.`buemployee` SET `department_id` = '3' WHERE (`id` = '3');
+UPDATE `business`.`buemployee` SET `department_id` = '4' WHERE (`id` = '4');
 
 
 
@@ -604,6 +615,9 @@ on a.role_id = b.role_id
 inner join role_permission c 
 on b.role_id =c.role_id
 inner join permission d 
-on c.permission_id = d.id
+on c.permission_id = d.id;
+
+
+
 
 
