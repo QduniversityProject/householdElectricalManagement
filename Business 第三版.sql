@@ -421,21 +421,8 @@ INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_
 INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('13', 'OD20181200013', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
 INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('14', 'OD20181200014', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
 
-CREATE TABLE bufeedback
-(
-feedback_id int NOT NULL AUTO_INCREMENT,
-feedback_roll varchar(200) NOT NULL,
-aftersale_roll varchar(200) NOT NULL,
-feedback_date date NOT NULL,
-charge int NOT NULL,
-others varchar(200),
-confirment int NOT NULL,
-primary key(feedback_id),
-foreign key(aftersale_roll) references buaftersale(aftersale_roll)
-)ENGINE=InnoDB default charset=utf8;
-=======
 
->>>>>>> e9ecbad563a3072d1b0638daba0fe3e0b0985cdf
+
 
 CREATE TABLE burole
 (
