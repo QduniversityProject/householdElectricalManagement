@@ -13,7 +13,6 @@ class Index extends controller
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
     ->paginate(10);
-    // dump($cusTomOrder);
     $this->assign('cusTomOrder', $order);
     return $this->fetch();
    

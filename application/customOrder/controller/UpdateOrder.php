@@ -19,10 +19,13 @@ class UpdateOrder extends controller
         ->join('buemployee b','a.saler_num = b.employee_id')
         ->join('budepartment c','b.department_id = c.department_id')
         ->join('customer d','d.customer_id = a.custom_num')
+        ->join('buproduct e','e.product_rollno = a.product_num')
+        // ->join('bucompany_link_man f' , 'd.customer_id =f.belong_company')
         ->where('order_num','=',$id)
         ->find();
-    $this->assign('info', $info);
-   
+        $link=Db::query(' select * from custom_order join bucompany_link_man on custom_order.custom_num =bucompany_link_man.belong_company WHERE custom_order.order_num =:id', ['id' => $id]);
+        $this->assign('info', $info);
+        $this->assign('link', $link);
     return $this->fetch();
     }
     public function update()
@@ -34,7 +37,7 @@ class UpdateOrder extends controller
         $order->unit_price=$_GET['unPrice'];
         $order->order_channel=$_GET['channel'];
         $order->save();
-        echo($order);
+        // echo($order);
         echo "ok";
     }
     public function delete()

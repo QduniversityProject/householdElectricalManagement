@@ -53,8 +53,8 @@ margin:8px;
           title: '修改订单',
           maxmin: true,
           shadeClose: true, //点击遮罩关闭层
-          area : ['800px' , '600px'],
-        //   content: ['../../public/customOrder/Update_order/update?id='+id,'no']
+          area : ['800px' , '650px'],
+        //   content: ['../../public/customOrder/Update_order/form?id='+id,'no']
           content: '../../public/customOrder/Update_order/form?id='+id
             });
         });
@@ -151,8 +151,8 @@ margin:8px;
         <td>{$order.order_time}</td>
         <td>{$order.order_channel}</td>
         <td>{$order.amount}</td>
-        <td>{$order.product_price}</td>
-        <td><?php echo $order['product_price']*$order['amount']; ?></td>
+        <td>{$order.unit_price}</td>
+        <td><?php echo $order['unit_price']*$order['amount']; ?></td>
         <td>{$order.saler_num}</td>
         <td>{$order.activity}</td>
         <td><button class="submit" id={$order.order_num}">修改</button></td>
