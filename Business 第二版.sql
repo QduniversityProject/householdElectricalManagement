@@ -447,7 +447,7 @@ others varchar(200),
 confirment int NOT NULL,
 primary key(feedback_id),
 foreign key(aftersale_roll) references buaftersale(aftersale_roll)
-)ENGINE=InnoDB default charset=utf8
+)ENGINE=InnoDB default charset=utf8;
 
 CREATE TABLE burole
 (
