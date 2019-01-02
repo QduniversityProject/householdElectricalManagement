@@ -28,7 +28,7 @@ class UpdateOrder extends controller
     public function update()
     {
         dump($_GET);
-      
+    
         $order=Order::where('order_num',$_GET['order_num'])->find();
         $order->amount=$_GET['amount'];
         $order->unit_price=$_GET['unPrice'];

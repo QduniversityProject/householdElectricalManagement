@@ -1,4 +1,4 @@
-
+drop database Business;
 
 CREATE DATABASE IF NOT EXISTS Business DEFAULT CHARACTER SET utf8;
 
@@ -148,7 +148,7 @@ product_price varchar(50),
 product_unit varchar(50),
 product_size varchar(200),
 product_weight varchar(200),
-procuct_color varchar(200),
+product_color varchar(200),
 product_model varchar(200),
 PRIMARY KEY(product_id),
 FOREIGN KEY (productdevelop_id) REFERENCES buproductdevelop (productdevelop_id)
