@@ -1,4 +1,4 @@
-
+drop database Business;
 
 CREATE DATABASE IF NOT EXISTS Business DEFAULT CHARACTER SET utf8;
 
@@ -148,7 +148,7 @@ product_price varchar(50),
 product_unit varchar(50),
 product_size varchar(200),
 product_weight varchar(200),
-procuct_color varchar(200),
+product_color varchar(200),
 product_model varchar(200),
 PRIMARY KEY(product_id),
 FOREIGN KEY (productdevelop_id) REFERENCES buproductdevelop (productdevelop_id)
@@ -421,8 +421,6 @@ INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_
 INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('13', 'OD20181200013', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
 INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('14', 'OD20181200014', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
 
-
-<<<<<<< HEAD
 CREATE TABLE bufeedback
 (
 feedback_id int NOT NULL AUTO_INCREMENT,
