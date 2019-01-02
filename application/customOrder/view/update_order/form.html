@@ -14,20 +14,18 @@
     //Demo
     layui.use('form', function () {
       var form = layui.form;
-
-      // 监听提交
-      form.on('submit(formDemo)', function (data) {
-        // layer.msg(JSON.stringify(data.field));
-        layer.msg($data);
-        return false;
-      });
-    });
-    $(document).ready(function(){
-      $("#test").ajaxForm(function(data){
-	              alert("返回的值是" + data);
-	        });	
     });
      
+  </script>
+  <script type="text/javascript">
+    $(function () {
+        $('#testbb').click(function () {
+            var result = confirm("确定要提交吗？");
+            if (result) {
+                $('#test').submit();
+            }
+        });
+    });
   </script>
 </head>
 
@@ -120,7 +118,7 @@
                         
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button class="layui-btn" id="testbb" lay-submit lay-filter="formDemo">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
           </div>
         </div>
