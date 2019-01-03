@@ -390,37 +390,61 @@ insert into budepartment values(7,'生活电器部门','生活电器销售','',7
 insert into budepartment values(8,'个护健康部门','个护健康销售','',8);
 insert into budepartment values(9,'家庭影音部门','家庭影音销售','',9);
 
-CREATE TABLE custom_order
-(
-id int(11) NOT NULL AUTO_INCREMENT,
-  order_num varchar(45) NOT NULL,
-  custom_num varchar(45) NOT NULL,
-  order_time varchar(45) NOT NULL,
-  order_channel varchar(45) NOT NULL,
-  amount int(11) NOT NULL,
-  unit_price varchar(45) NOT NULL,
-  saler_num varchar(45) NOT NULL,
-  activity int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `custom_order`;
+CREATE TABLE `custom_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_num` varchar(45) NOT NULL,
+  `product_num` varchar(45) NOT NULL,
+  `custom_num` varchar(45) NOT NULL,
+  `order_time` varchar(45) NOT NULL,
+  `order_channel` varchar(45) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `unit_price` varchar(45) NOT NULL,
+  `saler_num` varchar(45) NOT NULL,
+  `activity` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY id_UNIQUE (`id`),
-  UNIQUE KEY orderNum_UNIQUE (`order_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `orderNum_UNIQUE` (`order_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('1', 'OD20181200001', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('2', 'OD20181200002', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('3', 'OD20181200003', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('4', 'OD20181200004', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('5', 'OD20181200005', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('6', 'OD20181200006', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('7', 'OD20181200007', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('8', 'OD20181200008', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('9', 'OD20181200009', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('10', 'OD20181200010', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('11', 'OD20181200011', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('12', 'OD20181200012', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('13', 'OD20181200013', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('14', 'OD20181200014', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
-
+-- ----------------------------
+-- Records of custom_order
+-- ----------------------------
+INSERT INTO `custom_order` VALUES ('1', 'OD20181200001', 'PD201800003', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
+INSERT INTO `custom_order` VALUES ('2', 'OD20181200002', 'PD201800008', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
+INSERT INTO `custom_order` VALUES ('3', 'OD20181200003', 'PD201810002', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
+INSERT INTO `custom_order` VALUES ('4', 'OD20181200004', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '官方商城', '6', '25', 'EM00002', '1');
+INSERT INTO `custom_order` VALUES ('5', 'OD20181200005', 'PD201800008', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '1999', 'EM00001', '1');
+INSERT INTO `custom_order` VALUES ('6', 'OD20181200006', 'PD201810010', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
+INSERT INTO `custom_order` VALUES ('7', 'OD20181200007', 'PD201820005', 'CT0200002', '2018-12-07 10:22', '加盟实体店', '26', '30', 'EM00002', '1');
+INSERT INTO `custom_order` VALUES ('8', 'OD20181200008', 'PD201810002', 'CT0100001', '2018-12-07 10:22', '自营实体店', '30', '70', 'EM00001', '1');
+INSERT INTO `custom_order` VALUES ('9', 'OD20181200009', 'PD201820005', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
+INSERT INTO `custom_order` VALUES ('10', 'OD20181200010', 'PD201830009', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
+INSERT INTO `custom_order` VALUES ('11', 'OD20181200011', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
+INSERT INTO `custom_order` VALUES ('12', 'OD20181200012', 'PD201830009', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
+INSERT INTO `custom_order` VALUES ('13', 'OD20181200013', 'PD201830009', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '50', 'EM00001', '1');
+INSERT INTO `custom_order` VALUES ('14', 'OD20181200014', 'PD201820005', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '78', 'EM00002', '1');
+INSERT INTO `custom_order` VALUES ('15', 'OD20181200015', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '电商自营店', '4', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('16', 'OD20181200016', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '加盟实体店', '5', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('17', 'OD20181200017', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('18', 'OD20181200018', 'PD201810010', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '2', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('19', 'OD20181200019', 'PD201810010', 'CT0100002', '2018-12-07 10:22', '电商自营店', '1', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('20', 'OD20190100001', 'PD201810010', 'CT0100001', '2019-01-01 08:30', '电商自营店', '2', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('21', 'OD20190100002', 'PD201810010', 'CT0100002', '2019-01-01 08:30', '官方商城', '2', '10.99', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('22', 'OD20190100003', 'PD201810010', 'CT0100001', '2019-01-01 08:30', '官方商城', '2', '10.99', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('23', 'OD20190100004', 'PD201810010', 'CT0100002', '2019-01-01 08:30', '电商自营店', '2', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('24', 'OD20190100005', 'PD201810010', 'CT0100001', '2019-01-01 08:30', '官方商城', '2', '10.99', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('25', 'OD20181100001', 'PD201820005', 'CT0200002', '2018-11-27 09:43', '自营实体店', '3', '10.99', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('26', 'OD20181100002', 'PD201820005', 'CT0100001', '2018-11-27 09:43', '电商自营店', '3', '23', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('27', 'OD20181100003', 'PD201830009', 'CT0100001', '2018-11-27 09:43', '电商自营店', '3', '10.99', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('28', 'OD20181100004', 'PD201820005', 'CT0200002', '2018-11-27 09:43', '自营实体店', '300', '50', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('29', 'OD20181100005', 'PD201830009', 'CT0100001', '2018-11-27 09:43', '电商自营店', '260', '78', 'EM00003', null);
+INSERT INTO `custom_order` VALUES ('30', 'OD20181100006', 'PD201810010', 'CT0100001', '2018-11-03 19:43', '自营实体店', '6', '25', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('31', 'OD20181100007', 'PD201800008', 'CT0100002', '2018-11-03 19:43', '电商自营店', '3', '1999', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('32', 'OD20181100008', 'PD201810010', 'CT0200001', '2018-11-03 19:43', '加盟实体店', '300', '10.99', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('33', 'OD20181100009', 'PD201820005', 'CT0200002', '2018-11-03 19:43', '电商自营店', '26', '30', 'EM00002', null);
+INSERT INTO `custom_order` VALUES ('34', 'OD20181100010', 'PD201810002', 'CT0100001', '2018-11-03 19:43', '加盟实体店', '30', '70', 'EM00001', null);
+INSERT INTO `custom_order` VALUES ('35', 'OD20181100011', 'PD201820005', 'CT0100002', '2018-11-03 19:43', '电商自营店', '3', '10', 'EM00003', null);
 
 
 
