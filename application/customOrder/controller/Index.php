@@ -12,7 +12,6 @@ class Index extends controller
     // dump($cusTomOrder);
     $this->assign('cusTomOrder', $order);
     return $this->fetch();
-   
     }
     public function test(){
         echo json_decode("7777");
