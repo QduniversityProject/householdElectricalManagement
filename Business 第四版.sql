@@ -139,7 +139,7 @@ insert into buproductdevelop values(93,'影音配件',9);
 CREATE TABLE buproduct
 (
 product_id int NOT NULL AUTO_INCREMENT,
-product_rollno varchar(200) NOT NULL,
+product_rollno varchar(11) NOT NULL unique,
 product_name varchar(200) NOT NULL,
 product_picture varchar(500),
 productdevelop_id int NOT NULL,
@@ -148,7 +148,7 @@ product_price varchar(50),
 product_unit varchar(50),
 product_size varchar(200),
 product_weight varchar(200),
-procuct_color varchar(200),
+product_color varchar(200),
 product_model varchar(200),
 PRIMARY KEY(product_id),
 FOREIGN KEY (productdevelop_id) REFERENCES buproductdevelop (productdevelop_id)
@@ -219,7 +219,7 @@ insert into buproduct values(40,'PD201830002','美的多门冰箱','',21,'800','
 
 insert into buproduct values(41,'PD201830004','容声对开门冰箱','',22,'1000','2799','mm','910x646x1786mm','94kg','珍珠白','526L');
 
-insert into buproduct values(42,'PD2018320005','美的三门冰箱','',23,'800','1499','mm','544x595x1759mm','60kg','阳光米','213L');
+insert into buproduct values(42,'PD201832005','美的三门冰箱','',23,'800','1499','mm','544x595x1759mm','60kg','阳光米','213L');
 insert into buproduct values(43,'PD201830006','海尔三门冰箱','',23,'1000','2299','mm','640x740x1870mm','8kg','灰色','39L');
 
 insert into buproduct values(44,'PD201830007','海尔双门冰箱','',24,'2000','4399','mm','525x515x920mm','5.5kg','灰色','33L');
@@ -228,9 +228,9 @@ insert into buproduct values(45,'PD201830008','容声双开冰箱','',24,'1000',
 insert into buproduct values(46,'PD201830009','海尔冰柜','',25,'1000','2599','mm','570x560x880mm','35kg','玉兰白','80L');
 insert into buproduct values(47,'PD201830010','妮雪冰柜','',25,'800','1549','mm','2200x900x850mm','87kg','白色','501L');
 
-insert into buproduct values(48,'PD201830009','海澜酒柜','',26,'1000','2780','','','','','');
+insert into buproduct values(48,'PD201830011','海澜酒柜','',26,'1000','2780','','','','','');
 
-insert into buproduct values(49,'PD201830009','氟利昂','',27,'20','75','','','','','');
+insert into buproduct values(49,'PD201830012','氟利昂','',27,'20','75','','','','','');
 
 insert into buproduct values(50,'PD201840001','华帝油烟机','',28,'800','1299','mm','895x410x563mm','19kg','浅灰色','');
 insert into buproduct values(51,'PD201840002','美的油烟机','',28,'600','899','mm','625x673x1870mm','20kg','黑色','');
@@ -355,17 +355,17 @@ insert into buproduct values(111,'PD201870013','本博按摩椅','',86,'1000','3
 
 insert into buproduct values(112,'PD201880001','惠威家庭影院','',87,'3000','5899','','','','黑','');
 
-insert into buproduct values(113,'PD201870002','新科KTV音响','',88,'400','899','','','','黑','');
+insert into buproduct values(113,'PD201880002','新科KTV音响','',88,'400','899','','','','黑','');
 
-insert into buproduct values(114,'PD201870003','先科迷你音响','',89,'70','69.9','','','','黑','');
+insert into buproduct values(114,'PD201880003','先科迷你音响','',89,'70','69.9','','','','黑','');
 
-insert into buproduct values(115,'PD201870004','先科DVD','',90,'1000','69','','','','黑','');
+insert into buproduct values(115,'PD201880004','先科DVD','',90,'1000','69','','','','黑','');
 
-insert into buproduct values(116,'PD201870005','天龙功放','',91,'800','2180','','','','黑','');
+insert into buproduct values(116,'PD201880005','天龙功放','',91,'800','2180','','','','黑','');
 
-insert into buproduct values(117,'PD201870006','小米回音壁','',92,'100','399','','','','白色','');
+insert into buproduct values(117,'PD201880006','小米回音壁','',92,'100','399','','','','白色','');
 
-insert into buproduct values(118,'PD2018700073','音响插头','',93,'1','7','','','','黑','');
+insert into buproduct values(118,'PD201880007','音响插头','',93,'1','7','','','','黑','');
 
 CREATE TABLE budepartment
 (
@@ -390,37 +390,58 @@ insert into budepartment values(7,'生活电器部门','生活电器销售','',7
 insert into budepartment values(8,'个护健康部门','个护健康销售','',8);
 insert into budepartment values(9,'家庭影音部门','家庭影音销售','',9);
 
-CREATE TABLE custom_order
+CREATE TABLE custom_order 
 (
 id int(11) NOT NULL AUTO_INCREMENT,
-  order_num varchar(45) NOT NULL,
-  custom_num varchar(45) NOT NULL,
-  order_time varchar(45) NOT NULL,
-  order_channel varchar(45) NOT NULL,
-  amount int(11) NOT NULL,
-  unit_price varchar(45) NOT NULL,
-  saler_num varchar(45) NOT NULL,
-  activity int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY id_UNIQUE (`id`),
-  UNIQUE KEY orderNum_UNIQUE (`order_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+order_num varchar(45) NOT NULL,
+product_num varchar(45) NOT NULL,
+custom_num varchar(45) NOT NULL,
+order_time varchar(45) NOT NULL,
+order_channel varchar(45) NOT NULL,
+amount int(11) NOT NULL,
+unit_price varchar(45) NOT NULL,
+saler_num varchar(45) NOT NULL,
+activity int(11) DEFAULT NULL,
+PRIMARY KEY (id),
+UNIQUE KEY id_UNIQUE (id),
+UNIQUE KEY orderNum_UNIQUE (order_num)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('1', 'OD20181200001', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('2', 'OD20181200002', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('3', 'OD20181200003', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('4', 'OD20181200004', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('5', 'OD20181200005', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('6', 'OD20181200006', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('7', 'OD20181200007', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('8', 'OD20181200008', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('9', 'OD20181200009', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('10', 'OD20181200010', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('11', 'OD20181200011', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('12', 'OD20181200012', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('13', 'OD20181200013', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
-INSERT INTO custom_order (`id`, `order_num`, `custom_num`, `order_time`, `order_channel`, `amount`, `unit_price`, `saler_num`, `activity`) VALUES ('14', 'OD20181200014', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '30', 'EM00002', '1');
-
+INSERT INTO custom_order VALUES ('1', 'OD20181200001', 'PD201800003', 'CT0100001', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00001', '1');
+INSERT INTO custom_order VALUES ('2', 'OD20181200002', 'PD201800008', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
+INSERT INTO custom_order VALUES ('3', 'OD20181200003', 'PD201810002', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
+INSERT INTO custom_order VALUES ('4', 'OD20181200004', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '官方商城', '6', '25', 'EM00002', '1');
+INSERT INTO custom_order VALUES ('5', 'OD20181200005', 'PD201800008', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '1999', 'EM00001', '1');
+INSERT INTO custom_order VALUES ('6', 'OD20181200006', 'PD201810010', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '10.99', 'EM00001', '1');
+INSERT INTO custom_order VALUES ('7', 'OD20181200007', 'PD201820005', 'CT0200002', '2018-12-07 10:22', '加盟实体店', '26', '30', 'EM00002', '1');
+INSERT INTO custom_order VALUES ('8', 'OD20181200008', 'PD201810002', 'CT0100001', '2018-12-07 10:22', '自营实体店', '30', '70', 'EM00001', '1');
+INSERT INTO custom_order VALUES ('9', 'OD20181200009', 'PD201820005', 'CT0100002', '2018-12-07 10:22', '官方商城', '3', '10', 'EM00003', '1');
+INSERT INTO custom_order VALUES ('10', 'OD20181200010', 'PD201830009', 'CT0100003', '2018-12-07 10:22', '官方商城', '3', '10.99', 'EM00001', '2');
+INSERT INTO custom_order VALUES ('11', 'OD20181200011', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '23', 'EM00002', '1');
+INSERT INTO custom_order VALUES ('12', 'OD20181200012', 'PD201830009', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '3', '10.99', 'EM00001', '1');
+INSERT INTO custom_order VALUES ('13', 'OD20181200013', 'PD201830009', 'CT0200001', '2018-12-07 10:22', '电商自营店', '300', '50', 'EM00001', '1');
+INSERT INTO custom_order VALUES ('14', 'OD20181200014', 'PD201820005', 'CT0200002', '2018-12-07 10:22', '自营实体店', '260', '78', 'EM00002', '1');
+INSERT INTO custom_order VALUES ('15', 'OD20181200015', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '电商自营店', '4', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('16', 'OD20181200016', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '加盟实体店', '5', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('17', 'OD20181200017', 'PD201810010', 'CT0100001', '2018-12-07 10:22', '电商自营店', '3', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('18', 'OD20181200018', 'PD201810010', 'CT0100002', '2018-12-07 10:22', '加盟实体店', '2', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('19', 'OD20181200019', 'PD201810010', 'CT0100002', '2018-12-07 10:22', '电商自营店', '1', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('20', 'OD20190100001', 'PD201810010', 'CT0100001', '2019-01-01 08:30', '电商自营店', '2', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('21', 'OD20190100002', 'PD201810010', 'CT0100002', '2019-01-01 08:30', '官方商城', '2', '10.99', 'EM00001', null);
+INSERT INTO custom_order VALUES ('22', 'OD20190100003', 'PD201810010', 'CT0100001', '2019-01-01 08:30', '官方商城', '2', '10.99', 'EM00001', null);
+INSERT INTO custom_order VALUES ('23', 'OD20190100004', 'PD201810010', 'CT0100002', '2019-01-01 08:30', '电商自营店', '2', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('24', 'OD20190100005', 'PD201810010', 'CT0100001', '2019-01-01 08:30', '官方商城', '2', '10.99', 'EM00001', null);
+INSERT INTO custom_order VALUES ('25', 'OD20181100001', 'PD201820005', 'CT0200002', '2018-11-27 09:43', '自营实体店', '3', '10.99', 'EM00001', null);
+INSERT INTO custom_order VALUES ('26', 'OD20181100002', 'PD201820005', 'CT0100001', '2018-11-27 09:43', '电商自营店', '3', '23', 'EM00001', null);
+INSERT INTO custom_order VALUES ('27', 'OD20181100003', 'PD201830009', 'CT0100001', '2018-11-27 09:43', '电商自营店', '3', '10.99', 'EM00002', null);
+INSERT INTO custom_order VALUES ('28', 'OD20181100004', 'PD201820005', 'CT0200002', '2018-11-27 09:43', '自营实体店', '300', '50', 'EM00001', null);
+INSERT INTO custom_order VALUES ('29', 'OD20181100005', 'PD201830009', 'CT0100001', '2018-11-27 09:43', '电商自营店', '260', '78', 'EM00003', null);
+INSERT INTO custom_order VALUES ('30', 'OD20181100006', 'PD201810010', 'CT0100001', '2018-11-03 19:43', '自营实体店', '6', '25', 'EM00002', null);
+INSERT INTO custom_order VALUES ('31', 'OD20181100007', 'PD201800008', 'CT0100002', '2018-11-03 19:43', '电商自营店', '3', '1999', 'EM00001', null);
+INSERT INTO custom_order VALUES ('32', 'OD20181100008', 'PD201810010', 'CT0200001', '2018-11-03 19:43', '加盟实体店', '300', '10.99', 'EM00001', null);
+INSERT INTO custom_order VALUES ('33', 'OD20181100009', 'PD201820005', 'CT0200002', '2018-11-03 19:43', '电商自营店', '26', '30', 'EM00002', null);
+INSERT INTO custom_order VALUES ('34', 'OD20181100010', 'PD201810002', 'CT0100001', '2018-11-03 19:43', '加盟实体店', '30', '70', 'EM00001', null);
+INSERT INTO custom_order VALUES ('35', 'OD20181100011', 'PD201820005', 'CT0100002', '2018-11-03 19:43', '电商自营店', '3', '10', 'EM00003', null);
 
 
 
@@ -432,15 +453,10 @@ role_desc varchar(50),
 primary key(role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-INSERT INTO `burole` VALUES (1, '管理员', '管理一切后台信息');
-INSERT INTO `burole` VALUES (2, '经理', '管理员工部门信息');
-INSERT INTO `burole` VALUES (3, '销售人员', '销售服务');
-INSERT INTO `burole` VALUES (4, '售后人员', '售后服务');
-
-
-
-
+INSERT INTO burole VALUES (1, '管理员', '管理一切后台信息');
+INSERT INTO burole VALUES (2, '经理', '管理员工部门信息');
+INSERT INTO burole VALUES (3, '销售人员', '销售服务');
+INSERT INTO burole VALUES (4, '售后人员', '售后服务');
 
 /*系统用户表*/
 CREATE TABLE buemployee
@@ -462,10 +478,25 @@ FOREIGN KEY (department_id) REFERENCES budepartment (department_id),
 FOREIGN KEY (role_id) REFERENCES burole (role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+<<<<<<< HEAD:Business 第四版.sql
+INSERT INTO buemployee VALUES ('1','EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
+=======
 INSERT INTO `buemployee` VALUES ('1','EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
+ALTER TABLE `business`.`buemployee` 
+ADD COLUMN `phone` VARCHAR(45) NULL AFTER `rec_useraent`,
+ADD COLUMN `address` VARCHAR(45) NULL AFTER `phone`;
+UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '1');
+UPDATE `business`.`buemployee` SET `phone` = '13188888888', `address` = '青岛大学' WHERE (`id` = '2');
+UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '3');
+UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '4');
+UPDATE `business`.`buemployee` SET `department_id` = '1' WHERE (`id` = '1');
+UPDATE `business`.`buemployee` SET `department_id` = '2' WHERE (`id` = '2');
+UPDATE `business`.`buemployee` SET `department_id` = '3' WHERE (`id` = '3');
+UPDATE `business`.`buemployee` SET `department_id` = '4' WHERE (`id` = '4');
 
 
 
+>>>>>>> 7f32b048897a9ca645ac84941937e28b6f525a1b:Business 第三版.sql
 
 CREATE TABLE buaftersale
 (
@@ -492,109 +523,126 @@ others varchar(200),
 confirment int NOT NULL
 )ENGINE=InnoDB default charset=utf8;
 
-DROP TABLE IF EXISTS `customer`;
-CREATE TABLE `customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `phnone` varchar(45) DEFAULT NULL,
-  `address` varchar(45) NOT NULL,
-  `level` int(11) DEFAULT NULL COMMENT '1为vip',
-  `link_man` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `customer_id_UNIQUE` (`customer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+CREATE TABLE customer 
+(
+id int(11) NOT NULL AUTO_INCREMENT,
+customer_id varchar(45) NOT NULL,
+name varchar(45) NOT NULL,
+phnone varchar(45) DEFAULT NULL,
+address varchar(45) NOT NULL,
+level int(11) DEFAULT NULL COMMENT '1为vip',
+link_man varchar(45) DEFAULT NULL,
+PRIMARY KEY (id),
+UNIQUE KEY customer_id_UNIQUE (customer_id)
+)ENGINE=InnoDB default charset=utf8;
   
-INSERT INTO `customer` VALUES ('1', 'CT0100001', '高洪续', '15653291562', '家', '1', '');
-INSERT INTO `customer` VALUES ('2', 'CT0100002', 'leo', '110', '家', '1', '');
-INSERT INTO `customer` VALUES ('3', 'CT0100003', 'coulson', '120', '宿舍', '0', '');
-INSERT INTO `customer` VALUES ('4', 'CT0200001', '青岛大学', 'CT0200001', '宁夏路188', '1', '');
-INSERT INTO `customer` VALUES ('7', 'CT0200002', '青科大', null, '松岭路', '1', null);
+INSERT INTO customer VALUES ('1', 'CT0100001', '高洪续', '15653291562', '家', '1', '');
+INSERT INTO customer VALUES ('2', 'CT0100002', 'leo', '110', '家', '1', '');
+INSERT INTO customer VALUES ('3', 'CT0100003', 'coulson', '120', '宿舍', '0', '');
+INSERT INTO customer VALUES ('4', 'CT0200001', '青岛大学', 'CT0200001', '宁夏路188', '1', '');
+INSERT INTO customer VALUES ('7', 'CT0200002', '青科大', null, '松岭路', '1', null);
 
+CREATE TABLE bucompany_link_man 
+(
+id int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(45) NOT NULL,
+phone varchar(45) NOT NULL,
+belong_company varchar(45) NOT NULL,
+address varchar(45) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `business`.`compant_con` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `compant_id` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
-  `level` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`));
-INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`, `level`) VALUES ('CT0100001', 'qdu1', '123', '滢园', '0');
-INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`, `level`) VALUES ('CT0100001', 'qdu2', '123', '浮山', '1');
-INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`) VALUES ('CT0200002', '科技1', '111', '北少林');
-INSERT INTO `business`.`compant_con` (`compant_id`, `name`, `phone`, `address`) VALUES ('CT0200002', '科技2', '111', '北少林');
+INSERT INTO bucompany_link_man VALUES ('1', '青大1', '15655556666', 'CT0200001', '');
+INSERT INTO bucompany_link_man VALUES ('2', '青大2', '15655557777', 'CT0200001', '');
+INSERT INTO bucompany_link_man VALUES ('3', '青大3', '15655558888', 'CT0200001', '');
+INSERT INTO bucompany_link_man VALUES ('4', '科大1', '8567', 'CT0200002', '');
+INSERT INTO bucompany_link_man VALUES ('5', '科大2', '8568', 'CT0200002', '');
+
+CREATE TABLE compant_con 
+(
+id INT NOT NULL AUTO_INCREMENT,
+compant_id VARCHAR(45) NOT NULL,
+`name` VARCHAR(45) NULL,
+phone VARCHAR(45) NULL,
+address VARCHAR(45) NULL,
+level VARCHAR(45) NULL,
+PRIMARY KEY (id)
+);
+INSERT INTO compant_con (compant_id, name, phone, address, level) VALUES ('CT0100001', 'qdu1', '123', '滢园', '0');
+INSERT INTO compant_con (compant_id, name, phone, address, level) VALUES ('CT0100001', 'qdu2', '123', '浮山', '1');
+INSERT INTO compant_con (compant_id, name, phone, address) VALUES ('CT0200002', '科技1', '111', '北少林');
+INSERT INTO compant_con (compant_id, name, phone, address) VALUES ('CT0200002', '科技2', '111', '北少林');
 /*用户角色关联表*/
-CREATE TABLE `business`.`employee_con_role` (
-  `id` INT NOT NULL,
-  `emp_id` INT NULL,
-  `role_id` INT NULL,
-  PRIMARY KEY (`id`));
+CREATE TABLE employee_con_role 
+(
+id INT NOT NULL,
+emp_id INT NULL,
+role_id INT NULL,
+PRIMARY KEY (id)
+)ENGINE=InnoDB default charset=utf8;
   
   /*角色权限表*/
-CREATE TABLE `business`.`role_permission` (
-  `id` INT NOT NULL auto_increment,
-  `role_id` INT NULL,
-  `permission_id` INT NULL,
-  PRIMARY KEY (`id`));
+CREATE TABLE role_permission 
+(
+id INT NOT NULL auto_increment,
+role_id INT NULL,
+permission_id INT NULL,
+PRIMARY KEY (id)
+)ENGINE=InnoDB default charset=utf8;
+
 /*职能权限表*/
-CREATE TABLE `business`.`permission` (
-  `id` INT NOT NULL auto_increment,
-  `name` VARCHAR(45) NULL,
-  `state` INT NULL,
-  `desc` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`));
+CREATE TABLE permission 
+(
+id INT NOT NULL auto_increment,
+`name` VARCHAR(45) NULL,
+state INT NULL,
+`desc` VARCHAR(45) NULL,
+PRIMARY KEY (`id`)
+)ENGINE=InnoDB default charset=utf8;
   
-INSERT INTO `permission` VALUES ('1', '顾客信息', null, null);
-INSERT INTO `permission` VALUES ('2', '产品信息', null, null);
-INSERT INTO `permission` VALUES ('3', '部门信息', null, null);
-INSERT INTO `permission` VALUES ('4', '订单信息', null, null);
-INSERT INTO `permission` VALUES ('5', '服务信息', null, null);
-INSERT INTO `permission` VALUES ('6', '人员管理', null, null);
-INSERT INTO `permission` VALUES ('7', '部门管理', null, null);
-INSERT INTO `permission` VALUES ('8', '产品管理', null, null);
-INSERT INTO `permission` VALUES ('9', '顾客管理', null, null);
-/*查看所有用户和他的角色和权限*/
-select * from buemployee a
-inner join burole b 
-on a.role_id = b.role_id
-inner join role_permission c 
-on b.role_id =c.role_id
-inner join permission d 
-on c.permission_id = d.id
-where d.id=2;
+INSERT INTO permission VALUES ('1', '顾客信息', null, null);
+INSERT INTO permission VALUES ('2', '产品信息', null, null);
+INSERT INTO permission VALUES ('3', '部门信息', null, null);
+INSERT INTO permission VALUES ('4', '订单信息', null, null);
+INSERT INTO permission VALUES ('5', '服务信息', null, null);
+INSERT INTO permission VALUES ('6', '人员管理', null, null);
+INSERT INTO permission VALUES ('7', '部门管理', null, null);
+INSERT INTO permission VALUES ('8', '产品管理', null, null);
+INSERT INTO permission VALUES ('9', '顾客管理', null, null);
 
 /*增加人员*/
-INSERT INTO `business`.`buemployee` (`employee_id`, `employee_name`, `employee_password`, `role_id`) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
-INSERT INTO `business`.`buemployee` (`employee_id`, `employee_name`, `employee_password`, `role_id`) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
-INSERT INTO `business`.`buemployee` (`employee_id`, `employee_name`, `employee_password`, `role_id`) VALUES ( 'EM00004', '我是售后', '202cb962ac59075b964b07152d234b70', '4');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00004', '我是售后', '202cb962ac59075b964b07152d234b70', '4');
 
 /*分配角色权限*/
-INSERT INTO `role_permission` VALUES ('1', '1', '1');
-INSERT INTO `role_permission` VALUES ('2', '1', '2');
-INSERT INTO `role_permission` VALUES ('3', '1', '3');
-INSERT INTO `role_permission` VALUES ('4', '1', '4');
-INSERT INTO `role_permission` VALUES ('5', '1', '5');
-INSERT INTO `role_permission` VALUES ('6', '2', '1');
-INSERT INTO `role_permission` VALUES ('7', '2', '3');
-INSERT INTO `role_permission` VALUES ('8', '2', '4');
-INSERT INTO `role_permission` VALUES ('9', '2', '2');
-INSERT INTO `role_permission` VALUES ('10', '2', '6');
-INSERT INTO `role_permission` VALUES ('11', '3', '3');
-INSERT INTO `role_permission` VALUES ('12', '3', '1');
-INSERT INTO `role_permission` VALUES ('13', '3', '2');
-INSERT INTO `role_permission` VALUES ('14', '3', '3');
-INSERT INTO `role_permission` VALUES ('15', '3', '4');
-INSERT INTO `role_permission` VALUES ('16', '4', '4');
-INSERT INTO `role_permission` VALUES ('17', '4', '5');
-INSERT INTO `role_permission` VALUES ('18', '1', '6');
-INSERT INTO `role_permission` VALUES ('19', '4', '1');
-INSERT INTO `role_permission` VALUES ('20', '2', '7');
-INSERT INTO `role_permission` VALUES ('21', '2', '8');
-INSERT INTO `role_permission` VALUES ('22', '1', '7');
-INSERT INTO `role_permission` VALUES ('23', '1', '8');
-INSERT INTO `business`.`role_permission` (`role_id`, `permission_id`) VALUES ('3', '9');
-INSERT INTO `business`.`role_permission` (`role_id`, `permission_id`) VALUES ('2', '9');
+INSERT INTO role_permission VALUES ('1', '1', '1');
+INSERT INTO role_permission VALUES ('2', '1', '2');
+INSERT INTO role_permission VALUES ('3', '1', '3');
+INSERT INTO role_permission VALUES ('4', '1', '4');
+INSERT INTO role_permission VALUES ('5', '1', '5');
+INSERT INTO role_permission VALUES ('6', '2', '1');
+INSERT INTO role_permission VALUES ('7', '2', '3');
+INSERT INTO role_permission VALUES ('8', '2', '4');
+INSERT INTO role_permission VALUES ('9', '2', '2');
+INSERT INTO role_permission VALUES ('10', '2', '6');
+INSERT INTO role_permission VALUES ('11', '3', '3');
+INSERT INTO role_permission VALUES ('12', '3', '1');
+INSERT INTO role_permission VALUES ('13', '3', '2');
+INSERT INTO role_permission VALUES ('14', '3', '3');
+INSERT INTO role_permission VALUES ('15', '3', '4');
+INSERT INTO role_permission VALUES ('16', '4', '4');
+INSERT INTO role_permission VALUES ('17', '4', '5');
+INSERT INTO role_permission VALUES ('18', '1', '6');
+INSERT INTO role_permission VALUES ('19', '4', '1');
+INSERT INTO role_permission VALUES ('20', '2', '7');
+INSERT INTO role_permission VALUES ('21', '2', '8');
+INSERT INTO role_permission VALUES ('22', '1', '7');
+INSERT INTO role_permission VALUES ('23', '1', '8');
+INSERT INTO role_permission (role_id, permission_id) VALUES ('3', '9');
+INSERT INTO role_permission (role_id, permission_id) VALUES ('2', '9');
+
 /*角色职能关系*/
 select 
 b.role_name,d.name
@@ -604,6 +652,14 @@ on a.role_id = b.role_id
 inner join role_permission c 
 on b.role_id =c.role_id
 inner join permission d 
+on c.permission_id = d.id;
+
+/*查看所有用户和他的角色和权限*/
+select * from buemployee a
+inner join burole b 
+on a.role_id = b.role_id
+inner join role_permission c 
+on b.role_id =c.role_id
+inner join permission d 
 on c.permission_id = d.id
-
-
+where d.id=2;

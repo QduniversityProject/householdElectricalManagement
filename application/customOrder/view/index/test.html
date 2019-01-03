@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>\</th>
+                <th id="stu_rollno">订单编号</th>
+                <th id="customerId">顾客编号</th>
+                <th id="major_name">创建时间</th>
+                <th id="course_name">渠道</th>
+                <th id="tea_name">数量</th>
+                <th id="mark">单价</th>
+                <th id="mark">总额</th>
+                <th id="mark">销售员编号</th>
+            </tr>
+        </thead>
+    
+        {volist name="cusTomOrder" id="order" }
+        <tr>
+            <td>{$i}</td>
+            <td>{$order.order_num}</td>
+            <td>{$order.custom_num}</td>
+            <td>{$order.order_time}</td>
+            <td>{$order.order_channel}</td>
+            <td>{$order.amount}</td>
+            <td>{$order.unit_price}</td>
+            <td><?php echo $order['unit_price']*$order['amount']; ?></td>
+            <td>{$order.saler_num}</td>
+        </tr>
+        {/volist}
+    </table>
+</body>
+</html>
