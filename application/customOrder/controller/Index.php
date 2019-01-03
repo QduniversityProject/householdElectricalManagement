@@ -21,7 +21,6 @@ class Index extends controller
     ->paginate(10);
     $this->assign('cusTomOrder', $order);
     return $this->fetch();
-   
     }
     public function test(){
         //获取员工编号

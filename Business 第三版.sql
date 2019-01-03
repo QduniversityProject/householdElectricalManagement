@@ -1,4 +1,4 @@
-drop database Business;
+
 
 CREATE DATABASE IF NOT EXISTS Business DEFAULT CHARACTER SET utf8;
 
@@ -546,6 +546,29 @@ INSERT INTO `customer` VALUES ('3', 'CT0100003', 'coulson', '120', '宿舍', '0'
 INSERT INTO `customer` VALUES ('4', 'CT0200001', '青岛大学', 'CT0200001', '宁夏路188', '1', '');
 INSERT INTO `customer` VALUES ('7', 'CT0200002', '青科大', null, '松岭路', '1', null);
 
+
+
+-- ----------------------------
+-- Table structure for bucompany_link_man
+-- ----------------------------
+DROP TABLE IF EXISTS `bucompany_link_man`;
+CREATE TABLE `bucompany_link_man` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `belong_company` varchar(45) NOT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bucompany_link_man
+-- ----------------------------
+INSERT INTO `bucompany_link_man` VALUES ('1', '青大1', '15655556666', 'CT0200001', '');
+INSERT INTO `bucompany_link_man` VALUES ('2', '青大2', '15655557777', 'CT0200001', '');
+INSERT INTO `bucompany_link_man` VALUES ('3', '青大3', '15655558888', 'CT0200001', '');
+INSERT INTO `bucompany_link_man` VALUES ('4', '科大1', '8567', 'CT0200002', '');
+INSERT INTO `bucompany_link_man` VALUES ('5', '科大2', '8568', 'CT0200002', '');
 
 CREATE TABLE `business`.`compant_con` (
   `id` INT NOT NULL AUTO_INCREMENT,

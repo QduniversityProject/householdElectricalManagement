@@ -154,7 +154,7 @@ CREATE TABLE `buproduct` (
   `product_unit` varchar(50) DEFAULT NULL,
   `product_size` varchar(200) DEFAULT NULL,
   `product_weight` varchar(200) DEFAULT NULL,
-  `procuct_color` varchar(200) DEFAULT NULL,
+  `product_color` varchar(200) DEFAULT NULL,
   `product_model` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`product_id`),
   KEY `productdevelop_id` (`productdevelop_id`),
