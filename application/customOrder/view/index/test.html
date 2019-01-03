@@ -19,8 +19,6 @@
                 <th id="mark">单价</th>
                 <th id="mark">总额</th>
                 <th id="mark">销售员编号</th>
-                <th id="type">活动类型</th>
-                <th id="type">操作</th>
             </tr>
         </thead>
     
@@ -35,7 +33,6 @@
             <td>{$order.unit_price}</td>
             <td><?php echo $order['unit_price']*$order['amount']; ?></td>
             <td>{$order.saler_num}</td>
-            <td>{$order.activity}</td>
         </tr>
         {/volist}
     </table>

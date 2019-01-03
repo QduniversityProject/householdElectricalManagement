@@ -134,14 +134,15 @@ margin:8px;
             <th>\</th>
             <th id="stu_rollno">订单编号</th>
             <th id="customerId">顾客编号</th>
-            <th id="major_name">创建时间</th>
-            <th id="course_name">渠道</th>
+            <th id="product_id">产品名称</th>
             <th id="tea_name">数量</th>
             <th id="mark">单价</th>
             <th id="mark">总额</th>
             <th id="mark">销售员编号</th>
-            <th id="type">活动类型</th>
+            <th id="major_name">创建时间</th>
+            <th id="course_name">渠道</th>
             <th id="type">操作</th>
+            <!-- <th id="type">活动类型</th> -->
         </tr>
     </thead>
 
@@ -150,20 +151,23 @@ margin:8px;
         <td><?php echo ( $_GET['page']?($_GET['page']*10-10+$i):$i  ); ?></td>
         <td>{$order.order_num}</td>
         <td>{$order.custom_num}</td>
-        <td>{$order.order_time}</td>
-        <td>{$order.order_channel}</td>
+        <td>{$order.product_name}</td>
+        
         <td>{$order.amount}</td>
         <td>{$order.unit_price}</td>
         <td><?php echo $order['unit_price']*$order['amount']; ?></td>
         <td>{$order.saler_num}</td>
-        <td>{$order.activity}</td>
+        
+        <td>{$order.order_time}</td>
+        <td>{$order.order_channel}</td>
+        <!-- <td>{$order.activity}</td> -->
         <td><button class="submit" id={$order.order_num}">修改</button></td>
     </tr>
     {/volist}
 </table>
 {$cusTomOrder->render()}
 <div class="copyright">
-	<a title="官方网站" href="http://localhost/householdElectricalManagement/public/customOrder/index">ThinkPHP</a> 
+	<a title="官方网站" href="http://localhost/tp5/public/customOrder/index?page=1">XX家电</a> 
 	<span>V5</span> 
 	<span>{ 十年磨一剑-为API开发设计的高性能框架 }</span>
 </div>
