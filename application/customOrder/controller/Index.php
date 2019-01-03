@@ -89,10 +89,22 @@ class Index extends controller
                 ;
             $i++;
         }
+        //设置单元格宽度
+        //参考地址  https://blog.csdn.net/diandian_520/article/details/7827038
+        $PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(16);
+        $PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(14);
+        $PHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(12);
+        $PHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(18);
+        $PHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(12);
+        $PHPExcel->getActiveSheet()->getColumnDimension('P')->setWidth(18);
+        $PHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(18);
+        $PHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(18);
+
 
         $PHPWriter = \PHPExcel_IOFactory::createWriter($PHPExcel, "Excel2007");
         header('Content-Disposition: attachment;filename="订单.xlsx"');
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $PHPWriter->save("php://output"); //表示在$path路径下面生成demo.xlsx文件
     }
+    
 }
