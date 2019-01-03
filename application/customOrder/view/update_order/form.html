@@ -14,20 +14,18 @@
     //Demo
     layui.use('form', function () {
       var form = layui.form;
-
-      // 监听提交
-      form.on('submit(formDemo)', function (data) {
-        // layer.msg(JSON.stringify(data.field));
-        layer.msg($data);
-        return false;
-      });
-    });
-    $(document).ready(function(){
-      $("#test").ajaxForm(function(data){
-	              alert("返回的值是" + data);
-	        });	
     });
      
+  </script>
+  <script type="text/javascript">
+    $(function () {
+        $('#testbb').click(function () {
+            var result = confirm("确定要提交吗？");
+            if (result) {
+                $('#test').submit();
+            }
+        });
+    });
   </script>
 </head>
 
@@ -50,31 +48,26 @@
     <div class="layui-form-item">
       <label class="layui-form-label">顾客信息</label>
       <div class="layui-input-block">
-        <input type="text" name="custom_num" disabled value="{$info.custom_num}" class="layui-input">
+        <P>姓名：{$info.name}</P>
+        <P>地址：{$info.address}</P>
+        <P>是否会员：{$info.level}</P>
+        <P>电话：{$info.phnone}</P>
+        {volist name="link" id="link"}
+        <P>联系人{$i}：{$link.name}  电话：{$link.phone}</P>
+        {/volist}
       </div>
 
     </div>
     <div class="layui-form-item">
-      <label class="layui-form-label">订单时间</label>
+      <label class="layui-form-label">商品信息</label>
       <div class="layui-input-block">
-        <input type="text" name="time" disabled value="{$info.order_time}" class="layui-input">
+        <p>名称：{$info.product_name}</p>
+        <p>尺寸：{$info.product_size}</p>
+        <p>颜色：{$info.product_color} </p>
+        <p>规格：{$info.product_model}</p>
+        <p>重量：{$info.product_weight}</p>
       </div>
-    </div>
-
-    <div class="layui-form-item">
-      <label class="layui-form-label">选择渠道</label>
-      <div class="layui-input-block">
-        <select name="channel" lay-verify="required">
-          <option value="{$info.order_channel}">{$info.order_channel}</option>
-          <option value="官方商城">官方商城</option>
-          <option value="电商自营店">电商自营店</option>
-          <option value="加盟实体店">加盟实体店</option>
-          <option value="紫英实体店">紫英实体店</option>
-
-        </select>
-      </div>
-    </div>
-    <div class="layui-form-item">
+      <div class="layui-form-item">
         <label class="layui-form-label">数量</label>
         <div class="layui-inline">
           <div class="layui-input-inline">
@@ -86,11 +79,38 @@
               </div>
         </div> 
   </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">选择渠道</label>
+    <div class="layui-input-block">
+      <select name="channel" lay-verify="required">
+        <option value="{$info.order_channel}">{$info.order_channel}</option>
+        <option value="官方商城">官方商城</option>
+        <option value="电商自营店">电商自营店</option>
+        <option value="加盟实体店">加盟实体店</option>
+        <option value="自营实体店">自营实体店</option>
+
+      </select>
+    </div>
+  </div>
+
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">订单时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="time" disabled value="{$info.order_time}" class="layui-input">
+      </div>
+    </div>
+
+    
+    
 
         <div class="layui-form-item">
           <label class="layui-form-label">销售人员</label>
           <div class="layui-input-block">
-            <input type="text" name="saler" value="{$info.saler_num}" class="layui-input"  disabled>
+            <p>姓名：{$info.employee_name}</p>
+            <p>电话：{$info.phone}</p>
+            <p>部门：{$info.department_name}</p>
+
           </div>
         </div>
         
@@ -98,7 +118,7 @@
                         
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button class="layui-btn" id="testbb" lay-submit lay-filter="formDemo">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
           </div>
         </div>
