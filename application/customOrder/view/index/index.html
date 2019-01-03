@@ -59,12 +59,12 @@ margin:8px;
             });
         });
         //校验文件是否为空
-        // $("#excel").bind("submit", function(){    
-        // var file=$("#file").val();  
-        // if(file == ""){    
-        //     alert("请选择文件！！！");  
-        //     return false;    
-        // }});   
+        $("#excel").bind("submit", function(){    
+        var file=$("#file").val();  
+        if(file == ""){    
+            alert("请选择导入文件！！！");  
+            return false;    
+        }});   
             $("#test").click(function(){
     
                 //  htmlobj=$.ajax({
