@@ -128,14 +128,14 @@ class Index extends controller
 
 
 
-            function pdf($html=array(),$title="标题",$fileName=""){
-                $fileName = time();
+            function pdf($html=array(),$title="订单",$fileName="订单PDF"){
+                // $fileName = time();
                 vendor('tecnickcom.tcpdf.tcpdf'); //导入TCPDF类
                 $pdf = new \Tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
                 // 设置打印模式
                 //设置文件信息，头部的信息设置
                 $pdf->SetCreator(PDF_CREATOR);
-                $pdf->SetAuthor("作者");
+                $pdf->SetAuthor("XX家电管理系统");
                 $pdf->SetTitle($title);
                 $pdf->SetSubject('TCPDF Tutorial');
                 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');//设置关键字 
@@ -148,7 +148,7 @@ class Index extends controller
                 // 页眉距离顶部的距离
                 $pdf->SetHeaderMargin('5');
                 // 是否显示页脚
-                $pdf->setPrintFooter(true);
+                $pdf->setPrintFooter(false);
                 // 设置页脚显示的内容
                 $pdf->setFooterData(array(0,64,0), array(0,64,128));
                 // 设置页脚的字体
@@ -172,11 +172,12 @@ class Index extends controller
                 $pdf->setFontSubsetting(true);
                 $pdf->AddPage("A4","Landscape",true,true);
                 // 设置字体
-                $pdf->SetFont('stsongstdlight', '', 14, '', true);
+                $pdf->SetFont('stsongstdlight', '', 10, '', true);
              
                 $pdf->writeHTML($html);//HTML生成PDF
                 //$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
                 $showType= 'I';//PDF输出的方式。I，在浏览器中打开；D，以文件形式下载；F，保存到服务器中；S，以字符串形式输出；E：以邮件的附件输出。
+                
                  $pdf->Output("{$fileName}.pdf", $showType);
              
             }
