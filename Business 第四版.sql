@@ -478,9 +478,6 @@ FOREIGN KEY (department_id) REFERENCES budepartment (department_id),
 FOREIGN KEY (role_id) REFERENCES burole (role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-<<<<<<< HEAD:Business 第四版.sql
-INSERT INTO buemployee VALUES ('1','EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
-=======
 INSERT INTO `buemployee` VALUES ('1','EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
 ALTER TABLE `business`.`buemployee` 
 ADD COLUMN `phone` VARCHAR(45) NULL AFTER `rec_useraent`,
@@ -496,7 +493,6 @@ UPDATE `business`.`buemployee` SET `department_id` = '4' WHERE (`id` = '4');
 
 
 
->>>>>>> 7f32b048897a9ca645ac84941937e28b6f525a1b:Business 第三版.sql
 
 CREATE TABLE buaftersale
 (
@@ -535,12 +531,14 @@ link_man varchar(45) DEFAULT NULL,
 PRIMARY KEY (id),
 UNIQUE KEY customer_id_UNIQUE (customer_id)
 )ENGINE=InnoDB default charset=utf8;
+ALTER TABLE `business`.`customer` 
+CHANGE COLUMN `level` `level` VARCHAR(45) NULL DEFAULT NULL COMMENT '1为vip' ;
   
-INSERT INTO customer VALUES ('1', 'CT0100001', '高洪续', '15653291562', '家', '1', '');
-INSERT INTO customer VALUES ('2', 'CT0100002', 'leo', '110', '家', '1', '');
-INSERT INTO customer VALUES ('3', 'CT0100003', 'coulson', '120', '宿舍', '0', '');
-INSERT INTO customer VALUES ('4', 'CT0200001', '青岛大学', 'CT0200001', '宁夏路188', '1', '');
-INSERT INTO customer VALUES ('7', 'CT0200002', '青科大', null, '松岭路', '1', null);
+INSERT INTO customer VALUES ('1', 'CT0100001', '高洪续', '15653291562', '家', '是', '');
+INSERT INTO customer VALUES ('2', 'CT0100002', 'leo', '110', '家', '是', '');
+INSERT INTO customer VALUES ('3', 'CT0100003', 'coulson', '120', '宿舍', '否', '');
+INSERT INTO customer VALUES ('4', 'CT0200001', '青岛大学', 'CT0200001', '宁夏路188', '是', '');
+INSERT INTO customer VALUES ('7', 'CT0200002', '青科大', null, '松岭路', '是', null);
 
 CREATE TABLE bucompany_link_man 
 (
