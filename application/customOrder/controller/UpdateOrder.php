@@ -6,12 +6,6 @@ use think\Controller;
 use app\customOrder\model\CustomOrder as Order;
 class UpdateOrder extends controller
 {
-
-    // $users = User::where('name', 'like', '%think')
-    // ->where('id', 'between', [1, 5])
-    // ->order('id desc')
-    // ->limit(5)
-    // ->select();
     public function form($id)
     {
         $info=Db::table('custom_order')
@@ -30,14 +24,12 @@ class UpdateOrder extends controller
     }
     public function update()
     {
-        // dump($_GET);
-        $order=Order::where('order_num',$_GET['order_num'])->find();
+        $order=Order::where('order_num','=',$_GET['order_num'])->find();
         $order->amount=$_GET['amount'];
         $order->unit_price=$_GET['unPrice'];
         $order->order_channel=$_GET['channel'];
-        $order->save();
-        // echo($order);
-        echo "修改成功";
+        $result=$order->save();
+        return json($result);
     }
     public function delete()
     {

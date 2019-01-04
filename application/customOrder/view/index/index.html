@@ -59,7 +59,6 @@ margin:8px;
                     content: '../../public/customOrder/Update_order/form?id=' + id
                 });
             });
-
             $('#customer').on('click', function () {
                 layer.open({
                     type: 2,
@@ -80,35 +79,7 @@ margin:8px;
                     return false;
                 }
             });
-            $("#test").click(function () {
-
-                //  htmlobj=$.ajax({
-                //     type:"POST",
-                //     url:"../../public/customOrder/Update_order/update.html",
-                // //  url:"index/test",
-
-                //  });
-                // $("#txt").html(htmlobj.responseText);
-                layer.msg(htmlobj.responseText);
-                alert(htmlobj.responseText);
-                $.ajax({
-                    url: "../../public/customOrder/Update_order/update.html",
-                    type: "POST",
-                    async: false,
-                    success: function (data) {
-                        layer.msg(data);
-                    },
-                    dataType: "json",
-
-                });
-                return layer.msg("失败");;
-
-            });
-
-
-
         });
-
     </script>
 </head>
 
