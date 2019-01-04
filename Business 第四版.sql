@@ -661,3 +661,12 @@ on b.role_id =c.role_id
 inner join permission d 
 on c.permission_id = d.id
 where d.id=2;
+
+
+
+
+UPDATE `business`.`buemployee` SET `department_id` = '2' WHERE (`id` = '2');
+UPDATE `business`.`buemployee` SET `department_id` = '1' WHERE (`id` = '3');
+UPDATE `business`.`buemployee` SET `department_id` = '1' WHERE (`id` = '4');
+UPDATE `business`.`buemployee` SET `department_id` = '3' WHERE (`id` = '5');
+

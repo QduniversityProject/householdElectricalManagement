@@ -89,7 +89,7 @@ class Index extends controller
                 ->setCellValue("G" . $i, $data['order_time'])
                 ->setCellValue("H" . $i, $data['saler_num'])
                 ->setCellValue("I" . $i, $data['employee_name'])
-                ->setCellValue("J" . $i, $data['procuct_color'])
+                ->setCellValue("J" . $i, $data['product_color'])
                 ->setCellValue("K" . $i, $data['product_model'])
                 ->setCellValue("L" . $i, $data['product_size'])
                 ->setCellValue("M" . $i, $data['product_weight'])

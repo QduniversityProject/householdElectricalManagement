@@ -29,12 +29,13 @@ class ImportFromExcel extends controller
 			$i=0;
             foreach($excel_array as $k=>$v) {
                 $data[$k]['order_num'] = $v[1];
-                $data[$k]['custom_num'] = $v[2];
-                $data[$k]['order_time'] = $v[3];
-                $data[$k]['order_channel'] = $v[4];
-                $data[$k]['amount'] = $v[5];
-                $data[$k]['unit_price'] = $v[6];
-                $data[$k]['saler_num'] = $v[7];
+                $data[$k]['product_num'] = $v[2];
+                $data[$k]['custom_num'] = $v[3];
+                $data[$k]['order_time'] = $v[4];
+                $data[$k]['order_channel'] = $v[5];
+                $data[$k]['amount'] = $v[6];
+                $data[$k]['unit_price'] = $v[7];
+                $data[$k]['saler_num'] = $v[8];
 				$i++;
             }
             $success=Db::name('custom_order')->insertAll($data); //批量插入数据
