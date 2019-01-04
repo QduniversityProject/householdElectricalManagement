@@ -134,8 +134,7 @@ class Index extends Controller
 
 	
     	if($has['role_id'] == 1){
-            // $this->redirect(url('index/admin'));
-            $this->success('yeahhhhhhhhhhhhh');
+            $this->redirect(url('index/admin'));
         }
         else if($has['role_id'] == 2){
             $this->redirect(url('index/manager'));
