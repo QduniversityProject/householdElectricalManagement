@@ -24,11 +24,6 @@
         <div class="row">
             <div class="offset-md-1 col-md-10"></div>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -39,7 +34,7 @@
                 <tbody>
                 {volist name="list" id="departments"}
                     <tr>
-                    <td><a href="http://localhost/tp6/public/Product/product/product.html?department_id={$departments.department_id}">{$departments.department_name}</a></td>
+                    <td>{$departments.department_name}</td>
                     <td>{$departments.department_desc}</td>
                         </tr>
                 {/volist} 

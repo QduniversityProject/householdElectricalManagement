@@ -3,19 +3,24 @@
     font-family: titles;
     src:url('../font/Drifttype.ttf');
 }
+@font-face
+{
+    font-family: myfont;
+    src:url('../font/DK Jambo.otf');
+}
 #bodys
 {
     height: 453px;
 }
 #ifream1
 {
-    width: 10%;
+    width: 15%;
     float: left;
     height: 100%;
 }
 #ifream2
 {
-    width: 90%;
+    width: 85%;
     float: left;
     height: 100%;
 }
@@ -41,4 +46,15 @@
     right: 3%;
     top: 50%; 
     font-family: titles;
+}
+p
+{
+    position: absolute;
+    right:50%;
+    top:25%;
+    font-family: myfont; 
+}
+.links  
+{
+    text-decoration:none;
 }
