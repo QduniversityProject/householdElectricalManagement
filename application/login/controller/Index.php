@@ -121,7 +121,8 @@ class Index extends Controller
         // 记录用户登录信息
         cookie('employee_id', $has['employee_id'], 3600);// 一个小时有效期
         cookie('employee_name', $has['employee_name'], 3600);
-        cookie('department_id', $has['department_id'], 3600);
+		cookie('department_id', $has['department_id'], 3600);
+		cookie('role_id', $has['role_id'], 3600);
 		cookie('rec_time', $has['rec_time'], 3600);
 		cookie('rec_address', $has['rec_address'], 3600);
 		//重置账户状态
@@ -133,16 +134,16 @@ class Index extends Controller
 		Db::table('buemployee')->where('employee_id', $has['employee_id'])->update($now);
 
 	
-    	if($has['role_id'] == 1){
-            // $this->redirect(url('index/admin'));
-            $this->success('yeahhhhhhhhhhhhh');
-        }
-        else if($has['role_id'] == 2){
-            $this->redirect(url('index/manager'));
-        }
-        else{
-			$this->redirect(url('index/employee'));
-        }
+    	// if($has['role_id'] == 1){
+        //     $this->redirect(url('index/admin'));
+        // }
+        // else if($has['role_id'] == 2){
+        //     $this->redirect(url('index/manager'));
+        // }
+        // else{
+		// 	$this->redirect(url('index/employee'));
+		// }
+		$this->redirect(url('index/admin'));
         
     }
      

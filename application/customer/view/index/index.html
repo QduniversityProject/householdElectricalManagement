@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>创建客户</title>
+    <link rel="stylesheet" href="../../../public/static/layui/css/layui.css">
+    <script src="../../../public/static/js/jquery-3.3.1.js"></script>
+    <script src="../../../public/static/layui/layui.js"></script>
+
+</head>
+
+<body>
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this" id="CT01">个人客户</li>
+            <li id="CT02">公司客户</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">姓名*</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="name" required lay-verify="required" lay-verify="addr" placeholder="请输入姓名"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">电话*</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="phone" required lay-verify="phone" placeholder="请输入电话号码"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                        <!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">地址*</label>
+                        <div class="layui-input-inline">
+                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea"  lay-verify="addr"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                            <label class="layui-form-label">是否会员*</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="numbers" value="是" title="是">
+                                <input type="radio" name="numbers" value="否" title="否" checked>
+                                <input type="hidden" id="typeFoCos" name="type" value="CT01" class="layui-input">
+                            </div>
+                        </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                    <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                    <label class="layui-form-label">选择公司*</label>
+                                    <div class="layui-input-inline">
+                                            
+                                      <select name="comId" lay-verify="required">
+                                            <option value="">--请选择--</option>
+                                            {volist name="company" id="company"}
+                                            <!-- <P>联系人{$i}：{$company.name}  电话：{$company.phnone}</P> -->
+                                            <option value="{$company.customer_id}">{$company.name}</option>
+                                            {/volist}
+                                      </select>
+                                    </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名*</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="name" required lay-verify="required" lay-verify="addr" placeholder="请输入姓名"
+                                        autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">电话*</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="phone" required lay-verify="phone" placeholder="请输入电话号码"
+                                        autocomplete="off" class="layui-input">
+                                </div>
+                                <!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">地址*</label>
+                                <div class="layui-input-inline">
+                                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea" lay-verify="addr"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <input type="hidden" id="typeFoCos"  name="type" value="CT01" class="layui-input">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function () {
+            var element = layui.element;
+        });
+        
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('li').click(function(){
+               var ctype= $(this).attr("id");
+                $("#typeFoCos.layui-input").attr("value",ctype);
+            });
+        });
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                
+                $.ajax({
+                url:'../../customer/index/updata',
+                method:'post',
+                data:data.field,
+                dataType:'JSON',
+                success:function(res){
+                        layer.msg(res);
+                        // parent.closeIframe(res.msg);
+                },
+                error:function (data) {
+                    layer.msg("新增失败！");
+                }
+            })
+            return false;
+            });
+            //表单验证
+            form.verify({
+                phone:[
+                /^[\S]{11}$/
+                ,'请输入正确的电话号码'
+                ],
+                addr:[
+                    /^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$/
+                    ,'地址中不能含有特殊字符'   
+                ]
+            });
+
+        });
+    </script>
+</body>
+
+</html>
