@@ -609,7 +609,7 @@ INSERT INTO permission VALUES ('8', '产品管理', null, null);
 INSERT INTO permission VALUES ('9', '顾客管理', null, null);
 
 /*增加人员*/
-INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_idemployee_con_roleburole) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00004', '我是售后', '202cb962ac59075b964b07152d234b70', '4');
@@ -661,12 +661,3 @@ on b.role_id =c.role_id
 inner join permission d 
 on c.permission_id = d.id
 where d.id=2;
-
-
-
-
-UPDATE `business`.`buemployee` SET `department_id` = '2' WHERE (`id` = '2');
-UPDATE `business`.`buemployee` SET `department_id` = '1' WHERE (`id` = '3');
-UPDATE `business`.`buemployee` SET `department_id` = '1' WHERE (`id` = '4');
-UPDATE `business`.`buemployee` SET `department_id` = '3' WHERE (`id` = '5');
-

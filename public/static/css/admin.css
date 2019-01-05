@@ -57,4 +57,26 @@ p
 .links  
 {
     text-decoration:none;
+    color: black;
+
+}
+.links:hover
+{
+    font-style: italic;
+    color: cornflowerblue;
+}
+li
+{
+    padding-bottom: 20%;
+    font-family: myfont;
+    
+}
+li:hover
+{
+    font-style: italic;
+    color: cornflowerblue;
+}
+#link1
+{
+    margin-top: 10%;
 }

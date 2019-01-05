@@ -6,6 +6,7 @@ use think\Controller;
 
 class Index extends controller
 {
+
     public function index()
     {
     //获取员工编号
