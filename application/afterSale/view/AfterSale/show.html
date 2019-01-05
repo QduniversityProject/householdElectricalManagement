@@ -7,113 +7,74 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../static/js/jquery-3.3.1.js"></script>
+    <script src="../../static/layer/layer.js"></script>
 </head>
 
 <script>
-    function createForm() {
-        var selectType = document.getElementById("type");
-        var index = selectType.selectedIndex
-        var valuetype = myselect.options[index].value;
 
-        var content = document.getElementById('content').innerHTML;
+        function createForm() {
 
-        var saleID = document.getElementById('saleID').value;
+            var selectType = document.getElementById("type");
+            var index = selectType.selectedIndex;
+            var valuetype = selectType.options[index].value;
 
-        var saleperson = document.getElementById('saleperson').value;
+            var content = document.getElementById('content').innerText;
 
-        var date = document.getElementById('date').value;
+            var saleID = document.getElementById('saleID').value;
 
-        window.location.href = "../../public/afterSale/AfterSale/createForm?type=" + valuetype + "&content=" + content
-            + "&saleID=" + saleID + "&saleperson=" + saleperson + "&date=" + date;
-    }
+            var saleperson = document.getElementById('saleperson').value;
+
+
+
+            layer.open({
+                type: 2,
+                title: '修改订单',
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area: ['800px', '600px'],
+                content: "../../afterSale/AfterSale/creatForm?type=" + valuetype + "&content=" + content
+                    + "&saleID=" + saleID + "&saleperson=" + saleperson
+            });
+
+
+        }
+
+    
+
 </script>
 
 <body>
 
     <div style="padding: 100px 100px 10px;">
+        <div class="form-group">
+            <label for="name">订单编号</label>
+            <input type="text" class="form-control" placeholder="请输入销售单号" name="saleID" id="saleID">
+        </div>
 
         <label for="name">问题分类</label>
-        <select class="form-control" name="type">
+        <select id="type" class="form-control" name="type">
             <option>退货</option>
             <option>换货</option>
             <option>维修</option>
             <option>咨询</option>
         </select>
+
+        <div class="form-group">
+            <label for="name">售后人员</label>
+            <input type="text" class="form-control" placeholder="请输入销售人选编号" name="saleperson" id="saleperson">
+        </div>
+
+
+
         <div class="form-group">
             <label for="name">问题详情</label>
             <textarea class="form-control" rows="3" name="content" id="content"></textarea>
         </div>
-        <div class="form-group">
-            <label for="name">订单编号</label>
-            <input type="text" class="form-control" id="name" placeholder="请输入销售单号" name="saleID" id="saleID">
-        </div>
-
-        <div class="form-group">
-            <label for="name">售后人员</label>
-            <input type="text" class="form-control" id="name" placeholder="请输入销售人选编号" name="saleperson" id="saleperson">
-        </div>
-        <div class="form-group">
-            <label for="name">日期</label>
-            <input type="date" class="form-control" id="name" placeholder="请选择受理日期" name="date" id="date">
-        </div>
-
 
         <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#myModal" onclick="createForm()">
             提交
         </button>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            售后表单
-                        </h4>
-                    </div>
-                    <form class="bs-example bs-example-form" role="form" method="GET" action="../AfterSale/insert">
-                    <div class="modal-body">
-
-
-                        <label for="name">售后单号</label>
-                        <input type="text" class="form-control" disabled name="aftersaleID" value="{$aftersaleID}">
-                        <label for="name">问题分类</label>
-                        <input type="text" class="form-control" disabled name="type" value="{$type}">
-                        <div class="form-group">
-                            <label for="name">问题详情</label>
-                            <textarea class="form-control" disabled rows="3" name="content" value="{$content}"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">订单编号</label>
-                            <input type="text" class="form-control" disabled name="saleID" value="{$saleID}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name">售后人员</label>
-                            <input type="text" class="form-control" disabled name="saleperson" value="{$saleperson}">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">日期</label>
-                            <input type="date" class="form-control" disabled name="date" value="{$date}">
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            提交更改
-                        </button>
-                    </div>
-                    </form>
-                </div><!-- /.modal-content -->
-
-            </div><!-- /.modal -->
-        </div>
-
-
     </div>
 
 </body>
