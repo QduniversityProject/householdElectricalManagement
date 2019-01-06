@@ -29,7 +29,7 @@ if($_COOKIE['role_id'] == 1){
         <div id="collapseOne" class="panel-collapse collapse in">
             <div class="panel-body">
                 <ul>
-                    <li><a class="links" href="../../products/products/products.html" target="content">Modify Privilege</a></li>
+                    <li><a class="links" href="../../role/Role/role.html" target="content">Check & Modify Privilege</a></li>
                 </ul>
             </div>
         </div>
@@ -48,8 +48,24 @@ if($_COOKIE['role_id'] == 1){
             <div class="panel-body">
                 <ul>
                 <li id="link1"><a  class="links" href="../../Departments/departments/departments.html" target="content">Check Departments</a></li>
-                <li><a class="links" href="../../products/products/products.html" target="content">Check Products</a></li>
-                <li><a class="links" href="../../staff/staff/staff.html" target="content">Check Staff</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" 
+                href="#collapsefive">
+                <span class="glyphicon glyphicon-briefcase"></span>
+                Comany Management
+            </a>
+            </h4>
+        </div>
+        <div id="collapsefive" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                <li id="link1"><a  class="links" href="../../products/products/products.html" target="content">Check Products</a></li>
                 </ul>
             </div>
         </div>
@@ -117,8 +133,8 @@ if($_COOKIE['role_id'] == 2){
                     <?php
                     $a = $_COOKIE['department_id'];
                     echo"<li id='link1'><a  class='links' href='../../Department/department/department.html?department_id=$a' target='content'>Check Department & Products</a></li>";
+                    echo"<li><a class='links' href='../../staff/staff/staff.html?department_id=$a' target='content'>Check Staff</a></li>";
                      ?>
-                <li><a class="links" href="../../staff/staff/staff.html" target="content">Check Staff</a></li>
                 </ul>
             </div>
         </div>
@@ -156,7 +172,7 @@ if($_COOKIE['role_id'] == 3){
                 <a data-toggle="collapse" data-parent="#accordion" 
                 href="#collapseTwo">
                 <span class="glyphicon glyphicon-briefcase"></span>
-                Comany Management
+                Department Management
             </a>
             </h4>
         </div>
@@ -202,7 +218,7 @@ if($_COOKIE['role_id'] == 4){
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" 
                 href="#collapseThree">
-                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon glyphicon-list-alt"></span>
                 Aftersale List
                 </a>
             </h4>
@@ -210,8 +226,11 @@ if($_COOKIE['role_id'] == 4){
         <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
                 <ul>
-                    <li><a class="links" href="../../afterSale/AfterSale/show" target="content">Check Aftersalelists</a></li>
-                    <li><a class="links" href="" target="content">Add Aftersalelists</a></li>
+                    <?php
+                    $a = $_COOKIE['employee_id'];
+                    echo"<li><a class='links' href='../../afterSale/Index/index?employee_id=$a' target='content'>Check & Modify Aftersalelists</a></li>";
+                     ?>
+                    <li><a class="links" href="../../afterSale/AfterSale/show" target="content">Add Aftersalelists</a></li>
                 </ul>
             </div>
         </div>

@@ -17,14 +17,11 @@ class Index extends controller
             return $this->fetch('Index/index_emp');
         }
         else{
-            $info=AfterSaleModel::paginate(10);
+            $info=AfterSaleModel::paginate(5);
             $this->assign('aftersaleInfo', $info);
             return $this->fetch('Index/index');
         }
        
     }
 
-   
-        
-    
 }
