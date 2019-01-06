@@ -29,7 +29,7 @@
                 <h1 id="h1s">Customer Relationship Management System</h1>
             </a>
             <?php
-            echo " <h1 style='font-family:myfont;font-size:18px;margin-right:-50%;color:#d8c427;position: absolute;left:67%;top:45%;'>HELLO &nbsp ".cookie('user_name').'<br>THE LOGIN TIME IS &nbsp'.cookie('rec_time')." </h1> ";  
+            echo " <h1 style='font-family:myfont;font-size:18px;margin-right:-50%;color:#d8c427;position: absolute;left:67%;top:45%;'>HELLO &nbsp ".cookie('employee_name').'<br>THE LOGIN TIME IS &nbsp'.cookie('rec_time')." </h1> ";  
             ?>            
             <a id="loginout" class="btn navbar-btn ml-2 text-white btn-secondary" href="{:url('index/loginOut')}">
             <i class="fa d-inline fa-lg fa-sign-in"></i>
@@ -39,7 +39,7 @@
     </nav>
 
     <div id="bodys">
-                    <iframe  id="ifream1" src="__ROOT__/static/htmls/links1.html" name="Navigation"></iframe>
+                    <iframe  id="ifream1" src="__ROOT__/static/htmls/links.php" name="Navigation"></iframe>
                     <iframe  id="ifream2" name="content"></iframe>
     </div>
 

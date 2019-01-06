@@ -19,19 +19,30 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>家电小类目</th>
-                                <th>家电大类目</th>
+                                <th>商品编号</th>
+                                <th>商品名称</th>
+                                <th>成本</th>
+                                <th>售价</th>
+                                <th>颜色</th>
+                                <th>商品小类目</th>
+                                <th>商品大类目</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {volist name="pro" id="pro"}
+                        {volist name="list" id="pro"}
                             <tr>
-                            <td><a href="http://localhost/tp6/public/Product/productdetails/productdetails.html?productdevelop_id={$pro.productdevelop_id}">{$pro.productdevelop_name}</a></td>
+                            <td>{$pro.product_rollno}</td>
+                            <td>{$pro.product_name}</td>
+                            <td>{$pro.product_cost}</td>
+                            <td>{$pro.product_price}</td>
+                            <td>{$pro.product_color}</td>
+                            <td>{$pro.productdevelop_name}</td>
                             <td>{$pro.productmaster_name}</td>
-                                </tr>
+                            </tr>
                         {/volist} 
                         </tbody>
                     </table>
+                    {$list->render()}
             </div>
         </div>
     </div>

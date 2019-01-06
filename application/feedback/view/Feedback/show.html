@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 实例 - 输入框组的按钮插件</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../static/js/jquery-3.3.1.js"></script>
+    <script src="../../static/layer/layer.js"></script>
+</head>
+
+<script>
+    function createForm() {
+        var selectType = document.getElementById("type");
+        var index = selectType.selectedIndex
+        var valuetype = selectType.options[index].value;
+
+        var aftersaleID = document.getElementById('aftersaleID').value;
+
+        var content = document.getElementById('content').innerHTML;
+
+        // var saleperson = document.getElementById('saleperson').value;
+
+        // var date = document.getElementById('date').value;
+
+        var charge = document.getElementById('charge').value;
+
+        var confirm = document.getElementsByName("confirm");
+        var confirmvalue = 0;
+        for (var i = 0; i < 1; i++) {
+            if (confirm[i].checked == true) {
+                confirmvalue = confirm[i].value;
+            }
+        }
+
+        layer.open({
+            type: 2,
+            title: '修改订单',
+            maxmin: true,
+            shadeClose: true, //点击遮罩关闭层
+            area: ['800px', '600px'],
+            content: "../../feedback/Feedback/createForm?type=" + valuetype + "&others=" + content
+                +  "&aftersaleID=" + aftersaleID +  "&charge=" + charge + "&confirm=" + confirmvalue
+        });
+    }
+</script>
+
+<body>
+
+    <div style="padding: 100px 100px 10px;">
+
+        <div class="form-group">
+            <label for="name">售后单号</label>
+            <input type="text" class="form-control" placeholder="请输入销售单号" name="aftersaleID" id="aftersaleID">
+        </div>
+
+        <label for="name">处理类型</label>
+        <select class="form-control" name="type" id="type">
+            <option>退货</option>
+            <option>换货</option>
+            <option>维修</option>
+            <option>咨询</option>
+        </select>
+
+        <div class="form-group">
+            <label for="name">处理情况说明</label>
+            <textarea class="form-control" rows="3" name="content" id="content"></textarea>
+        </div>
+
+
+        <!-- <div class="form-group">
+            <label for="name">售后人员</label>
+            <input type="text" class="form-control" placeholder="请输入销售人选编号" name="saleperson" id="saleperson">
+        </div> -->
+        <!-- <div class="form-group">
+            <label for="name">反馈日期</label>
+            <input type="date" class="form-control" placeholder="请选择受理日期" name="date" id="date">
+        </div> -->
+        <div class="form-group">
+            <label for="name">费用</label>
+            <input type="number" class="form-control" placeholder="请输入费用" name="charge" id="charge">
+        </div>
+
+
+        <div class="form-group">
+            <label for="name">客户确认</label>
+            <br>
+            <label>
+                <input type="radio" name="confirm" id="confirm1" value="1" checked> 确认
+            </label>
+            <label>
+                <input type="radio" name="confirm" id="confirm0" value="0"> 未确认
+            </label>
+        </div>
+
+        <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#myModal" onclick="createForm()">
+            提交
+        </button>
+
+
+
+    </div>
+
+</body>
+
+</html>

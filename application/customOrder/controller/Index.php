@@ -6,6 +6,7 @@ use think\Controller;
 
 class Index extends controller
 {
+
     public function index()
     {
     //获取员工编号
@@ -215,7 +216,7 @@ class Index extends controller
             }
                 //如果是把HTML页面转PDF格式执行以下代码
                 //   $html = "http://localhost/tp5/public/customOrder/index?page=1";
-                $html = "http://localhost/tp5/public/customOrder/index/test";
+                $html = "http://localhost/tp6/public/customOrder/index/test";
                 // $html="www.baidu.com";
                   $data = file_get_contents($html);//获取html页面的url
                 //   dump($data);
