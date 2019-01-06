@@ -101,20 +101,25 @@ margin:8px;
             table.render({
                 elem: '#test'
                 , title: "订单表"
-                , height: 700
+                , height: 900
                 , defaultToolbar: ['filter', 'print', 'exports']
                 , url: '../../public/customOrder/index/json' //数据接口
                 , page: true //开启分页
-                , toolbar: 'defult'
+                , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+                , totalRow: true //开启合计行
                 , cols: [[ //表头
-                    { field: 'order_num', title: '编号', type: 'numbers', width: 60, sort: true, fixed: 'left' }
+                {type: 'checkbox', fixed: 'left'}
+                    , { field: 'order_num', title: '编号', type: 'numbers', width: 60, sort: true, fixed: 'left' }
                     , { field: 'order_num', title: '订单编号', id: 'orderNum', width: 142, sort: true, fixed: 'left', sort: true }
                     , { field: 'custom_num', title: '顾客编号', width: 120, sort: true }
                     , { field: 'product_name', title: '产品名称', width: 142, sort: true }
                     , { field: 'amount', title: '数量', width: 80, sort: true }
                     , { field: 'unit_price', title: '单价', width: 80, sort: true }
-                    , { field: 'experience', title: '总额', width: 80, sort: true }
-                    , { field: 'saler_num', title: '销售员编号', width: 90, sort: true }
+                    , {field:'title', title: '总价', width: 100
+                                        ,templet: function(d){
+                                            return  d.amount * d.unit_price+'￥';
+                                            }
+                                        }                    , { field: 'saler_num', title: '销售员编号', width: 110, sort: true }
                     , { field: 'order_time', title: '创建时间', width: 150, sort: true }
                     , { field: 'order_channel', title: '渠道', width: 110, sort: true }
                     , { fixed: 'right', width: 170, toolbar: '#barDemo' } //这里的toolbar值是模板元素的选择器

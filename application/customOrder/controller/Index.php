@@ -30,14 +30,30 @@ class Index extends controller
     //获取部门编号
     // $pid=$_COOKIE['p_id'];
     $pid=1;
-    $order=Db::table('custom_order')
+    $num=Db::table('custom_order')
     ->alias('a')
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
     ->where('c.department_id','=',($pid))
+    ->count();
+
+
+    $order=Db::table('custom_order')
+    ->alias('a')
+        // ->field('a.amount','*','a.unit_price')
+
+    ->join('buproduct b','a.product_num = b.product_rollno')
+    ->join('buemployee c','a.saler_num = c.employee_id')
+    ->where('c.department_id','=',($pid))
+    ->limit(($_GET['page']-1)*$_GET['limit'],$_GET['limit'])
     ->select();
-    $rs1=json(0,'数据返回成功',27,$order); 
+
+   
+
+
+    $rs1=json(0,'数据返回成功',$num,$order); 
     return json_encode($rs1);
+
     }
     public function test(){
         //获取员工编号
