@@ -17,7 +17,15 @@ class AfterSale extends controller
         $type=$_GET['type'];
         $content=$_GET['content'];
         $saleID=$_GET['saleID'];
-        $saleperson=$_GET['saleperson'];
+        $check0 = Db::table('buaftersale')
+        ->where('aftersale_roll',$saleID)
+        ->find();
+        if(is_null($check0)){
+            $flag='请输入已有的销售单号或按照正确的销售单号输入';
+            cookie('flag', $flag, 3600);
+        }
+
+        //$saleperson=$_COOKIE['employee_id'];
         $date=date("Y-m-d");
 
         $year = substr($saleID, 2, 5);
@@ -34,7 +42,7 @@ class AfterSale extends controller
         $this->assign('saleID', $saleID);
         $this->assign('type', $type);
         $this->assign('content', $content);
-        $this->assign('saleperson', $saleperson);
+        //$this->assign('saleperson', $saleperson);
         $this->assign('date', $date);
 
         return $this->fetch('AfterSale/pannel');

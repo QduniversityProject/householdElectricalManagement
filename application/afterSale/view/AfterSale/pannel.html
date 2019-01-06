@@ -42,17 +42,31 @@
         <div class="layui-form-item">
             <label class="layui-form-label">售后单号</label>
             <div class="layui-input-block">
-                <p>{$aftersaleroll}</p>
-                <input type="hidden" name="aftersale_roll" value="{$aftersaleroll}"
-                    autocomplete="off" class="layui-input">
+                <?php
+                if($_COOKIE['flag']){
+                    echo "<p>".$_COOKIE['flag']."</p>";
+                }
+                else{
+                    echo "<p>{$aftersaleroll}</p>";
+                }
+                ?>
+                <input type="hidden" name="aftersale_roll" value="{$aftersaleroll}" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">订单编号</label>
             <div class="layui-input-block">
-                <p>{$saleID}</p>
-                <input type="hidden" name="order_num"value="{$saleID}" class="layui-input"/>
+                <?php
+                    if($_COOKIE['flag']){
+                        echo "<p>".$_COOKIE['flag']."</p>";
+                    }
+                    else{
+                        echo "<p>{$saleID}</p>";
+                    }
+                    ?>
+
+                <input type="hidden" name="order_num" value="{$saleID}" class="layui-input" />
             </div>
         </div>
 
@@ -61,7 +75,7 @@
             <label class="layui-form-label">问题类型</label>
             <div class="layui-input-block">
                 <p>{$type}</p>
-                <input type="hidden" name="question_type" value="{$type}" class="layui-input"/>
+                <input type="hidden" name="question_type" value="{$type}" class="layui-input" />
             </div>
         </div>
 
@@ -77,15 +91,15 @@
             <label class="layui-form-label">受理日期</label>
             <div class="layui-input-block">
                 <p>{$date}</p>
-                <input type="hidden" name="date" value="{$date}" class="layui-input"/>
+                <input type="hidden" name="date" value="{$date}" class="layui-input" />
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">受理人员</label>
             <div class="layui-input-block">
-                <p>{$saleperson}</p>
-                <input type="hidden" value="{$saleperson}" name='saleperson' class="layui-input">
+                <p><?php $_COOKIE['employee_id']?></p>
+                <input type="hidden" value=<?php $_COOKIE['employee_id']?> name='saleperson' class="layui-input">
             </div>
         </div>
 
