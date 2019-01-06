@@ -177,7 +177,14 @@ margin:8px;
 </head>
 
 <body>
-
+        <div>
+                <!-- action="{:url('customOrder/import_from_excel/import')}" -->
+            <form id="excel" method="post" action="{:url('customOrder/import_from_excel/import')}"   class="form-signin" enctype="multipart/form-data" >
+            <input id="file" name="excel" type="file" class="form-control">
+            <button class="btn btn-lg btn-primary btn-block"id="btton" >导入</button>
+            </form>
+            <a href="../../顾客订单导入模板.xlsx"><button value="下载模板">下载</button></a>
+        </div>
 
 
     <table id="test" lay-filter="jsontable" lay-size="lg"></table>
