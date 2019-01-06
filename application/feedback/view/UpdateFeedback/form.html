@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../../public/static/layui/css/layui.css">
-    <script src="../../../public/static/js/jquery-3.3.1.js"></script>
-    <script src="../../../public/static/layui/layui.js"></script>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css">
+    <script src="../../static/js/jquery-3.3.1.js"></script>
+    <script src="../../static/layui/layui.js"></script>
 
     <script>
         //Demo
@@ -38,7 +38,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">反馈订单编号</label>
             <div class="layui-input-block">
-                <input type="text" name="feedback_roll" disabled lay-verify="required" value="{$info.feedback_roll}"
+                <input type="text" name="feedback_roll" readonly lay-verify="required" value="{$info.feedback_roll}"
                     autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -46,7 +46,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">售后订单编号</label>
             <div class="layui-input-block">
-                <input type="text" name="aftersale_roll" disabled lay-verify="required" value="{$info.aftersale_roll}" class="layui-input">
+                <input type="text" name="aftersale_roll" readonly lay-verify="required" value="{$info.aftersale_roll}"
+                    class="layui-input">
             </div>
         </div>
 
@@ -54,8 +55,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">处理类型</label>
             <div class="layui-input-block">
-                <select name="question_type" lay-verify="required">
-                    <option value="{$info.question_type}">{$info.question_type}</option>
+                <select name="feedback_type" value="{$info.feedback_type}" lay-verify="required">
                     <option value="退货">退货</option>
                     <option value="换货">换货</option>
                     <option value="维修">维修</option>
@@ -67,36 +67,40 @@
         <div class="layui-form-item">
             <label class="layui-form-label">反馈日期</label>
             <div class="layui-input-block">
-                <input type="text" name="feedback_date" disabled value="{$info.feedback_date}" class="layui-input">
+                <input type="date" name="feedback_date" readonly value="{$info.feedback_date}" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">费用</label>
             <div class="layui-input-block">
-                <textarea name="charge" value="{$info.charge}" class="layui-input"></textarea>
+                <input type="number" name="charge" value="{$info.charge}" class="layui-input"></textarea>
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">受理人员</label>
             <div class="layui-input-block">
-                <input type="text" value="{$info.employee_id}" class="layui-input">
+                <input type="text" name="employee_id" value="{$info.employee_id}" readonly class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">处理情况说明</label>
             <div class="layui-input-block">
-                <input type="text" value="{$info.others}" class="layui-input">
+                <input type="text" name="others" value="{$info.others}" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">客户确认</label>
-            <div class="layui-input-block">
-                <input type="text" value="{$info.confirment}" class="layui-input">
-            </div>
+            <label class="layui-form-label" for="name">客户确认</label>
+            <br>
+            <label>
+                <input type="radio" name="confirment" id="confirment1" value="1" checked> 确认
+            </label>
+            <label>
+                <input type="radio" name="confirment" id="confirment0" value="0"> 未确认
+            </label>
         </div>
 
         <div class="layui-form-item">

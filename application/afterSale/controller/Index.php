@@ -8,9 +8,23 @@ use think\Controller;
 
 class Index extends controller
 {
-    public function index(){
-        $info=AfterSaleModel::paginate(10);
-        $this->assign('aftersaleInfo', $info);
-        return $this->fetch('Index/index');
+    public function index($employee_id=null){
+        if(isset($employee_id)){
+            $info=Db::table('buaftersale')
+            ->where('employee_id', $employee_id)
+            ->paginate(10);
+            $this->assign('aftersaleInfo', $info);
+            return $this->fetch('Index/index_emp');
+        }
+        else{
+            $info=AfterSaleModel::paginate(10);
+            $this->assign('aftersaleInfo', $info);
+            return $this->fetch('Index/index');
+        }
+       
     }
+
+   
+        
+    
 }

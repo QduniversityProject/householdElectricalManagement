@@ -1,4 +1,4 @@
-
+drop database Business;
 
 CREATE DATABASE IF NOT EXISTS Business DEFAULT CHARACTER SET utf8;
 
@@ -500,13 +500,18 @@ aftersale_id int NOT NULL AUTO_INCREMENT,
 aftersale_roll varchar(200) NOT NULL,
 order_num varchar(45) NOT NULL,
 question_type varchar(20) NOT NULL,
-question varchar(200) NOT NULL,
+question varchar(200),
 employee_id varchar(200) NOT NULL,
 processing_date date NOT NULL,
-state int NOT NULL,
+state varchar(45) NOT NULL,
 primary key(aftersale_id)
 )ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
+insert into buaftersale(aftersale_roll, order_num, question_type, question, employee_id, processing_date, state)
+values('SV20181200001', 'OD20181200001', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
+('SV20181200002', 'OD20181200002', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
+('SV20181200003', 'OD20181200003', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
+('SV20181200004', 'OD20181200004', '退货', '假货', 'EM00004', '2019-01-16', '办理中');
+('SV20181200004', 'OD20181200004', '退货', '假货', 'EM00004', '2019-01-16', '办理中');
 
 CREATE TABLE bufeedback
 (
@@ -514,10 +519,18 @@ feedback_id int NOT NULL primary key AUTO_INCREMENT,
 feedback_roll varchar(200) NOT NULL,
 aftersale_roll varchar(200) NOT NULL,
 feedback_date date NOT NULL,
+feedback_type varchar(45) NOT NULL,
 charge int NOT NULL,
 others varchar(200),
 confirment int NOT NULL
 )ENGINE=InnoDB default charset=utf8;
+insert into bufeedback(feedback_roll, aftersale_roll, feedback_date, feedback_type, charge, others, confirment)
+values('FD20181200001', 'SV20181200001', '2019-01-16','退货', '0', '办理顺利',  1),
+('FD20181200002', 'SV20181200002', '2019-01-16', '退货', '0', '办理顺利',  1),
+('FD20181200003', 'SV20181200003', '2019-01-16', '退货', '0', '办理顺利',  1),
+('FD20181200004', 'SV20181200004', '2019-01-16', '退货', '0', '办理顺利',  0);
+
+
 
 CREATE TABLE customer 
 (
@@ -609,7 +622,7 @@ INSERT INTO permission VALUES ('8', '产品管理', null, null);
 INSERT INTO permission VALUES ('9', '顾客管理', null, null);
 
 /*增加人员*/
-INSERT INTO buemployee (employee_id, employee_name, employee_password, role_idemployee_con_roleburole) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00004', '我是售后', '202cb962ac59075b964b07152d234b70', '4');

@@ -6,7 +6,7 @@ use think\Db;
 class Department extends Controller
 {
 
-    public function department($department_id=1)
+    public function department($department_id)
     {
         $list = Db::table('budepartment')
         ->field('department_name,department_desc,department_id')

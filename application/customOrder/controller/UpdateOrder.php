@@ -17,7 +17,7 @@ class UpdateOrder extends controller
         // ->join('bucompany_link_man f' , 'd.customer_id =f.belong_company')
         ->where('order_num','=',$id)
         ->find();
-        $link=Db::query(' select * from custom_order join bucompany_link_man on custom_order.custom_num =bucompany_link_man.belong_company WHERE custom_order.order_num =:id', ['id' => $id]);
+        $link=Db::query('select * from custom_order join bucompany_link_man on custom_order.custom_num =bucompany_link_man.belong_company WHERE custom_order.order_num =:id', ['id' => $id]);
         $this->assign('info', $info);
         $this->assign('link', $link);
     return $this->fetch();

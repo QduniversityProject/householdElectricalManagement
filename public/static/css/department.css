@@ -1,0 +1,28 @@
+@font-face
+{
+    font-family: myfont;
+    src:url('../font/DK Jambo.otf');
+}
+a
+{
+  text-decoration:none;
+  color:black;
+}
+button
+{
+    font-family: myfont;
+    border: 2px solid rgb(199, 240, 240);
+    background-color: aliceblue;
+    border-top-left-radius:40px;
+    border-bottom-right-radius:50px;
+}
+button:hover
+{
+    font-style: italic;
+    
+}
+a:hover
+{
+    color: grey;
+    text-decoration:none;
+}
