@@ -21,7 +21,40 @@ class Index extends controller
     ->where('c.department_id','=',($pid))
     ->paginate(10);
     $this->assign('cusTomOrder', $order);
+    $this->assign('json', json_encode($order));
     return $this->fetch();
+    }
+    public function json()
+    {
+    //获取员工编号
+    // $uid=$_COOKIE['u_id'];
+    //获取部门编号
+    // $pid=$_COOKIE['p_id'];
+    $pid=1;
+    $num=Db::table('custom_order')
+    ->alias('a')
+    ->join('buproduct b','a.product_num = b.product_rollno')
+    ->join('buemployee c','a.saler_num = c.employee_id')
+    ->where('c.department_id','=',($pid))
+    ->count();
+
+
+    $order=Db::table('custom_order')
+    ->alias('a')
+        // ->field('a.amount','*','a.unit_price')
+
+    ->join('buproduct b','a.product_num = b.product_rollno')
+    ->join('buemployee c','a.saler_num = c.employee_id')
+    ->where('c.department_id','=',($pid))
+    ->limit(($_GET['page']-1)*$_GET['limit'],$_GET['limit'])
+    ->select();
+
+   
+
+
+    $rs1=json(0,'数据返回成功',$num,$order); 
+    return json_encode($rs1);
+
     }
     public function test(){
         //获取员工编号
@@ -35,7 +68,7 @@ class Index extends controller
     ->join('buemployee c','a.saler_num = c.employee_id')
     ->where('c.department_id','=',($pid))
     ->select();
-    $this->assign('cusTomOrder', $order);
+    // $this->assign('cusTomOrder', $order);
     return $this->fetch();
     }
 
