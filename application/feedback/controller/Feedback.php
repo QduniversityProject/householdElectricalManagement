@@ -23,8 +23,8 @@ class Feedback extends controller
         if($confirm==1) $confirm='已确认';
         else $confirm='未确认';
 
-        $year = substr($aftersaleID, 3, 4);
-        $month = substr($aftersaleID, 7, 2);
+        $year = substr($aftersaleID, 2, 4);
+        $month = substr($aftersaleID, 6, 2);
 
         $result0 = Db::table('bufeedback')
         ->alias('a')
@@ -37,7 +37,7 @@ class Feedback extends controller
         $roll_int = (int)substr($roll,-5,5);
         $roll_int += 1;
         $newroll = str_pad($roll_int, 5, 0, STR_PAD_LEFT);
-        $feedbackroll = "FD"+$year+$month+$newroll;
+        $feedbackroll = "FD".$year.$month.$newroll;
 
         $this->assign('feedbackroll', $feedbackroll);
         $this->assign('aftersaleID', $aftersaleID);
