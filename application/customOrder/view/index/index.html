@@ -41,6 +41,23 @@ margin:8px;
   border-top: 1px solid #eee;
 }
 </style>
+<<<<<<< HEAD
+<!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
+<script src="../../public/static/js/jquery-3.3.1.js"></script>
+<script src="../../public/static/layer/layer.js"></script>
+<script >  
+    $(document).ready(function(){
+        $('.submit').on('click', function(){
+        var id =$(this).attr("id");
+        layer.open({
+          type: 2,
+          title: '修改订单',
+          maxmin: true,
+          shadeClose: true, //点击遮罩关闭层
+          area : ['800px' , '650px'],
+        //   content: ['../../public/customOrder/Update_order/form?id='+id,'no']
+          content: '../../public/customOrder/Update_order/form?id='+id
+=======
     <!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
     <script src="../../public/static/js/jquery-3.3.1.js"></script>
     <script src="../../public/static/layer/layer.js"></script>
@@ -58,6 +75,7 @@ margin:8px;
                     //   content: ['../../public/customOrder/Update_order/form?id='+id,'no']
                     content: '../../public/customOrder/Update_order/form?id=' + id
                 });
+>>>>>>> 9fabdc3d3e8d1967ae5937452caa4bcacedf52b7
             });
             $('#customer').on('click', function () {
                 layer.open({

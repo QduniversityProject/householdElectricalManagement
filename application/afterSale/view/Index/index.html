@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>订单管理</title>
+<!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
+<script src="../../public/static/js/jquery-3.3.1.js"></script>
+<script src="../../public/static/layer/layer.js"></script>
+<script>  
+       $(document).ready(function(){
+        $('.submit').on('click', function(){
+        var id =$(this).attr("id");
+        layer.open({
+          type: 2,
+          title: '修改订单',
+          maxmin: true,
+          shadeClose: true, //点击遮罩关闭层
+          area : ['800px' , '600px'],
+          content: '../../public/afterSale/UpdateAftersale/form?id='+id
+            });
+        });
+       });
+    </script>
+</head>
+
+<body>
+<h2>售后订单列表</h2> 
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            
+            <th id="aftersale_id">售后编号</th>
+            <th id="order_num">订单编号</th>
+            <th id="question_type">问题类型</th>
+            <th id="employee_id">售后人员</th>
+            <th id="processing_date">受理日期</th>
+            <th id="state">受理状态</th>
+            <th id="question">问题详情</th>
+            <th id="alter">修改</th>
+        </tr>
+    </thead>
+
+    {volist name="aftersaleInfo" id="Info" }
+    <tr>
+        <td>{$Info.aftersale_roll}</td>
+        <td>{$Info.order_num}</td>
+        <td>{$Info.question_type}</td>
+        <td>{$Info.employee_id}</td>
+        <td>{$Info.processing_date}</td>
+        <td>{$Info.state}</td>
+        <td>{$Info.question}</td>
+        <td><button class="submit" id={$Info.aftersale_roll}">修改</button></td>
+    </tr>
+    {/volist}
+</table>
+{$aftersaleInfo->render()}
+</body>
+</html>

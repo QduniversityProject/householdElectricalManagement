@@ -37,7 +37,6 @@ class UpdateOrder extends controller
     // dump($cusTomOrder);
     $this->assign('cusTomOrder', $cusTomOrder);
     return $this->fetch();
-   
     }
 
 }
