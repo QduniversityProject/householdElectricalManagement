@@ -514,6 +514,7 @@ feedback_id int NOT NULL primary key AUTO_INCREMENT,
 feedback_roll varchar(200) NOT NULL,
 aftersale_roll varchar(200) NOT NULL,
 feedback_date date NOT NULL,
+feedback_type varchar(45) NOT NULL,
 charge int NOT NULL,
 others varchar(200),
 confirment int NOT NULL

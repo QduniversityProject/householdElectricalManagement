@@ -3,24 +3,25 @@
 namespace app\feedback\controller;
 
 use think\Controller;
+use app\feedback\model\FeedbackModel;
 
 class UpdateFeedback extends controller
 {
     public function form($id){
-        $info=ubfeedback::where('feedback_roll','=',$id)
+        $feedbackInfo=FeedbackModel::where('feedback_roll','=',$id)
         ->find();
-        $this->assign('feedbackInfo', $info);
+        $this->assign('info', $feedbackInfo);
         return $this->fetch('UpdateFeedback/form');
     }
 
-    public function update($id){
+    public function update(){
         dump($_GET);
-        $order=bufeedback::where('feedback_roll',$_GET['feedback_roll'])->find();
-        $order->employee_id=$_GET['employee_id'];
+        $order=FeedbackModel::where('feedback_roll',$_GET['feedback_roll'])->find();
         $order->others=$_GET['others'];
-        $order->question_type=$_GET['question_type'];
+        $order->feedback_type=$_GET['feedback_type'];
         $order->confirment=$_GET['confirment'];
         $order->charge=$_GET['charge'];
+        $order->others=$_GET['others'];
         $order->save();
         echo($order);
         echo "ok";

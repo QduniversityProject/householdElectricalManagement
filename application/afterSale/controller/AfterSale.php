@@ -42,21 +42,14 @@ class AfterSale extends controller
 
     public function insert()
     {
-        dump($_GET);
-        exit;
         $type=$_GET['question_type'];
         $content=$_GET['question'];   
         $saleperson=$_GET['saleperson'];
-
         $date=$_GET['date'];
         $aftersaleID=$_GET['aftersale_roll'];
-$saleID=$_GET['order_num'];
-        $Insert=Db::execute("INSERT INTO ub buaftersale(aftersale_roll, order_num, question_type, question, employee_id, processing_date, state)
-        VALUES ( $aftersaleID, $saleID, $type, $contnet, $saleperson, $date, '办理中');");
-        if($Insert){
-            return "添加成功";
-        }else
-        return "添加失败";
+        $saleID=$_GET['order_num'];
+        Db::table('buaftersale')
+        ->insert(['aftersale_roll' => $aftersaleID, 'order_num' => $saleID, 'question_type' => $type, 'question' => $content, 'employee_id' => $saleperson, 'processing_date' => $date, 'state' => '办理中']);
     }
 
 }
