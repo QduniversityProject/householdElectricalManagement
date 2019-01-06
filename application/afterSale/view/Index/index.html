@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>订单管理</title>
 <!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
-<script src="../../public/static/js/jquery-3.3.1.js"></script>
-<script src="../../public/static/layer/layer.js"></script>
+<script src="../../static/js/jquery-3.3.1.js"></script>
+<script src="../../static/layer/layer.js"></script>
 <script>  
        $(document).ready(function(){
         $('.submit').on('click', function(){
@@ -16,7 +16,7 @@
           maxmin: true,
           shadeClose: true, //点击遮罩关闭层
           area : ['800px' , '600px'],
-          content: '../../public/afterSale/UpdateAftersale/form?id='+id
+          content: '../../afterSale/UpdateAftersale/form?id='+id
             });
         });
        });
