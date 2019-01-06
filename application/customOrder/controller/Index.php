@@ -52,7 +52,7 @@ class Index extends controller
    
 
 
-    $rs1=json(0,'数据返回成功',$num,$order); 
+    $rs1=jsontable(0,'数据返回成功',$num,$order); 
     return json_encode($rs1);
 
     }

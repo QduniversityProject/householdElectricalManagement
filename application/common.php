@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
-function json($code,$msg="",$count,$data=array()){  
+function jsontable($code,$msg="",$count,$data=array()){  
     $result=array(  
       'code'=>$code,  
       'msg'=>$msg, 
