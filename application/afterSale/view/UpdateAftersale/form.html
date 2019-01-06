@@ -36,9 +36,9 @@
     <form class="layui-form" id="test" action="../../afterSale/UpdateAftersale/update.html">
 
         <div class="layui-form-item">
-            <label class="layui-form-label">售后订单编号</label>
+            <label class="layui-form-label">售后单号</label>
             <div class="layui-input-block">
-                <input type="hidden" name="aftersale_roll"  lay-verify="required" value="{$aftersaleInfo.aftersale_roll}"
+                <input type="text" name="aftersale_roll"  readonly lay-verify="required" value="{$aftersaleInfo.aftersale_roll}"
                     autocomplete="off" class="layui-input">
             </div>
         </div>
