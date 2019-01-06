@@ -19,18 +19,16 @@
             var index = selectType.selectedIndex;
             var valuetype = selectType.options[index].value;
 
-            var content = document.getElementById('content').innerText;
+            var content = document.getElementById('content').value;
 
             var saleID = document.getElementById('saleID').value;
-
-            var saleperson = document.getElementById('saleperson').value;
 
             layer.open({
                 type: 2,
                 title: '修改订单',
                 maxmin: true,
                 shadeClose: true, //点击遮罩关闭层
-                area: ['800px', '600px'],
+                area: ['600px', '450px'],
                 content: "../../afterSale/AfterSale/creatForm?type=" + valuetype + "&content=" + content
                     + "&saleID=" + saleID 
             });
