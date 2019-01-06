@@ -92,7 +92,19 @@ margin:8px;
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             
-        </script>
+     </script>
+    <script type="text/html" id="pdfexcel">
+        <div>
+                <!-- action="{:url('customOrder/import_from_excel/import')}" -->
+
+            <form id="excel" method="post"  action="{:url('customOrder/import_from_excel/import')}"   class="form-signin" enctype="multipart/form-data" >
+            <a href="../../顾客订单导入模板.xlsx"><button class="layui-btn layui-btn-xs" value="下载模板">下载导入模板</button></a>
+            <input id="file" name="excel" class="layui-btn layui-btn-xs" type="file" class="form-control">
+            <button class="layui-btn layui-btn-xs" id="btton" >导入</button>
+            </form>
+        </div>
+
+ </script>
     <script>
         layui.use('table', function () {
             var table = layui.table;
@@ -105,23 +117,23 @@ margin:8px;
                 , defaultToolbar: ['filter', 'print', 'exports']
                 , url: '../../public/customOrder/index/json' //数据接口
                 , page: true //开启分页
-                , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+                , toolbar: '#pdfexcel' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
                 , totalRow: true //开启合计行
                 , cols: [[ //表头
-                {type: 'checkbox', fixed: 'left'}
-                    , { field: 'order_num', title: '编号', type: 'numbers', width: 60, sort: true, fixed: 'left' }
+                    { field: 'order_num', title: '编号', type: 'numbers', width: 60, sort: true, fixed: 'left' }
                     , { field: 'order_num', title: '订单编号', id: 'orderNum', width: 142, sort: true, fixed: 'left', sort: true }
                     , { field: 'custom_num', title: '顾客编号', width: 120, sort: true }
-                    , { field: 'product_name', title: '产品名称', width: 142, sort: true }
+                    , { field: 'product_name', title: '产品名称', width: 142 }
                     , { field: 'amount', title: '数量', width: 80, sort: true }
                     , { field: 'unit_price', title: '单价', width: 80, sort: true }
-                    , {field:'title', title: '总价',  sort: true, width: 100
-                                        ,templet: function(d){
-                                            return  d.amount * d.unit_price;
-                                            }
-                                        }                    , { field: 'saler_num', title: '销售员编号', width: 110, sort: true }
-                    , { field: 'order_time', title: '创建时间', width: 150 }
-                    , { field: 'order_channel', title: '渠道', width: 110, sort: true }
+                    , {
+                        field: 'title', title: '总价', width: 100 , sort: true
+                        , templet: function (d) {
+                            return d.amount * d.unit_price + '￥';
+                        }
+                    }, { field: 'saler_num', title: '销售员编号', width: 110, sort: true }
+                    , { field: 'order_time', title: '创建时间', width: 150, sort: true  }
+                    , { field: 'order_channel', title: '渠道', width: 110 }
                     , { fixed: 'right', width: 120, toolbar: '#barDemo' } //这里的toolbar值是模板元素的选择器
 
                 ]]
@@ -153,14 +165,14 @@ margin:8px;
                 } else if (layEvent === 'edit') { //编辑
                     //do something
                     layer.open({
-                    type: 2,
-                    title: '修改订单',
-                    maxmin: true,
-                    shadeClose: true, //点击遮罩关闭层
-                    area: ['900px', '400px'],
-                    //   content: ['../../public/customOrder/Update_order/form?id='+id,'no']
-                    content: '../../public/customOrder/Update_order/form?id=' + id
-                });
+                        type: 2,
+                        title: '修改订单',
+                        maxmin: true,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['900px', '400px'],
+                        //   content: ['../../public/customOrder/Update_order/form?id='+id,'no']
+                        content: '../../public/customOrder/Update_order/form?id=' + id
+                    });
 
                     //同步更新缓存对应的值
                     obj.update({
@@ -178,6 +190,7 @@ margin:8px;
 <body>
 
 
+<<<<<<< HEAD
         <div>
                 <form id="excel" method="post" action="{:url('customOrder/import_from_excel/import')}" class="form-signin" enctype="multipart/form-data" >
                 <input id="file" name="excel" type="file" class="form-control">
@@ -185,6 +198,8 @@ margin:8px;
                 </form>
                 <a href="../../顾客订单导入模板.xlsx"><button value="下载导入模板">下载</button></a>
                 </div>
+=======
+>>>>>>> 41a7cfff7add235d3d27092e6e414ce07ce03b23
     <table id="test" lay-filter="jsontable" lay-size="lg"></table>
 
 

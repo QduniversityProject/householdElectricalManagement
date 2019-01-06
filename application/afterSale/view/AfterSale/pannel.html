@@ -43,11 +43,11 @@
             <label class="layui-form-label">售后单号</label>
             <div class="layui-input-block">
                 <?php
-                if($_COOKIE['flag']){
+                if(isset($_COOKIE['flag'])){
                     echo "<p>".$_COOKIE['flag']."</p>";
                 }
                 else{
-                    echo "<p>{$aftersaleroll}</p>";
+                    echo "<p>$aftersaleroll</p>";
                 }
                 ?>
                 <input type="hidden" name="aftersale_roll" value="{$aftersaleroll}" autocomplete="off" class="layui-input">
@@ -58,12 +58,13 @@
             <label class="layui-form-label">订单编号</label>
             <div class="layui-input-block">
                 <?php
-                    if($_COOKIE['flag']){
+                    if(isset($_COOKIE['flag'])){
                         echo "<p>".$_COOKIE['flag']."</p>";
                     }
                     else{
-                        echo "<p>{$saleID}</p>";
+                        echo "<p>$saleID</p>";
                     }
+                    
                     ?>
 
                 <input type="hidden" name="order_num" value="{$saleID}" class="layui-input" />
@@ -83,7 +84,7 @@
             <label class="layui-form-label">问题内容</label>
             <div class="layui-input-block">
                 <p>{$content}</p>
-                <textarea name="question" type="hidden" value="{$content}" class="layui-input"></textarea>
+                <input name="question" type="hidden" readonly value="{$content}" class="layui-input"></textarea>
             </div>
         </div>
 
@@ -98,14 +99,23 @@
         <div class="layui-form-item">
             <label class="layui-form-label">受理人员</label>
             <div class="layui-input-block">
-                <p><?php $_COOKIE['employee_id']?></p>
-                <input type="hidden" value=<?php $_COOKIE['employee_id']?> name='saleperson' class="layui-input">
+                <?php echo "<p>".$_COOKIE['employee_id']."</p>";?>
+                <?php echo "<input type='hidden' value=".$_COOKIE['employee_id']." name='saleperson' class='layui-input'>"; ?> 
             </div>
         </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" id='confirm' lay-submit lay-filter="formDemo">立即提交</button>
+                <?php
+                if(isset($_COOKIE['flag'])){
+                    echo "<button class='layui-btn' id='confirm' disabled lay-submit lay-filter='formDemo'>立即提交</button>";
+                    setcookie('flag','');
+                }
+                else{
+                    echo "<button class='layui-btn' id='confirm' lay-submit lay-filter='formDemo'>立即提交</button>";
+                }
+                ?>
+                
             </div>
         </div>
 

@@ -17,12 +17,12 @@ class AfterSale extends controller
         $type=$_GET['type'];
         $content=$_GET['content'];
         $saleID=$_GET['saleID'];
-        $check0 = Db::table('buaftersale')
-        ->where('aftersale_roll',$saleID)
+        $check0 = Db::table('custom_order')
+        ->where('order_num',$saleID)
         ->find();
-        if(is_null($check0)){
+        if(is_null($check0['order_num'])){
             $flag='请输入已有的销售单号或按照正确的销售单号输入';
-            cookie('flag', $flag, 3600);
+            cookie('flag', $flag, 1);
         }
 
         //$saleperson=$_COOKIE['employee_id'];
