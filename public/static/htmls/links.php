@@ -68,7 +68,7 @@ if($_COOKIE['role_id'] == 1){
             <div class="panel-body">
                 <ul>
                     <li><a class="links" href="../../customer/Information/information" target="content">Check Customers</a></li>
-                    <li><a class="links" href="" target="content">Check Aftersalelists</a></li>
+                    <li><a class="links" href="../../afterSale/Index/index" target="content">Check Aftersalelists</a></li>
                 </ul>
             </div>
         </div>
