@@ -238,14 +238,14 @@ if($_COOKIE['role_id'] == 4){
                 <a data-toggle="collapse" data-parent="#accordion" 
                 href="#collapseTwo">
                 <span class="glyphicon glyphicon-briefcase"></span>
-                Comany Management
+                Company Management
             </a>
             </h4>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse">
             <div class="panel-body">
                 <ul>
-                <li id="link1"><a  class="links" href="../../Departments/departments/departments.html" target="content">Check Departments</a></li>
+                <li id="link1"><a  class="links" href="../../afterSale/AfterSale/show.html" target="content">Check Departments</a></li>
                 <li><a class="links" href="../../products/products/products.html" target="content">Check Products</a></li>
                 <li><a class="links" href="../../staff/staff/staff.html" target="content">Check Staff</a></li>
                 </ul>
