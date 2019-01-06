@@ -99,9 +99,10 @@ margin:8px;
             <form id="excel" method="post"  action="{:url('customOrder/import_from_excel/import')}"   class="form-signin" enctype="multipart/form-data" >
             <input id="file" name="excel" class="layui-btn layui-btn-xs" type="file" >
             <button class="layui-btn layui-btn-xs" id="btton"  lay-event="import">导入Excel</button>
+           
+            </form>
             <a href="../../顾客订单导入模板.xlsx"><button class="layui-btn layui-btn-xs" value="下载模板">下载导入模板</button></a>
             <a href='../../public/customOrder/index/excelPrint'><button  id="excel" class="layui-btn layui-btn-xs">导出Excel</button></a>
-            </form>
             <button id="customer" class="layui-btn layui-btn-xs" lay-event="new">新建客户</button>
 
         </div>
@@ -117,7 +118,7 @@ margin:8px;
                 , title: "订单表"
                 , height: 600
                 , width: 1300
-                , defaultToolbar: ['filter', 'print', 'exports']
+                , defaultToolbar: ['filter', 'print']
                 , url: '../../public/customOrder/index/json' //数据接口
                 , page: true //开启分页
                 , toolbar: '#pdfexcel' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -217,16 +218,6 @@ margin:8px;
 <body>
 
 
-<<<<<<< HEAD
-        <div>
-                <form id="excel" method="post" action="{:url('customOrder/import_from_excel/import')}" class="form-signin" enctype="multipart/form-data" >
-                <input id="file" name="excel" type="file" class="form-control">
-                <button class="btn btn-lg btn-primary btn-block"id="btton" >选择文件导入</button>
-                </form>
-                <a href="../../顾客订单导入模板.xlsx"><button value="下载导入模板">下载</button></a>
-                </div>
-=======
->>>>>>> 41a7cfff7add235d3d27092e6e414ce07ce03b23
     <table id="test" lay-filter="jsontable" lay-size="lg"></table>
 
 
