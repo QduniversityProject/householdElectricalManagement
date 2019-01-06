@@ -108,7 +108,8 @@ margin:8px;
                 , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
                 , totalRow: true //开启合计行
                 , cols: [[ //表头
-                {type: 'checkbox', fixed: 'left'}
+                      { fixed: 'right', width: 120, toolbar: '#barDemo' }
+                    , {type: 'checkbox', fixed: 'left'}
                     , { field: 'order_num', title: '编号', type: 'numbers', width: 60, sort: true, fixed: 'left' }
                     , { field: 'order_num', title: '订单编号', id: 'orderNum', width: 142, sort: true, fixed: 'left', sort: true }
                     , { field: 'custom_num', title: '顾客编号', width: 120, sort: true }
