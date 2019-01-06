@@ -143,6 +143,7 @@ class Index extends Controller
         // else{
 		// 	$this->redirect(url('index/employee'));
 		// }
+
 		$this->redirect(url('index/admin'));
         
     }

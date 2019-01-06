@@ -1,0 +1,14 @@
+button
+{
+    border-radius: 80%;
+    box-shadow:0px 0px  2px 2px #aaa;
+    font-weight: bold;
+    background-color: rgb(221, 224, 235);
+
+}
+
+button:hover
+{
+    color: cornflowerblue;
+    font-style: italic;
+}
