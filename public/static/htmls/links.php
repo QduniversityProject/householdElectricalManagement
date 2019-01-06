@@ -136,26 +136,8 @@ if($_COOKIE['role_id'] == 2){
         <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
                 <ul>
-                    <li><a class="links" href="../../customOrder/index/index" target="content">Check Customers</a></li>
-                    <li><a class="links" href="" target="content">Check Aftersalelists</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" 
-                href="#collapseFour">
-                <span class="glyphicon glyphicon-list-alt"></span>
-                Orderlists Management
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse">
-            <div class="panel-body">
-                <ul>
-                    <li><a class="links" href="../../customOrder/Information/information" target="content">Check Orderlists</a></li>
+                    <li><a class="links" href="../../customOrder/index" target="content">Check Customers</a></li>
+                    <li><a class="links" href="../../afterSale/Index/index" target="content">Check Aftersalelists</a></li>
                 </ul>
             </div>
         </div>
