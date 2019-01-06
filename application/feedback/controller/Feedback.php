@@ -59,7 +59,7 @@ class Feedback extends controller
         $feedback_date=$_GET['feedback_date'];
         $aftersaleID=$_GET['aftersale_roll'];
         $charge=$_GET['charge'];
-        if($_GET['confirm']=='已确认') $confirment = 1;
+        if($_GET['confirment']=='已确认') $confirment = 1;
         else $confirment = 0;
         Db::table('bufeedback')
         ->insert(['aftersale_roll' => $aftersaleID, 'feedback_roll' => $feedback_roll, 'feedback_type' => $feedback_type, 'others' => $others, 'feedback_date' => $feedback_date, 'charge' => $charge, 'confirment' => $confirment]);

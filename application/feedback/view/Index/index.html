@@ -16,7 +16,7 @@
           maxmin: true,
           shadeClose: true, //点击遮罩关闭层
           area : ['800px' , '600px'],
-          content: '../../public/feedback/UpdateFeedback/form?id='+id
+          content: '../../feedback/UpdateFeedback/form?id='+id
             });
         });
        });
@@ -47,8 +47,8 @@
         <td>{$Info.feedback_type}</td>
         <td>{$Info.employee_id}</td>
         <td>{$Info.feedback_date}</td>
-        <td>{$Info.charge}</td>
         <td>{$Info.others}</td>
+        <td>{$Info.charge}</td>
         <td>{$Info.confirment}</td>
         <td><button class="submit" id={$Info.feedback_roll}">修改</button></td>
     </tr>
