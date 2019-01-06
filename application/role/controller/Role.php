@@ -25,6 +25,7 @@ class Role extends Controller
     {
         $list = Db::table('buemployee')->field('employee_password',true)->where('employee_id',$employee_id)->select();
         // halt($list);
+        $this->assign('selected', $list[0]['role_id']);
         return view('roleChange',['list'=>$list]);
     }
 
