@@ -30,6 +30,15 @@
           content: 'http://localhost/tp6/public/feedback/Feedback/insertfromSV?id='+id
             });
         });
+        $('.vip').on('click', function(){
+            window.location.href='http://localhost/tp6/public/afterSale/Index/vip/employee_id/EM00004';
+        });
+        $('.nofeedback').on('click', function(){
+            window.location.href='http://localhost/tp6/public/afterSale/Index/nofeedback/employee_id/EM00004';
+        });
+        $('.feedback').on('click', function(){
+            window.location.href='http://localhost/tp6/public/afterSale/Index/feedback/employee_id/EM00004';
+        });
        });
     </script>
         <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -41,10 +50,15 @@
 </head>
 
 <body>
-<br>
-<br>
+
+        <br>
+<button class='vip' id='vip'>VIP</button>
+<button class='nofeedback' id='nofeedback'>办理中</button>
+<button class='feedback' id='feedback'>办结</button>
+
 <br>
 <table class="table table-striped table-hover">
+
     <thead>
         <tr>
             <th id="aftersale_id">售后编号</th>
@@ -57,14 +71,13 @@
             <th id='feedback'>售后反馈</th>
         </tr>
     </thead>
-
     {volist name="aftersaleInfo" id="Info" }
         <?php
         
         if ($Info['level']=='是' && $Info['state']=='办理中'){
             echo "<tr style='color:red;'>";
             echo "<td>".$Info['aftersale_roll']."</td>";
-            echo "<td>".$Info['order_num']."</td>";
+            echo "<td><a href='http://localhost/tp6/public/afterSale/Displaydetail/showOrder/order_num/".$Info['order_num']."'>".$Info['order_num']."</td>";
             echo "<td>".$Info['question_type']."</td>";
             echo "<td>".$Info['processing_date']."</td>";
             echo "<td>".$Info['state']."</td>";
@@ -73,7 +86,7 @@
         else{
             echo "<tr>";
                     echo "<td>".$Info['aftersale_roll']."</td>";
-                    echo "<td>".$Info['order_num']."</td>";
+                    echo "<td><a href='http://localhost/tp6/public/afterSale/Displaydetail/showOrder/order_num/".$Info['order_num']."'>".$Info['order_num']."</td>";
                     echo "<td>".$Info['question_type']."</td>";
                     echo "<td>".$Info['processing_date']."</td>";
                     echo "<td>".$Info['state']."</td>";
