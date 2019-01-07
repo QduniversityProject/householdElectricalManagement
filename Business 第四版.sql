@@ -645,3 +645,6 @@ on b.role_id =c.role_id
 inner join permission d 
 on c.permission_id = d.id
 where d.id=2;
+
+select * from custom_order;
+select amount*unit_price from custom_order  group by saler_num;
