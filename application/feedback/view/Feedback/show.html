@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../../static/js/jquery-3.3.1.js"></script>
-    <script src="../../static/layer/layer.js"></script>
+    <script src="__ROOT__/static/js/jquery-3.3.1.js"></script>
+    <script src="__ROOT__/static/layer/layer.js"></script>
 </head>
 
 <script>
@@ -41,7 +41,7 @@
             maxmin: true,
             shadeClose: true, //点击遮罩关闭层
             area: ['700px', '450px'],
-            content: "../../feedback/Feedback/createForm?type=" + valuetype + "&others=" + content
+            content: "http://localhost/tp6/public/feedback/Feedback/createForm?type=" + valuetype + "&others=" + content
                 +  "&aftersaleID=" + aftersaleID +  "&charge=" + charge + "&confirm=" + confirmvalue
         });
     }

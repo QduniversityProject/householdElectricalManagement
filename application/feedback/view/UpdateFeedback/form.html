@@ -6,15 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../static/layui/css/layui.css">
-    <script src="../../static/js/jquery-3.3.1.js"></script>
-    <script src="../../static/layui/layui.js"></script>
+    <link rel="stylesheet" href="__ROOT__/static/layui/css/layui.css">
+    <script src="__ROOT__/static/js/jquery-3.3.1.js"></script>
+    <script src="__ROOT__/static/layui/layui.js"></script>
 
     <script>
         //Demo
         layui.use('form', function () {
             var form = layui.form;
-
             // 监听提交
             form.on('submit(formDemo)', function (data) {
                 // layer.msg(JSON.stringify(data.field));
@@ -33,7 +32,7 @@
 
 <body>
     <!-- action="../../customOrder/Update_order/update.html" -->
-    <form class="layui-form" id="test" action="../../feedback/UpdateFeedback/update.html">
+    <form class="layui-form" id="test" action="http://localhost/tp6/public/feedback/UpdateFeedback/update.html">
 
         <div class="layui-form-item">
             <label class="layui-form-label">反馈订单编号</label>
