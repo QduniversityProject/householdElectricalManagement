@@ -505,6 +505,7 @@ FOREIGN KEY (department_id) REFERENCES budepartment (department_id),
 FOREIGN KEY (role_id) REFERENCES burole (role_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+select * from buemployee;
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
 INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
@@ -643,5 +644,14 @@ on a.role_id = b.role_id
 inner join role_permission c 
 on b.role_id =c.role_id
 inner join permission d 
-on c.permission_id = d.id
+on c.permission_id = d.id 
 where d.id=2;
+
+select a.productmaster_name,sum(amount) from buproductmaster a join buproductdevelop b 
+on a.productmaster_id=b.productmaster_id join buproduct c 
+on b.productdevelop_id=c.productdevelop_id join custom_order d 
+on c.product_rollno=d.product_num group by a.productmaster_id desc limit 3,1;
+
+select c.product_name,count(b.product_num) from buaftersale a join custom_order b 
+on a.order_num=b.order_num join buproduct c
+on b.product_num=c.product_rollno group by b.product_num desc;

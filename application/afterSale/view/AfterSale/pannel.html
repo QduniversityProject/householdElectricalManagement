@@ -46,9 +46,13 @@
                 if(isset($flag)){
                     echo "<p>".$flag."</p>";
                 }
+                elseif(isset($flag2)){
+                    echo "<p>".$flag2."</p>";
+                }
                 else{
                     echo "<p>".$aftersaleroll."</p>";
                 }
+    
                 ?>
                 <input type="hidden" name="aftersale_roll" value="{$aftersaleroll}" autocomplete="off" class="layui-input">
             </div>
@@ -60,6 +64,9 @@
                 <?php
                     if(isset($flag)){
                         echo "<p>".$flag."</p>";
+                    }
+                    elseif(isset($flag2)){
+                        echo "<p>".$flag2."</p>";
                     }
                     else{
                         echo "<p>".$saleID."</p>";
@@ -107,7 +114,7 @@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <?php
-                if(isset($flag)){
+                if(isset($flag)||isset($flag2)){
                     echo "<button class='layui-btn' id='confirm' disabled lay-submit lay-filter='formDemo'>立即提交</button>";
                 }
                 else{

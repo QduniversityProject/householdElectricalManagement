@@ -20,7 +20,5 @@ class UpdateAftersale extends controller
         $order->question=$_GET['question'];
         $order->question_type=$_GET['question_type'];
         $order->save();
-        echo($order);
-        echo "ok";
     }
 }

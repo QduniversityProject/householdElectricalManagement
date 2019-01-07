@@ -19,7 +19,6 @@ class UpdateFeedback extends controller
     }
 
     public function update(){
-        dump($_GET);
         $order=FeedbackModel::where('feedback_roll',$_GET['feedback_roll'])->find();
         $order->others=$_GET['others'];
         $order->feedback_type=$_GET['feedback_type'];
