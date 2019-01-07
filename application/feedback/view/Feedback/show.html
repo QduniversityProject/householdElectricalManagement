@@ -19,7 +19,7 @@
 
         var aftersaleID = document.getElementById('aftersaleID').value;
 
-        var content = document.getElementById('content').innerHTML;
+        var content = document.getElementById('content').value;
 
         // var saleperson = document.getElementById('saleperson').value;
 
@@ -40,7 +40,7 @@
             title: '修改订单',
             maxmin: true,
             shadeClose: true, //点击遮罩关闭层
-            area: ['800px', '600px'],
+            area: ['700px', '450px'],
             content: "../../feedback/Feedback/createForm?type=" + valuetype + "&others=" + content
                 +  "&aftersaleID=" + aftersaleID +  "&charge=" + charge + "&confirm=" + confirmvalue
         });
@@ -53,7 +53,7 @@
 
         <div class="form-group">
             <label for="name">售后单号</label>
-            <input type="text" class="form-control" placeholder="请输入销售单号" name="aftersaleID" id="aftersaleID">
+            <input type="text" class="form-control" placeholder="SVYYYYMMXXXXX" name="aftersaleID" id="aftersaleID">
         </div>
 
         <label for="name">处理类型</label>

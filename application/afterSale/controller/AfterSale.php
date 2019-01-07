@@ -21,8 +21,8 @@ class AfterSale extends controller
         ->where('order_num',$saleID)
         ->find();
         if(is_null($check0['order_num'])){
-            $flag='请输入已有的销售单号或按照正确的销售单号输入';
-            cookie('flag', $flag, 1);
+            $flag='请输入已有的销售单号或按照正确的销售单号格式输入';
+            $this->assign('flag', $flag);
         }
 
         //$saleperson=$_COOKIE['employee_id'];

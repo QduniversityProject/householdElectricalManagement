@@ -246,8 +246,9 @@ if($_COOKIE['role_id'] == 4){
             <div class="panel-body">
                 <ul>
                 <li id="link1"><a  class="links" href="../../afterSale/AfterSale/show.html" target="content">Check Departments</a></li>
-                <li><a class="links" href="../../products/products/products.html" target="content">Check Products</a></li>
-                <li><a class="links" href="../../staff/staff/staff.html" target="content">Check Staff</a></li>
+                <li><a class="links" href="../../afterSale/Index/index.html" target="content">Check Products</a></li>
+                <li><a class="links" href="../../feedback/Feedback/show.html" target="content">Check Staff</a></li>
+                <li><a class="links" href="../../feedback/Index/index.html" target="content">Check Staff</a></li>
                 </ul>
             </div>
         </div>
