@@ -20,9 +20,18 @@ class Feedback extends controller
         $check0 = Db::table('buaftersale')
         ->where('aftersale_roll',$aftersaleID)
         ->find();
+
         if(is_null($check0['aftersale_roll'])){
             $flag='请输入已有的售后单号或按照正确的售后单号格式输入';
             $this->assign('flag', $flag);
+        }
+
+        $check1 = Db::table('bufeedback')
+        ->where('aftersale_roll', $aftersaleID)
+        ->find();
+        if(isset($check1['aftersale_roll'])){
+            $flag2='已有此售后的反馈数据';
+            $this->assign('flag2', $flag2);
         }
 
         $date=date('Y-m-d');

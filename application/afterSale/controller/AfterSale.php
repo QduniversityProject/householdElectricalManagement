@@ -25,6 +25,13 @@ class AfterSale extends controller
             $this->assign('flag', $flag);
         }
 
+        $check1 = Db::table('buaftersale')
+        ->where('order_num', $saleID)
+        ->find();
+        if(isset($check1['order_num'])){
+            $flag2='已有此订单的售后数据';
+            $this->assign('flag2', $flag2);
+        }
         //$saleperson=$_COOKIE['employee_id'];
         $date=date("Y-m-d");
 
