@@ -55,8 +55,11 @@
             <th id="processing_date">受理日期</th>
             <th id="state">受理状态</th>
             <th id="question">问题详情</th>
+<<<<<<< HEAD
             <th id="alter">修改</th>
             <th id='feedback'>售后反馈</th>
+=======
+>>>>>>> 43045c94f6c7fbf41f53bfd7d5ba836a57ef5e08
         </tr>
     </thead>
 
@@ -69,6 +72,7 @@
         <td>{$Info.processing_date}</td>
         <td>{$Info.state}</td>
         <td>{$Info.question}</td>
+<<<<<<< HEAD
         <?php
         if($Info['state']=='办结'){
             echo "<td><button class='submit' id=".$Info['aftersale_roll'].">修改</button></td>".
@@ -79,6 +83,8 @@
         }
         ?>
         
+=======
+>>>>>>> 43045c94f6c7fbf41f53bfd7d5ba836a57ef5e08
     </tr>
     {/volist}
 </table>

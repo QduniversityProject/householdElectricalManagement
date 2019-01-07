@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        @font-face
+                {
+                    font-family: myfont;
+                    src:url('__ROOT__/static/font/GunfighterAcademy-Regular.ttf');
+                }
+    
+    </style>
+<head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="theme.css" type="text/css"> 
+        <script>
+            $(function(){
+                $("input[name='role_id']").each(function(){
+                    var selected = {$selected};  /* 还可以用{$list[0]['role_id']} */
+                    var obj = $(this).attr("value");
+                    if(obj == selected){
+                        $(this).prop("checked","checked");
+                    }
+                });
+            });
+        </script>
+</head>
+<body style="background-color: powderblue;">
+    <div class="container" style=" height:452px;">
+        <div class="row">
+            <div class="offset-md-1 col-md-10"></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <form action="{:url('Role/doChange')}" method="post">
+                <table>
+                    {volist name="list" id="role"}
+                    <thead>
+                        <tr>
+                        
+                        <td colspan="4"><div style="padding-left:20px">你正在为 
+                        <span style="font-weight:bolder;font-size:20px;color:red;">{$role.employee_id}-{$role.employee_name}</span> 
+                        修改角色，TA现在是 <span style="font-weight:bolder;font-size:20px;color:blue;">
+                        {if $role.role_id == 1}管理员 {elseif $role.role_id == 2}经理 {elseif $role.role_id == 3}销售人员 {elseif $role.role_id == 4}售后人员 {else}未知{/if}</span> </div></td>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="hidden" name="employee_id" value="{$role.employee_id}"></td>
+                        </tr>
+                        <tr style="height:100px;">
+                            <td style="padding-left:20px"><input type="radio" name="role_id" value="1" disabled>管理员</td>
+                            <td><input type="radio" name="role_id" value="2">经理</td>
+                            <td><input type="radio" name="role_id" value="3">销售人员</td>
+                            <td><input type="radio" name="role_id" value="4">售后人员</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding-left:100px;"><button id="btn" type="submit" class="btn btn-primary">Submit</button></td>
+                            <td colspan="2"><button id="btn" type="button" class="btn btn-primary" onclick="javascript:history.back(-1);">Cancel</button></td>
+                        </tr>
+                    </tbody>
+                    {/volist}
+                </table>
+                    
+                    
+                    
+            </form>
+            <br>
+            <br>
+            
+
+            </div>
+        </div>
+    </div>  
+</body>  
+</html>

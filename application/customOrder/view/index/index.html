@@ -92,7 +92,22 @@ margin:8px;
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             
-        </script>
+     </script>
+    <script type="text/html" id="pdfexcel">
+        <div>
+
+            <form id="excel" method="post"  action="{:url('customOrder/import_from_excel/import')}"   class="form-signin" enctype="multipart/form-data" >
+            <input id="file" name="excel" class="layui-btn layui-btn-xs" type="file" >
+            <button class="layui-btn layui-btn-xs" id="btton"  lay-event="import">导入Excel</button>
+           
+            </form>
+            <a href="../../顾客订单导入模板.xlsx"><button class="layui-btn layui-btn-xs" value="下载模板">下载导入模板</button></a>
+            <a href='../../public/customOrder/index/excelPrint'><button  id="excel" class="layui-btn layui-btn-xs">导出Excel</button></a>
+            <button id="customer" class="layui-btn layui-btn-xs" lay-event="new">新建客户</button>
+
+        </div>
+
+ </script>
     <script>
         layui.use('table', function () {
             var table = layui.table;
@@ -102,26 +117,27 @@ margin:8px;
                 elem: '#test'
                 , title: "订单表"
                 , height: 600
-                , defaultToolbar: ['filter', 'print', 'exports']
+                , width: 1300
+                , defaultToolbar: ['filter', 'print']
                 , url: '../../public/customOrder/index/json' //数据接口
                 , page: true //开启分页
-                , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+                , toolbar: '#pdfexcel' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
                 , totalRow: true //开启合计行
                 , cols: [[ //表头
-                {type: 'checkbox', fixed: 'left'}
-                    , { field: 'order_num', title: '编号', type: 'numbers', width: 60, sort: true, fixed: 'left' }
+                    { field: 'order_num', title: '编号', type: 'numbers', width: 60, sort: true, fixed: 'left' }
                     , { field: 'order_num', title: '订单编号', id: 'orderNum', width: 142, sort: true, fixed: 'left', sort: true }
                     , { field: 'custom_num', title: '顾客编号', width: 120, sort: true }
-                    , { field: 'product_name', title: '产品名称', width: 142, sort: true }
+                    , { field: 'product_name', title: '产品名称', width: 142 }
                     , { field: 'amount', title: '数量', width: 80, sort: true }
                     , { field: 'unit_price', title: '单价', width: 80, sort: true }
-                    , {field:'title', title: '总价', width: 100
-                                        ,templet: function(d){
-                                            return  d.amount * d.unit_price+'￥';
-                                            }
-                                        }                    , { field: 'saler_num', title: '销售员编号', width: 110, sort: true }
+                    , {
+                        field: 'title', title: '总价', width: 100, sort: true
+                        , templet: function (d) {
+                            return d.amount * d.unit_price + '￥';
+                        }
+                    }, { field: 'saler_num', title: '销售员编号', width: 110, sort: true }
                     , { field: 'order_time', title: '创建时间', width: 150, sort: true }
-                    , { field: 'order_channel', title: '渠道', width: 110, sort: true }
+                    , { field: 'order_channel', title: '渠道', width: 110 }
                     , { fixed: 'right', width: 120, toolbar: '#barDemo' } //这里的toolbar值是模板元素的选择器
 
                 ]]
@@ -133,7 +149,31 @@ margin:8px;
             // table.resize('test');
 
 
+
             //监听工具条
+            // table.on('tool(jsontable)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            //     var data1 = obj.data; //获得当前行数据
+            //     var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            //     var tr = obj.tr; //获得当前行 tr 的DOM对象
+            //     if (layEvent === 'new') { //查看
+            //         //do somehing
+            //         layer.msg("4564");
+            //         // console.log(data1['order_num']); //获取选中行的数据
+
+            //     }
+            // });
+            $('#customer').on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: '创建新客户',
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['480px', '500px'],
+                    //禁用滚动条
+                    content: ['../../public/customer/index/index', 'no']
+                    //   content: '../../public/customOrder/Update_order/form?id='+id
+                });
+            });
             table.on('tool(jsontable)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
                 var data1 = obj.data; //获得当前行数据
                 var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
@@ -145,7 +185,7 @@ margin:8px;
                     // console.log(data1['order_num']); //获取选中行的数据
 
                 } else if (layEvent === 'del') { //删除
-                    layer.confirm('真的删除行么', function (index) {
+                    layer.confirm('确定删除？', { icon: 3, title: '提示' }, function (index) {
                         obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                         layer.close(index);
                         //向服务端发送删除指令
@@ -153,21 +193,21 @@ margin:8px;
                 } else if (layEvent === 'edit') { //编辑
                     //do something
                     layer.open({
-                    type: 2,
-                    title: '修改订单',
-                    maxmin: true,
-                    shadeClose: true, //点击遮罩关闭层
-                    area: ['900px', '400px'],
-                    //   content: ['../../public/customOrder/Update_order/form?id='+id,'no']
-                    content: '../../public/customOrder/Update_order/form?id=' + id
-                });
+                        type: 2,
+                        title: '修改订单',
+                        maxmin: true,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['900px', '400px'],
+                        //   content: ['../../public/customOrder/Update_order/form?id='+id,'no']
+                        content: '../../public/customOrder/Update_order/form?id=' + id
+                    });
 
                     //同步更新缓存对应的值
-                    obj.update({
-                        username: '123'
-                        , title: 'xxx'
+                    // obj.update({
+                    //     username: '123'
+                    //     , title: 'xxx'
 
-                    });
+                    // });
                 }
             });
         });
@@ -176,7 +216,6 @@ margin:8px;
 </head>
 
 <body>
-
 
 
     <table id="test" lay-filter="jsontable" lay-size="lg"></table>

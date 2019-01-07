@@ -10,15 +10,21 @@ class Index extends controller
     public function index()
     {
     //获取员工编号
-    // $uid=$_COOKIE['u_id'];
+    $role=$_COOKIE['role_id'];
+    $uid=$_COOKIE['employee_id'];
     //获取部门编号
-    // $pid=$_COOKIE['p_id'];
-    $pid=1;
+    $pid=$_COOKIE['department_id'];
+
+    //根据角色id 筛选能看部门的还是个人的
+    if($role==3){
+    $map['c.employee_id']  = array('=',$uid);
+    }else
+    $map['c.department_id']  = array('=',$pid);
     $order=Db::table('custom_order')
     ->alias('a')
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
-    ->where('c.department_id','=',($pid))
+    ->where($map)
     ->paginate(10);
     $this->assign('cusTomOrder', $order);
     $this->assign('json', json_encode($order));
@@ -27,16 +33,22 @@ class Index extends controller
     public function json()
     {
     //获取员工编号
-    // $uid=$_COOKIE['u_id'];
+    $role=$_COOKIE['role_id'];
+    $uid=$_COOKIE['employee_id'];
     //获取部门编号
-    // $pid=$_COOKIE['p_id'];
-    $pid=1;
+    $pid=$_COOKIE['department_id'];
+
+    //根据角色id 筛选能看部门的还是个人的
+    if($role==3){
+    $map['c.employee_id']  = array('=',$uid);
+    }else
+    $map['c.department_id']  = array('=',$pid);
+    
     $num=Db::table('custom_order')
     ->alias('a')
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
-    ->where('c.department_id','=',($pid))
-    ->count();
+    ->where($map)->count();
 
 
     $order=Db::table('custom_order')
@@ -57,16 +69,22 @@ class Index extends controller
 
     }
     public function test(){
-        //获取员工编号
-    // $uid=$_COOKIE['u_id'];
+    //获取员工编号
+    $role=$_COOKIE['role_id'];
+    $uid=$_COOKIE['employee_id'];
     //获取部门编号
-    // $pid=$_COOKIE['p_id'];
-    $pid=1;
+    $pid=$_COOKIE['department_id'];
+
+    //根据角色id 筛选能看部门的还是个人的
+    if($role==3){
+    $map['c.employee_id']  = array('=',$uid);
+    }else
+    $map['c.department_id']  = array('=',$pid);
     $order=Db::table('custom_order')
     ->alias('a')
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
-    ->where('c.department_id','=',($pid))
+    ->where($map)
     ->select();
     // $this->assign('cusTomOrder', $order);
     return $this->fetch();
@@ -75,17 +93,23 @@ class Index extends controller
     public function excelPrint()
     {
         //获取员工编号
-        // $uid=$_COOKIE['u_id'];
-        //获取部门编号
-        // $pid=$_COOKIE['p_id'];
-        $pid=1;
+    $role=$_COOKIE['role_id'];
+    $uid=$_COOKIE['employee_id'];
+    //获取部门编号
+    $pid=$_COOKIE['department_id'];
+
+    //根据角色id 筛选能看部门的还是个人的
+    if($role==3){
+    $map['c.employee_id']  = array('=',$uid);
+    }else
+    $map['c.department_id']  = array('=',$pid);
 
         $markTable = Db::table('custom_order')
                     ->alias('a')
                     ->join('buproduct b','a.product_num = b.product_rollno')
                     ->join('buemployee c','a.saler_num = c.employee_id')
                     ->join('customer d ', 'a.custom_num = d.customer_id')
-                    ->where('c.department_id','=',($pid))
+                    ->where($map)
                     ->select();
     
         $path = dirname(__FILE__); //找到当前脚本所在路径
