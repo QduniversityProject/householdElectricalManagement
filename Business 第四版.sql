@@ -470,37 +470,6 @@ INSERT INTO customer VALUES ('3', 'CT0100003', 'coulson', '120', '宿舍', '否'
 INSERT INTO customer VALUES ('4', 'CT0200001', '青岛大学', 'CT0200001', '宁夏路188', '是', '');
 INSERT INTO customer VALUES ('7', 'CT0200002', '青科大', null, '松岭路', '是', null);
 
-CREATE TABLE bucompany_link_man 
-(
-id int(11) NOT NULL AUTO_INCREMENT,
-`name` varchar(45) NOT NULL,
-phone varchar(45) NOT NULL,
-belong_company varchar(45) NOT NULL,
-address varchar(45) DEFAULT NULL,
-  PRIMARY KEY (id)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
-INSERT INTO bucompany_link_man VALUES ('1', '青大1', '15655556666', 'CT0200001', '');
-INSERT INTO bucompany_link_man VALUES ('2', '青大2', '15655557777', 'CT0200001', '');
-INSERT INTO bucompany_link_man VALUES ('3', '青大3', '15655558888', 'CT0200001', '');
-INSERT INTO bucompany_link_man VALUES ('4', '科大1', '8567', 'CT0200002', '');
-INSERT INTO bucompany_link_man VALUES ('5', '科大2', '8568', 'CT0200002', '');
-
-CREATE TABLE compant_con 
-(
-id INT NOT NULL AUTO_INCREMENT,
-compant_id VARCHAR(45) NOT NULL,
-`name` VARCHAR(45) NULL,
-phone VARCHAR(45) NULL,
-address VARCHAR(45) NULL,
-level VARCHAR(45) NULL,
-PRIMARY KEY (id)
-);
-INSERT INTO compant_con (compant_id, name, phone, address, level) VALUES ('CT0100001', 'qdu1', '123', '滢园', '0');
-INSERT INTO compant_con (compant_id, name, phone, address, level) VALUES ('CT0100001', 'qdu2', '123', '浮山', '1');
-INSERT INTO compant_con (compant_id, name, phone, address) VALUES ('CT0200002', '科技1', '111', '北少林');
-INSERT INTO compant_con (compant_id, name, phone, address) VALUES ('CT0200002', '科技2', '111', '北少林');
-
 
 /*角色表(ID,角色名称,角色介绍)*/
 CREATE TABLE burole
@@ -552,7 +521,7 @@ UPDATE buemployee SET department_id = '2' WHERE (id = '2');
 UPDATE buemployee SET department_id = '3' WHERE (id = '3');
 UPDATE buemployee SET department_id = '4' WHERE (id = '4');
 
-/*系统用户表(ID,售后编号,订单编号,问题类型,问题,员工ID,提交时间,账号状态,角色ID(外键),最近登录时间,上次登录时间,最近登录地址,最近登陆浏览器)*/
+/*系统用户表(ID,售后编号,订单编号,问题类型,问题,员工ID,提交时间,状态)*/
 CREATE TABLE buaftersale
 (
 aftersale_id int NOT NULL AUTO_INCREMENT,
