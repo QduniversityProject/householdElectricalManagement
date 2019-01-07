@@ -213,50 +213,7 @@ if($_COOKIE['role_id'] == 3){
 if($_COOKIE['role_id'] == 4){
 ?>
 <div class="panel-group" id="accordion">
-<<<<<<< HEAD
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" 
-                href="#collapseOne">
-                <span class="glyphicon glyphicon-lock"></span>
-                Privilege Management
-                </a>
-            </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <ul>
-                    <li><a class="links" href="../../products/products/products.html" target="content">Modify Privilege</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" 
-                href="#collapseTwo">
-                <span class="glyphicon glyphicon-briefcase"></span>
-                Company Management
-            </a>
-            </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                <ul>
-                <li id="link1"><a  class="links" href="../../afterSale/AfterSale/show.html" target="content">Check Departments</a></li>
-                <li><a class="links" href="../../afterSale/Index/index.html" target="content">Check Products</a></li>
-                <li><a class="links" href="../../feedback/Feedback/show.html" target="content">Check Staff</a></li>
-                <li><a class="links" href="../../feedback/Index/index.html" target="content">Check Staff</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-=======
 <div class="panel panel-default">
->>>>>>> 43045c94f6c7fbf41f53bfd7d5ba836a57ef5e08
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" 
