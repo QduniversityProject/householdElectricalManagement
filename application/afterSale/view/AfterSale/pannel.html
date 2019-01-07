@@ -43,11 +43,11 @@
             <label class="layui-form-label">售后单号</label>
             <div class="layui-input-block">
                 <?php
-                if(isset($_COOKIE['flag'])){
-                    echo "<p>".$_COOKIE['flag']."</p>";
+                if(isset($flag)){
+                    echo "<p>".$flag."</p>";
                 }
                 else{
-                    echo "<p>$aftersaleroll</p>";
+                    echo "<p>".$aftersaleroll."</p>";
                 }
                 ?>
                 <input type="hidden" name="aftersale_roll" value="{$aftersaleroll}" autocomplete="off" class="layui-input">
@@ -58,11 +58,11 @@
             <label class="layui-form-label">订单编号</label>
             <div class="layui-input-block">
                 <?php
-                    if(isset($_COOKIE['flag'])){
-                        echo "<p>".$_COOKIE['flag']."</p>";
+                    if(isset($flag)){
+                        echo "<p>".$flag."</p>";
                     }
                     else{
-                        echo "<p>$saleID</p>";
+                        echo "<p>".$saleID."</p>";
                     }
                     
                     ?>
@@ -84,7 +84,7 @@
             <label class="layui-form-label">问题内容</label>
             <div class="layui-input-block">
                 <p>{$content}</p>
-                <input name="question" type="hidden" readonly value="{$content}" class="layui-input"></textarea>
+                <input name="question" type="hidden" readonly value="{$content}" class="layui-input">
             </div>
         </div>
 
@@ -107,9 +107,8 @@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <?php
-                if(isset($_COOKIE['flag'])){
+                if(isset($flag)){
                     echo "<button class='layui-btn' id='confirm' disabled lay-submit lay-filter='formDemo'>立即提交</button>";
-                    setcookie('flag','');
                 }
                 else{
                     echo "<button class='layui-btn' id='confirm' lay-submit lay-filter='formDemo'>立即提交</button>";

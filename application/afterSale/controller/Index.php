@@ -12,7 +12,7 @@ class Index extends controller
         if(isset($employee_id)){
             $info=Db::table('buaftersale')
             ->where('employee_id', $employee_id)
-            ->paginate(10);
+            ->paginate(5);
             $this->assign('aftersaleInfo', $info);
             return $this->fetch('Index/index_emp');
         }

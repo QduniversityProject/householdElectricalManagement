@@ -19,6 +19,17 @@
           content: '../../afterSale/UpdateAftersale/form?id='+id
             });
         });
+        $('.submitfeedback').on('click', function(){
+        var id =$(this).attr("id");
+        layer.open({
+          type: 2,
+          title: '修改订单',
+          maxmin: true,
+          shadeClose: true, //点击遮罩关闭层
+          area : ['1000px' , '420px'],
+          content: '../../feedback/Feedback/insertfromSV?id='+id
+            });
+        });
        });
     </script>
         <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -44,6 +55,7 @@
             <th id="state">受理状态</th>
             <th id="question">问题详情</th>
             <th id="alter">修改</th>
+            <th id='feedback'>售后反馈</th>
         </tr>
     </thead>
 
@@ -55,7 +67,15 @@
         <td>{$Info.processing_date}</td>
         <td>{$Info.state}</td>
         <td>{$Info.question}</td>
-        <td><button class="submit" id={$Info.aftersale_roll}">修改</button></td>
+        <?php
+        if($Info['state']=='办结'){
+            echo "<td><button class='submit' id=".$Info['aftersale_roll'].">修改</button></td>".
+            "<td><button class='submitfeedback' disabled id=".$Info['aftersale_roll'].">售后反馈</button></td>";;
+        }else{
+            echo "<td><button class='submit' id=".$Info['aftersale_roll'].">修改</button></td>".
+            "<td><button class='submitfeedback' id=".$Info['aftersale_roll'].">售后反馈</button></td>";
+        }
+        ?>
     </tr>
     {/volist}
 </table>
