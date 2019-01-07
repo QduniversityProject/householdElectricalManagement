@@ -228,7 +228,7 @@ if($_COOKIE['role_id'] == 4){
                 <ul>
                     <?php
                     $a = $_COOKIE['employee_id'];
-                    echo"<li><a class='links' href='../../afterSale/Index/index?employee_id=$a' target='content'>Check & Modify Aftersalelists</a></li>";
+                    echo"<li><a class='links' href='../../afterSale/Index/index/employee_id/$a' target='content'>Check & Modify Aftersalelists</a></li>";
                      ?>
                     <li><a class="links" href="../../afterSale/AfterSale/show" target="content">Add Aftersalelists</a></li>
                 </ul>
@@ -248,8 +248,11 @@ if($_COOKIE['role_id'] == 4){
         <div id="collapseFour" class="panel-collapse collapse">
             <div class="panel-body">
                 <ul>
-                    <li><a class="links" href="../../customOrder/Information/information" target="content">Check Feedbacklists</a></li>
-                    <li><a class="links" href="" target="content">Add Feedbacklists</a></li>
+                <?php
+                    $a = $_COOKIE['employee_id'];
+                    echo"<li><a class='links' href='../../feedback/Index/index/employee_id/$a' target='content'>Check Feedbacklists</a></li>";
+                     ?>
+                    <li><a class="links" href="../../feedback/Feedback/show" target="content">Add Feedbacklists</a></li>
                 </ul>
             </div>
         </div>

@@ -4,6 +4,7 @@ CREATE DATABASE IF NOT EXISTS Business DEFAULT CHARACTER SET utf8;
 
 USE Business;
 
+/*家电大类目表(ID,大类目名称)*/
 CREATE TABLE buproductmaster
 (
 productmaster_id int NOT NULL AUTO_INCREMENT,
@@ -23,6 +24,7 @@ insert into buproductmaster values(7,'生活电器');
 insert into buproductmaster values(8,'个护健康');
 insert into buproductmaster values(9,'家庭影音'); 
 
+/*家电小类目表(ID,大类目名称,大类目ID(外键))*/
 CREATE TABLE buproductdevelop
 (
 productdevelop_id int NOT NULL AUTO_INCREMENT,
@@ -136,6 +138,7 @@ insert into buproductdevelop values(91,'功放',9);
 insert into buproductdevelop values(92,'回音壁',9);
 insert into buproductdevelop values(93,'影音配件',9);
 
+/*家电产品表(ID,家电编号,家电名称,图片,小类目ID(外键),成本,原价,计量单位,大小,重量,颜色,尺寸)*/
 CREATE TABLE buproduct
 (
 product_id int NOT NULL AUTO_INCREMENT,
@@ -367,6 +370,7 @@ insert into buproduct values(117,'PD201880006','小米回音壁','',92,'100','39
 
 insert into buproduct values(118,'PD201880007','音响插头','',93,'1','7','','','','黑','');
 
+/*部门表(ID,部门名称,部门简介,部门设置,大类目ID(外键))*/
 CREATE TABLE budepartment
 (
 department_id int NOT NULL AUTO_INCREMENT,
@@ -390,6 +394,7 @@ insert into budepartment values(7,'生活电器部门','生活电器销售','',7
 insert into budepartment values(8,'个护健康部门','个护健康销售','',8);
 insert into budepartment values(9,'家庭影音部门','家庭影音销售','',9);
 
+/*客户订单表(ID,订单编号,产品编号,订单偏号,下单时间,渠道,购买数量,总价,销售的ID,备注)*/
 CREATE TABLE custom_order 
 (
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -443,95 +448,7 @@ INSERT INTO custom_order VALUES ('33', 'OD20181100009', 'PD201820005', 'CT020000
 INSERT INTO custom_order VALUES ('34', 'OD20181100010', 'PD201810002', 'CT0100001', '2018-11-03 19:43', '加盟实体店', '30', '70', 'EM00001', null);
 INSERT INTO custom_order VALUES ('35', 'OD20181100011', 'PD201820005', 'CT0100002', '2018-11-03 19:43', '电商自营店', '3', '10', 'EM00003', null);
 
-
-
-CREATE TABLE burole
-(
-role_id int auto_increment,
-role_name varchar(50) NOT NULL,
-role_desc varchar(50),
-primary key(role_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO burole VALUES (1, '管理员', '管理一切后台信息');
-INSERT INTO burole VALUES (2, '经理', '管理员工部门信息');
-INSERT INTO burole VALUES (3, '销售人员', '销售服务');
-INSERT INTO burole VALUES (4, '售后人员', '售后服务');
-
-/*系统用户表*/
-CREATE TABLE buemployee
-(
-id int primary key auto_increment,
-employee_id varchar(45),
-employee_name varchar(50) NOT NULL,
-employee_password varchar(50) NOT NULL,
-employee_photo varchar(200),
-department_id int,
-employee_count int,
-employee_status int,
-role_id int NOT NULL,
-rec_time varchar(200),
-time_last_error varchar(200), 
-rec_address varchar(200),
-rec_useraent varchar(200),
-FOREIGN KEY (department_id) REFERENCES budepartment (department_id),
-FOREIGN KEY (role_id) REFERENCES burole (role_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `buemployee` VALUES ('1','EM00001', 'Bill', '202cb962ac59075b964b07152d234b70', NULL, NULL, 3, 0, 1, '2018-12-24 15:14:25', NULL, '0.0.0.0', 'google');
-ALTER TABLE `business`.`buemployee` 
-ADD COLUMN `phone` VARCHAR(45) NULL AFTER `rec_useraent`,
-ADD COLUMN `address` VARCHAR(45) NULL AFTER `phone`;
-UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '1');
-UPDATE `business`.`buemployee` SET `phone` = '13188888888', `address` = '青岛大学' WHERE (`id` = '2');
-UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '3');
-UPDATE `business`.`buemployee` SET `phone` = '15688887777', `address` = '青岛大学' WHERE (`id` = '4');
-UPDATE `business`.`buemployee` SET `department_id` = '1' WHERE (`id` = '1');
-UPDATE `business`.`buemployee` SET `department_id` = '2' WHERE (`id` = '2');
-UPDATE `business`.`buemployee` SET `department_id` = '3' WHERE (`id` = '3');
-UPDATE `business`.`buemployee` SET `department_id` = '4' WHERE (`id` = '4');
-
-
-
-
-CREATE TABLE buaftersale
-(
-aftersale_id int NOT NULL AUTO_INCREMENT,
-aftersale_roll varchar(200) NOT NULL,
-order_num varchar(45) NOT NULL,
-question_type varchar(20) NOT NULL,
-question varchar(200),
-employee_id varchar(200) NOT NULL,
-processing_date date NOT NULL,
-state varchar(45) NOT NULL,
-primary key(aftersale_id)
-)ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-insert into buaftersale(aftersale_roll, order_num, question_type, question, employee_id, processing_date, state)
-values('SV20181200001', 'OD20181200001', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
-('SV20181200002', 'OD20181200002', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
-('SV20181200003', 'OD20181200003', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
-('SV20181200004', 'OD20181200004', '退货', '假货', 'EM00004', '2019-01-16', '办理中');
-('SV20181200004', 'OD20181200004', '退货', '假货', 'EM00004', '2019-01-16', '办理中');
-
-CREATE TABLE bufeedback
-(
-feedback_id int NOT NULL primary key AUTO_INCREMENT,
-feedback_roll varchar(200) NOT NULL,
-aftersale_roll varchar(200) NOT NULL,
-feedback_date date NOT NULL,
-feedback_type varchar(45) NOT NULL,
-charge int NOT NULL,
-others varchar(200),
-confirment int NOT NULL
-)ENGINE=InnoDB default charset=utf8;
-insert into bufeedback(feedback_roll, aftersale_roll, feedback_date, feedback_type, charge, others, confirment)
-values('FD20181200001', 'SV20181200001', '2019-01-16','退货', '0', '办理顺利',  1),
-('FD20181200002', 'SV20181200002', '2019-01-16', '退货', '0', '办理顺利',  1),
-('FD20181200003', 'SV20181200003', '2019-01-16', '退货', '0', '办理顺利',  1),
-('FD20181200004', 'SV20181200004', '2019-01-16', '退货', '0', '办理顺利',  0);
-
-
-
+/*顾客表(ID,顾客ID,顾客姓名,电话,住址,级别,联系人)*/
 CREATE TABLE customer 
 (
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -583,6 +500,96 @@ INSERT INTO compant_con (compant_id, name, phone, address, level) VALUES ('CT010
 INSERT INTO compant_con (compant_id, name, phone, address, level) VALUES ('CT0100001', 'qdu2', '123', '浮山', '1');
 INSERT INTO compant_con (compant_id, name, phone, address) VALUES ('CT0200002', '科技1', '111', '北少林');
 INSERT INTO compant_con (compant_id, name, phone, address) VALUES ('CT0200002', '科技2', '111', '北少林');
+
+
+/*角色表(ID,角色名称,角色介绍)*/
+CREATE TABLE burole
+(
+role_id int auto_increment,
+role_name varchar(50) NOT NULL,
+role_desc varchar(50),
+primary key(role_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO burole VALUES (1, '管理员', '管理一切后台信息');
+INSERT INTO burole VALUES (2, '经理', '管理员工部门信息');
+INSERT INTO burole VALUES (3, '销售人员', '销售服务');
+INSERT INTO burole VALUES (4, '售后人员', '售后服务');
+
+/*系统用户表(ID,用户编号,用户姓名,密码,照片,部门ID(外键),尝试次数,账号状态,角色ID(外键),最近登录时间,上次登录时间,最近登录地址,最近登陆浏览器,)*/
+CREATE TABLE buemployee
+(
+id int primary key auto_increment,
+employee_id varchar(45),
+employee_name varchar(50) NOT NULL,
+employee_password varchar(50) NOT NULL,
+employee_photo varchar(200),
+department_id int,
+employee_count int,
+employee_status int,
+role_id int NOT NULL,
+rec_time varchar(200),
+time_last_error varchar(200), 
+rec_address varchar(200),
+rec_useraent varchar(200),
+FOREIGN KEY (department_id) REFERENCES budepartment (department_id),
+FOREIGN KEY (role_id) REFERENCES burole (role_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
+INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00004', '我是售后', '202cb962ac59075b964b07152d234b70', '4');
+ALTER TABLE buemployee 
+ADD COLUMN phone VARCHAR(45) NULL AFTER rec_useraent,
+ADD COLUMN address VARCHAR(45) NULL AFTER phone;
+UPDATE buemployee SET phone = '15688887777', address = '青岛大学' WHERE (id = '1');
+UPDATE buemployee SET phone = '13188888888', address = '青岛大学' WHERE (id = '2');
+UPDATE buemployee SET phone = '15688887777', address = '青岛大学' WHERE (id = '3');
+UPDATE buemployee SET phone = '15688887777', address = '青岛大学' WHERE (id = '4');
+UPDATE buemployee SET department_id = '1' WHERE (id = '1');
+UPDATE buemployee SET department_id = '2' WHERE (id = '2');
+UPDATE buemployee SET department_id = '3' WHERE (id = '3');
+UPDATE buemployee SET department_id = '4' WHERE (id = '4');
+
+/*系统用户表(ID,售后编号,订单编号,问题类型,问题,员工ID,提交时间,账号状态,角色ID(外键),最近登录时间,上次登录时间,最近登录地址,最近登陆浏览器)*/
+CREATE TABLE buaftersale
+(
+aftersale_id int NOT NULL AUTO_INCREMENT,
+aftersale_roll varchar(200) NOT NULL,
+order_num varchar(45) NOT NULL,
+question_type varchar(20) NOT NULL,
+question varchar(200),
+employee_id varchar(200) NOT NULL,
+processing_date date NOT NULL,
+state varchar(45) NOT NULL,
+primary key(aftersale_id)
+)ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+insert into buaftersale(aftersale_roll, order_num, question_type, question, employee_id, processing_date, state)
+values('SV20181200001', 'OD20181200001', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
+('SV20181200002', 'OD20181200002', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
+('SV20181200003', 'OD20181200003', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
+('SV20181200004', 'OD20181200004', '退货', '假货', 'EM00004', '2019-01-16', '办理中'),
+('SV20181200005', 'OD20181200004', '退货', '假货', 'EM00004', '2019-01-16', '办理中');
+
+/*反馈表(ID,反馈编号,售后编号,提交时间,问题类型,状态,描述,完成状态)*/
+CREATE TABLE bufeedback
+(
+feedback_id int NOT NULL primary key AUTO_INCREMENT,
+feedback_roll varchar(200) NOT NULL,
+aftersale_roll varchar(200) NOT NULL,
+feedback_date date NOT NULL,
+feedback_type varchar(45) NOT NULL,
+charge int NOT NULL,
+others varchar(200),
+confirment int NOT NULL
+)ENGINE=InnoDB default charset=utf8;
+insert into bufeedback(feedback_roll, aftersale_roll, feedback_date, feedback_type, charge, others, confirment)
+values('FD20181200001', 'SV20181200001', '2019-01-16','退货', '0', '办理顺利',  1),
+('FD20181200002', 'SV20181200002', '2019-01-16', '退货', '0', '办理顺利',  1),
+('FD20181200003', 'SV20181200003', '2019-01-16', '退货', '0', '办理顺利',  1),
+('FD20181200004', 'SV20181200004', '2019-01-16', '退货', '0', '办理顺利',  0);
+
 /*用户角色关联表*/
 CREATE TABLE employee_con_role 
 (
@@ -592,7 +599,7 @@ role_id INT NULL,
 PRIMARY KEY (id)
 )ENGINE=InnoDB default charset=utf8;
   
-  /*角色权限表*/
+/*角色权限表*/
 CREATE TABLE role_permission 
 (
 id INT NOT NULL auto_increment,
@@ -601,7 +608,7 @@ permission_id INT NULL,
 PRIMARY KEY (id)
 )ENGINE=InnoDB default charset=utf8;
 
-/*职能权限表*/
+/*职能权限表(ID,权限名称,状态,描述)*/
 CREATE TABLE permission 
 (
 id INT NOT NULL auto_increment,
@@ -621,11 +628,6 @@ INSERT INTO permission VALUES ('7', '部门管理', null, null);
 INSERT INTO permission VALUES ('8', '产品管理', null, null);
 INSERT INTO permission VALUES ('9', '顾客管理', null, null);
 
-/*增加人员*/
-INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00001', '我是管理员', '202cb962ac59075b964b07152d234b70', '1');
-INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00002', '我是销售', '202cb962ac59075b964b07152d234b70', '3');
-INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00003', '我是经理', '202cb962ac59075b964b07152d234b70', '2');
-INSERT INTO buemployee (employee_id, employee_name, employee_password, role_id) VALUES ('EM00004', '我是售后', '202cb962ac59075b964b07152d234b70', '4');
 
 /*分配角色权限*/
 INSERT INTO role_permission VALUES ('1', '1', '1');
