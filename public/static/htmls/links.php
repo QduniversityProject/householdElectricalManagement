@@ -136,6 +136,7 @@ if($_COOKIE['role_id'] == 2){
                     echo"<li><a class='links' href='../../staff/staff/staff.html?department_id=$a' target='content'>Check Staff</a></li>";
                      ?>
                      <li><a class="links" href="../../customOrder/managerAnalysis/managerAnalysis" target="content">Check track record</a></li>
+                     <li><a class="links" href="../../chart/Chart/charta" target="content">Check Chart</a></li>
                 </ul>
             </div>
         </div>
@@ -203,6 +204,7 @@ if($_COOKIE['role_id'] == 3){
             <div class="panel-body">
                 <ul>
                     <li><a class="links" href="../../customOrder/index" target="content">Check Customers & Orderlists</a></li>
+                    <li><a class="links" href="../../customOrder/managerAnalysis/managerAnalysis" target="content">Check track record</a></li>
                 </ul>
             </div>
         </div>
