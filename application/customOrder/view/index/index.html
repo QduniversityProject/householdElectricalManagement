@@ -323,7 +323,7 @@
                     layer.confirm('确定删除？', { icon: 3, title: '提示' }, function (index) {
                         obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                         layer.close(index);
-                        //向服务端发送删除指令
+                        //向服务端发送删除指令 
                     });
                 } else if (layEvent === 'edit') { //编辑
                     //do something
