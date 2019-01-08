@@ -38,7 +38,6 @@ class Index extends controller
     $uid=$_COOKIE['employee_id'];
     //获取部门编号
     $pid=$_COOKIE['department_id'];
-
     //根据角色id 筛选能看部门的还是个人的
     if($role==3){
     $map['c.employee_id']  = array('=',$uid);
@@ -60,7 +59,7 @@ class Index extends controller
     ->join('buemployee c','a.saler_num = c.employee_id')
     ->join('buproductdevelop b2' , 'b.productdevelop_id = b2.productdevelop_id')
     ->order('a.order_time desc')
-->where($map)
+    ->where($map)
     ->limit(($_GET['page']-1)*$_GET['limit'],$_GET['limit'])
     ->select();
 

@@ -655,3 +655,21 @@ on c.product_rollno=d.product_num group by a.productmaster_id desc limit 3,1;
 select c.product_name,count(b.product_num) from buaftersale a join custom_order b 
 on a.order_num=b.order_num join buproduct c
 on b.product_num=c.product_rollno group by b.product_num desc;
+
+CREATE TABLE `bucompany_link_man` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `belong_company` varchar(45) NOT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bucompany_link_man
+-- ----------------------------
+INSERT INTO `bucompany_link_man` VALUES ('1', '青大1', '15655556666', 'CT0200001', '');
+INSERT INTO `bucompany_link_man` VALUES ('2', '青大2', '15655557777', 'CT0200001', '');
+INSERT INTO `bucompany_link_man` VALUES ('3', '青大3', '15655558888', 'CT0200001', '');
+INSERT INTO `bucompany_link_man` VALUES ('4', '科大1', '8567', 'CT0200002', '');
+INSERT INTO `bucompany_link_man` VALUES ('5', '科大2', '8568', 'CT0200002', '');

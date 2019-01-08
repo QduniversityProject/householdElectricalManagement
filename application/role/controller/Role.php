@@ -38,4 +38,13 @@ class Role extends Controller
         // return view('roleChange',['list'=>$list]);
     }
 
+    public function privilege()
+    {
+        return $this->fetch();
+    }
+
+    public function privilegechange()
+    {
+        return $this->fetch();
+    }
 }

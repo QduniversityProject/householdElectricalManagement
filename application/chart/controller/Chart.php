@@ -88,9 +88,9 @@ class Chart extends Controller
         // halt($amount1[0]['sum']);
         if ($total1[0]['sum'] !== 0)
         {
-            $pamount1 = $amount1[0]['sum']*100/$total1[0]['sum'];
-            $pamount2 = $amount2[0]['sum']*100/$total1[0]['sum'];
-            $pamount3 = $amount3[0]['sum']*100/$total1[0]['sum'];
+            $pamount1 = substr($amount1[0]['sum']*100/$total1[0]['sum'], 1, 4);
+            $pamount2 = substr($amount2[0]['sum']*100/$total1[0]['sum'], 1, 4);
+            $pamount3 = substr($amount3[0]['sum']*100/$total1[0]['sum'], 1, 4);
             $pamount4 = 100 - $pamount1 - $pamount2 - $pamount3;
             $a1 = array('category' => $amount1[0]['name'], 'value' => $pamount1, 'color' => '#9de219');
             $a2 = array('category' => $amount2[0]['name'], 'value' => $pamount2, 'color' => '#90cc38');
@@ -118,9 +118,9 @@ class Chart extends Controller
 
         if ($total2[0]['sum'] !== 0)
         {
-            $pamount5 = $amount4[0]['sum']*100/$total2[0]['sum'];
-            $pamount6 = $amount5[0]['sum']*100/$total2[0]['sum'];
-            $pamount7 = $amount6[0]['sum']*100/$total2[0]['sum'];
+            $pamount5 = substr($amount4[0]['sum']*100/$total2[0]['sum'], 1, 4);
+            $pamount6 = substr($amount5[0]['sum']*100/$total2[0]['sum'], 1, 4);
+            $pamount7 = substr($amount6[0]['sum']*100/$total2[0]['sum'], 1, 4);
             $pamount8 = 100 - $pamount5 - $pamount6 - $pamount7;
             $a5 = array('category' => $amount4[0]['name'], 'value' => $pamount5, 'color' => '#9de219');
             $a6 = array('category' => $amount5[0]['name'], 'value' => $pamount6, 'color' => '#90cc38');

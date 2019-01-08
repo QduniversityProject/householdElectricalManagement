@@ -29,7 +29,8 @@ if($_COOKIE['role_id'] == 1){
         <div id="collapseOne" class="panel-collapse collapse in">
             <div class="panel-body">
                 <ul>
-                    <li><a class="links" href="../../role/Role/role.html" target="content">Check & Modify Privilege</a></li>
+                    <li><a class="links" href="../../role/Role/role.html" target="content">Check & Modify Role</a></li>
+                    <li><a class="links" href="../../role/Role/privilege.html" target="content">Check & Modify Privilege</a></li>
                 </ul>
             </div>
         </div>
