@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>业绩审核</title>
+    <script src="__ROOT__/static/js/jquery-3.3.1.js"></script>
+    <script src="__ROOT__/static/layui/layui.js"></script>
+    <link rel="stylesheet" href="__ROOT__/static/layui/css/layui.css">
+</head>
+
+<body>
+    <table id="manage" lay-filter="managerTable" lay-size="lg"></table>
+    <script>
+        var LayUIDataTable = (function () {
+            var rowData = {};
+            var $;
+            function checkJquery() {
+                if (!$) {
+                    console.log("未获取jquery对象，请检查是否在调用ConvertDataTable方法之前调用SetJqueryObj进行设置！")
+                    return false;
+                } else return true;
+            }
+            /**
+             * 转换数据表格。
+             * @param callback 双击行的回调函数，该回调函数返回三个参数，分别为：当前点击行的索引值、当前点击单元格的值、当前行数据
+             * @returns {Array} 返回当前数据表当前页的所有行数据。数据结构：<br/>
+             * [
+             *      {字段名称1:{value:"当前字段值",cell:"当前字段所在单元格td对象",row:"当前字段所在行tr对象"}}
+             *     ,{字段名称2:{value:"",cell:"",row:""}}
+             * ]
+             * @constructor
+             */
+            function ConvertDataTable(callback) {
+                if (!checkJquery()) return;
+                var dataList = [];
+                var rowData = {};
+                var trArr = $(".layui-table-body.layui-table-main tr");// 行数据
+                if (!trArr || trArr.length == 0) {
+                    console.log("未获取到相关行数据，请检查数据表格是否渲染完毕！");
+                    return;
+                }
+                $.each(trArr, function (index, trObj) {
+                    var currentClickRowIndex;
+                    var currentClickCellValue;
+
+                    $(trObj).dblclick(function (e) {
+                        var returnData = {};
+                        var currentClickRow = $(e.currentTarget);
+                        currentClickRowIndex = currentClickRow.data("index");
+                        currentClickCellValue = e.target.innerHTML
+                        $.each(dataList[currentClickRowIndex], function (key, obj) {
+                            returnData[key] = obj.value;
+                        });
+                        callback(currentClickRowIndex, currentClickCellValue, returnData);
+                    });
+                    var tdArrObj = $(trObj).find('td');
+                    rowData = {};
+                    //  每行的单元格数据
+                    $.each(tdArrObj, function (index_1, tdObj) {
+                        var td_field = $(tdObj).data("field");
+                        rowData[td_field] = {};
+                        rowData[td_field]["value"] = $($(tdObj).html()).html();
+                        rowData[td_field]["cell"] = $(tdObj);
+                        rowData[td_field]["row"] = $(trObj);
+
+                    })
+                    dataList.push(rowData);
+                })
+                return dataList;
+            }
+
+            return {
+                /**
+                 * 设置JQuery对象，第一步操作。如果你没有在head标签里面引入jquery且未执行该方法的话，ParseDataTable方法、HideField方法会无法执行，出现找不到 $ 的错误。如果你是使用LayUI内置的Jquery，可以
+                 * var $ = layui.jquery   然后把 $ 传入该方法
+                 * @param jqueryObj
+                 * @constructor
+                 */
+                SetJqueryObj: function (jqueryObj) {
+                    $ = jqueryObj;
+                }
+                /**
+                 * 转换数据表格
+                 */
+                , ParseDataTable: ConvertDataTable
+
+                /**
+                 * 隐藏字段
+                 * @param fieldName 要隐藏的字段名（field名称）参数可为字符串（隐藏单列）或者数组（隐藏多列）
+                 * @constructor
+                 */
+                , HideField: function (fieldName) {
+                    if (!checkJquery()) return;
+                    if (fieldName instanceof Array) {
+                        $.each(fieldName, function (index, field) {
+                            $("[data-field='" + field + "']").css('display', 'none');
+                        })
+                    } else if (typeof fieldName === 'string') {
+                        $("[data-field='" + fieldName + "']").css('display', 'none');
+                    } else {
+                    }
+                }
+            }
+        })();
+    </script>
+
+    <script>
+
+        layui.use('table', function () {
+            var table = layui.table;
+            var layer = layui.layer;
+            var $ = layui.jquery;
+            //第一个实例
+            table.render({
+                elem: '#manage'
+                , title: "业绩审核"
+                , height: 400
+                , width: 1280
+                , defaultToolbar: ['filter', 'print']
+                , url: '__ROOT__/customOrder/managerAnalysis/info' //数据接口
+                , page: true //开启分页
+                , toolbar: '#pdfexcel' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+                , totalRow: true //开启合计行
+                , cols: [[ //表头
+                    { field: 'num', title: '编号', type: 'numbers', width: 60, sort: true }
+                    , { field: 'id', title: '员工编号', id: 'order_num', width: 142, sort: true }
+                    , { field: 'name', title: '员工姓名', id: 'order_num', width: 142, sort: true }
+                    , { field: 'type', title: '产品类别', width: 130, sort: true }
+                    , { field: 'total', title: '销售总额', width: 130, sort: true }
+                    , { field: 'order_time', title: '日期', width: 150, sort: true }
+                ]],
+                done: function (res, curr, count) {
+                    $(".layui-table th").css("font-weight", "bold");// 设定表格标题字体加粗
+
+                    LayUIDataTable.SetJqueryObj($);// 第一步：设置jQuery对象
+                    //LayUIDataTable.HideField('num');// 隐藏列-单列模式
+                    //LayUIDataTable.HideField(['num','match_guest']);// 隐藏列-多列模式
+                    _cur_page = curr;//获取当前页
+                    var currentRowDataList = LayUIDataTable.ParseDataTable(function (logindex, logcurrentData, logrowData) {
+                        // console.log("当前页数据条数:" + currentRowDataList.length)
+                        // console.log("当前行索引：" + logindex);
+                        // console.log("触发的当前行单元格：" + logcurrentData);
+                        // console.log("当前行数据：" + JSON.stringify(logrowData));
+
+                        var msg = '<div style="text-align: left"> 【当前页数据条数】' + currentRowDataList.length + '<br/>【当前行索引】' + logindex + '<br/>【触发的当前行单元格】' + logcurrentData + '<br/>【当前行数据】' + JSON.stringify(logrowData) + '</div>';
+                        layer.msg(msg)
+                    })
+                }
+            });
+            // //执行表格“尺寸结构”的重置，一般写在对应的事件中
+            // table.resize('test');
+            //监听排序事件 
+            table.on('sort(managerTable)', function (sortobj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+                // console.log(sortobj.field); //当前排序的字段名
+                // console.log(sortobj.type); //当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
+                // console.log(this); //当前排序的 th 对象
+                var fiele = sortobj.field;
+                LayUIDataTable.SetJqueryObj($);// 第一步：设置jQuery对象
+
+                var currentRowDataList = LayUIDataTable.ParseDataTable(function (index, currentData, rowData) {
+                    // console.log("当前页数据条数:" + currentRowDataList.length)
+                    // console.log("当前行索引：" + index);
+                    // console.log("触发的当前行单元格：" + currentData);
+                    // console.log("当前行数据：" + JSON.stringify(rowData));
+
+                    var msg = '<div style="text-align: left"> 【当前页数据条数】' + currentRowDataList.length + '<br/>【当前行索引】' + index + '<br/>【触发的当前行单元格】' + currentData + '<br/>【当前行数据】' + JSON.stringify(rowData) + '</div>';
+                    layer.msg(msg);
+                })
+                console.log(sortobj.field); //当前排序的字段名
+                console.log(_cur_page);//当前页
+                console.log(sortobj.type); //当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
+                console.log(currentRowDataList.length);
+                // 对相关数据进行判断处理
+                $.each(currentRowDataList, function (index, obj) {
+                    // console.log(_cur_page);//当前页
+                    // console.log("当前行索引：2" + index);
+
+                    if (sortobj.field == 'total' && sortobj.type == 'desc') {
+                        //当页面尺寸小于等于10
+                        if (currentRowDataList.length <= 10) {
+
+                            if (_cur_page == 1) {
+                                if (index < 3) {
+                                    obj['total'].row.css("color", "#FF0000");
+                                }
+                                else if (index <= 10) {
+                                    obj['total'].row.css("color", "#00FFFF");
+                                }
+                            } else
+                                if (_cur_page == 2) {
+                                    if (index <= 10) {
+                                        obj['total'].row.css("color", "#FFA500");
+                                    }
+                                }
+                                else { obj['total'].row.css("color", "#ff1493"); }
+
+                        }
+                        //页面大小大于10,默认其次是20
+                        else if (currentRowDataList.length > 10) {
+                            if (_cur_page == 1) {
+                                if (index < 3) {
+                                    obj['total'].row.css("color", "#FF0000");
+                                } else if (index < 10) {
+                                    obj['total'].row.css("color", "#00FFFF");
+                                } else if (index >= 10) {
+                                    obj['total'].row.css("color", "#FFA500");
+                                }
+                            }//20之后全部浅粉色
+                            else { obj['total'].row.css("color", "#ff1493"); }
+
+                        }
+                    }
+
+                })
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

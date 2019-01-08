@@ -19,11 +19,12 @@ class Index extends controller
     if($role==3){
     $map['c.employee_id']  = array('=',$uid);
     }else
-    $map['c.department_id']  = array('=',$pid);
+    $map['b2.productmaster_id ']  = array('=',$pid);
     $order=Db::table('custom_order')
     ->alias('a')
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
+    ->join('buproductdevelop b2' , 'b.productdevelop_id = b2.productdevelop_id')
     ->where($map)
     ->paginate(10);
     $this->assign('cusTomOrder', $order);
@@ -42,12 +43,12 @@ class Index extends controller
     if($role==3){
     $map['c.employee_id']  = array('=',$uid);
     }else
-    $map['c.department_id']  = array('=',$pid);
-    
+    $map['b2.productmaster_id ']  = array('=',$pid);    
     $num=Db::table('custom_order')
     ->alias('a')
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
+    ->join('buproductdevelop b2' , 'b.productdevelop_id = b2.productdevelop_id')
     ->where($map)->count();
 
 
@@ -57,7 +58,9 @@ class Index extends controller
 
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
-    ->where('c.department_id','=',($pid))
+    ->join('buproductdevelop b2' , 'b.productdevelop_id = b2.productdevelop_id')
+    ->order('a.order_time desc')
+->where($map)
     ->limit(($_GET['page']-1)*$_GET['limit'],$_GET['limit'])
     ->select();
 
@@ -79,11 +82,13 @@ class Index extends controller
     if($role==3){
     $map['c.employee_id']  = array('=',$uid);
     }else
-    $map['c.department_id']  = array('=',$pid);
+    $map['b2.productmaster_id ']  = array('=',$pid);    
     $order=Db::table('custom_order')
     ->alias('a')
     ->join('buproduct b','a.product_num = b.product_rollno')
     ->join('buemployee c','a.saler_num = c.employee_id')
+    ->join('buproductdevelop b2' , 'b.productdevelop_id = b2.productdevelop_id')
+
     ->where($map)
     ->select();
     // $this->assign('cusTomOrder', $order);
