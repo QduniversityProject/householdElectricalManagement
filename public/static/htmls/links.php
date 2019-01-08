@@ -136,7 +136,7 @@ if($_COOKIE['role_id'] == 2){
                     echo"<li><a class='links' href='../../staff/staff/staff.html?department_id=$a' target='content'>Check Staff</a></li>";
                      ?>
                      <li><a class="links" href="../../customOrder/managerAnalysis/managerAnalysis" target="content">Check track record</a></li>
-                     <li><a class="links" href="../../chart/Chart/charta" target="content">Check Chart</a></li>
+                     <li><a class="links" href="../../chart/Chart/showcharta.html" target="content">Check Chart</a></li>
                 </ul>
             </div>
         </div>
