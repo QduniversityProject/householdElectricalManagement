@@ -15,27 +15,53 @@ class Chart extends Controller
     public function showcharta ()
     {
         $param = input('post.');
-        $amdata = Db::query("select c.productmaster_name, avg(amount*unit_price) as avg, max(amount*unit_price) as max 
-        from buproduct a join buproductdevelop b 
-        on a.productdevelop_id = b.productdevelop_id join buproductmaster c 
-        on b.productmaster_id = c.productmaster_id join custom_order d 
-        on a.product_rollno = d.product_num where d.order_time BETWEEN '".$param['starttime']."' AND '".$param['endtime']."' 
-        GROUP BY c.productmaster_id;");
-        // halt($amdata);
-        if (count($amdata) !== 0){
-            foreach ($amdata as $key => $val){
-                $avg[$key] = $val['avg'];
-                $max[$key] = (int)$val['max'];
-                $pname[$key] = $val['productmaster_name'];
+        if(empty($param['starttime']) ||empty($param['endtime'])){
+            $amdata = Db::query("select c.productmaster_name, avg(amount*unit_price) as avg, max(amount*unit_price) as max 
+            from buproduct a join buproductdevelop b 
+            on a.productdevelop_id = b.productdevelop_id join buproductmaster c 
+            on b.productmaster_id = c.productmaster_id join custom_order d 
+            on a.product_rollno = d.product_num 
+            GROUP BY c.productmaster_id;");
+            // halt($amdata);
+            if (count($amdata) !== 0){
+                foreach ($amdata as $key => $val){
+                    $avg[$key] = $val['avg'];
+                    $max[$key] = (int)$val['max'];
+                    $pname[$key] = $val['productmaster_name'];
+                }
+                $avg1 = array('name' => '平均销售额', 'data' => $avg);
+                $max1 = array('name' => '最高销售额', 'data' => $max);
+                $avgmax = json_encode(array($avg1, $max1));
+                $pname = json_encode($pname);
             }
-            $avg1 = array('name' => '平均销售额', 'data' => $avg);
-            $max1 = array('name' => '最高销售额', 'data' => $max);
-            $avgmax = json_encode(array($avg1, $max1));
-            $pname = json_encode($pname);
+            else{
+                $this->error('没有查到相应成绩！');
+            }
         }
         else{
-            $this->error('没有查到相应成绩！');
+            $amdata = Db::query("select c.productmaster_name, avg(amount*unit_price) as avg, max(amount*unit_price) as max 
+            from buproduct a join buproductdevelop b 
+            on a.productdevelop_id = b.productdevelop_id join buproductmaster c 
+            on b.productmaster_id = c.productmaster_id join custom_order d 
+            on a.product_rollno = d.product_num where d.order_time BETWEEN '".$param['starttime']."' AND '".$param['endtime']."' 
+            GROUP BY c.productmaster_id;");
+            // halt($amdata);
+            if (count($amdata) !== 0){
+                foreach ($amdata as $key => $val){
+                    $avg[$key] = $val['avg'];
+                    $max[$key] = (int)$val['max'];
+                    $pname[$key] = $val['productmaster_name'];
+                }
+                $avg1 = array('name' => '平均销售额', 'data' => $avg);
+                $max1 = array('name' => '最高销售额', 'data' => $max);
+                $avgmax = json_encode(array($avg1, $max1));
+                $pname = json_encode($pname);
+            }
+            else{
+                $this->error('没有查到相应成绩！');
+            }
         }
+        
         // halt($pname);
 
         /* 产品大类别饼状图数据 */ 
