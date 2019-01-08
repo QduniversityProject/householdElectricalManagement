@@ -35,14 +35,14 @@ class AfterSale extends controller
         //$saleperson=$_COOKIE['employee_id'];
         $date=date("Y-m-d");
 
-        $year = substr($saleID, 2, 5);
-        $month = substr($saleID, 7, 2);
+        $year = substr($saleID, 2, 4);
+        $month = substr($saleID, 6, 2);
 
         $result = Db::query("select aftersale_roll from buaftersale order by aftersale_id desc limit 1;");
         $roll = $result[0]['aftersale_roll'];
         $roll_int = (int)substr($roll,-5,5);
         $roll_int += 1;
-        $newroll = str_pad($roll_int, 4, 0, STR_PAD_LEFT);
+        $newroll = str_pad($roll_int, 5, 0, STR_PAD_LEFT);
         $aftersaleroll = "SV".$year.$month.$newroll;
 
         $this->assign('aftersaleroll', $aftersaleroll);
